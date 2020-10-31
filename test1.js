@@ -1,6 +1,7 @@
 (function() {
   setInterval(function() {
     console.log('-> here');
-  }, 250);
+    alert('here');
+  }, 10000);
   
 })();
