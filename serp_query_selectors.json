@@ -1,0 +1,12 @@
+{
+  "name": "Google Search",
+  "querySelector": {
+    "phone": ".KJDcUb a",
+    "pad": ".g .rc",
+  },
+  "name": "DuckDuckGo",
+  "querySelector": {
+    "phone": ".KJDcUb a",
+    "pad": "",
+  }
+}
