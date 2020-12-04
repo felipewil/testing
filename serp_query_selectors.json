@@ -6,7 +6,7 @@
   },
   "name": "DuckDuckGo",
   "querySelector": {
-    "phone": ".KJDcUb a",
+    "phone": "a.result__url a",
     "pad": "",
   }
 }
