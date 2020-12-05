@@ -8,7 +8,7 @@
   "DuckDuckGo": {
     "querySelector": {
       "phone": "a.result__url",
-      "pad": ""
+      "pad": ".result_body a"
     }
   }
 }
