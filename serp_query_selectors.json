@@ -2,11 +2,11 @@
   "name": "Google Search",
   "querySelector": {
     "phone": ".KJDcUb a",
-    "pad": ".g .rc",
+    "pad": ".g .rc"
   },
   "name": "DuckDuckGo",
   "querySelector": {
     "phone": "a.result__url a",
-    "pad": "",
+    "pad": ""
   }
 }
