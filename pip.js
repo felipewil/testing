@@ -1,7 +1,10 @@
 (function() {
   function act() {
     let v = document.querySelector('video');
-    v.addEventListener('webkitpresentationmodechanged', (e)=>e.stopPropagation(), true);
+    v.addEventListener('webkitpresentationmodechanged', (e)=>{
+      e.stopPropagation();
+      conosle.log('stop prop');
+    }, true);
     setTimeout(()=>{
       v.webkitSetPresentationMode('picture-in-picture');
       console.log('pip');
