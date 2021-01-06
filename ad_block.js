@@ -79,6 +79,7 @@ adBlocks.forEach((adBlock) => {
   setInterval(function() {
       var search = adText.map(adText => 'normalize-space()=\'' + adText + '\'').join(' or ');
       var xpath = "//" + adTextContainer + "[" + search + "]";
+      console.log('xpath', xpath);
       var matchingElements = document.evaluate(xpath, document, null, XPathResult.ANY_TYPE, null);
       var nodes = []
       while(node = matchingElements.iterateNext()) {
