@@ -118,7 +118,7 @@ function adBlockNodes(nodes, adElementSelector) {
       console.log('--> 5', adElementSelector, adstory);
       
       // Preventing same adstory to be handled more than once
-      if (adstory.getAttribute('adblocked') === 'true') {
+      if (!adstory || adstory.getAttribute('adblocked') === 'true') {
           continue;
       }
     
