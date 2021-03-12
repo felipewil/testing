@@ -114,13 +114,15 @@ const onLoad = () => {
 function adBlockNodes(nodes, adElementSelector) {
   for (let node of nodes) {
       let adstory = node.closest(adElementSelector)
+
+      console.log('--> 5', adElementSelector, adstory);
       
       // Preventing same adstory to be handled more than once
       if (adstory.getAttribute('adblocked') === 'true') {
           continue;
       }
     
-      console.log('--> 5', adstory);
+      console.log('--> 5.1');
       
       adstory.setAttribute('adblocked', 'true')
 
