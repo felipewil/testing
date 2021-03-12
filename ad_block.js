@@ -47,6 +47,11 @@ var adBlockers = [
     "adElementSelector": "ytm-rich-item-renderer"
   },
   {
+    "site": "linkedin.com",
+    "adText": "Promoted",
+    "adElementSelector": "li.feed-item"
+  },
+  {
     "site": "google.com",
     "adText": "Ad,Ad·",
     "adElementSelector": "#tads"
@@ -60,45 +65,46 @@ var adBlockers = [
     "site": "google.com",
     "adText": "Ads",
     "adElementSelector": "._-is"
+  },
+  {
+    "site": "google.com",
+    "adText": "Ads",
+    "adElementSelector": ".commercial-unit-mobile-top"
   }
 ]
 
+const onLoad = () => {
+  var host = document.location.host.replace('www.', '');
 
-var host = document.location.host.replace('www.', '');
+  var adBlocks = adBlockers.filter(adBlock => {
+    var site = adBlock.site.split(',');
+    return site.includes(host);
+  });
 
-var adBlocks = adBlockers.filter(adBlock => {
-  var site = adBlock.site.split(',');
-  return site.includes(host);
-});
+  adBlocks.forEach((adBlock) => {
+    var adText = adBlock.adText.split(',');
+    var adTextContainer = adBlock.adTextContainer || 'span';
+    var adElementSelector = adBlock.adElementSelector;
 
-adBlocks.forEach((adBlock) => {
-  var adText = adBlock.adText.split(',');
-  var adTextContainer = adBlock.adTextContainer || 'span';
-  var adElementSelector = adBlock.adElementSelector;
-
-  setInterval(function() {
-      var search = adText.map(adText => 'normalize-space()=\'' + adText + '\'').join(' or ');
-      var xpath = "//" + adTextContainer + "[" + search + "]";
-      console.log('xpath', xpath);
-      var matchingElements = document.evaluate(xpath, document, null, XPathResult.ANY_TYPE, null);
-      var nodes = []
-      while(node = matchingElements.iterateNext()) {
-          nodes.push(node)
-      }
-      adBlockNodes(nodes, adElementSelector);
-  }, 1000);
-})
-
+    setInterval(function() {
+        var search = adText.map(adText => 'normalize-space()=\'' + adText + '\'').join(' or ');
+        var xpath = "//" + adTextContainer + "[" + search + "]";
+        var matchingElements = document.evaluate(xpath, document, null, XPathResult.ANY_TYPE, null);
+        var nodes = []
+        while(node = matchingElements.iterateNext()) {
+            nodes.push(node)
+        }
+        adBlockNodes(nodes, adElementSelector);
+    }, 1000);
+  })
+};
 
 function adBlockNodes(nodes, adElementSelector) {
-  console.log(nodes, adElementSelector);
   for (let node of nodes) {
       let adstory = node.closest(adElementSelector)
       
-      console.log('adstory', adstory);
-      
       // Preventing same adstory to be handled more than once
-      if (!adstory || adstory.getAttribute('adblocked') === 'true') {
+      if (adstory.getAttribute('adblocked') === 'true') {
           continue;
       }
       
@@ -144,3 +150,17 @@ function adBlockNodes(nodes, adElementSelector) {
       }
   }
 } 
+
+const runWhenDocumentReady = (cb) => {
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    cb();
+  } else {
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => cb(),
+      false,
+    );
+  }
+};
+
+runWhenDocumentReady(onLoad);
