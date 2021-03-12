@@ -80,12 +80,16 @@ const onLoad = () => {
     var site = adBlock.site.split(',');
     return site.includes(host);
   });
+  
+  console.log("-> 3", adBlocks);
 
   adBlocks.forEach((adBlock) => {
     var adText = adBlock.adText.split(',');
     var adTextContainer = adBlock.adTextContainer || 'span';
     var adElementSelector = adBlock.adElementSelector;
 
+      console.log("-> 4");
+    
     setInterval(function() {
         var search = adText.map(adText => 'normalize-space()=\'' + adText + '\'').join(' or ');
         var xpath = "//" + adTextContainer + "[" + search + "]";
@@ -152,9 +156,12 @@ function adBlockNodes(nodes, adElementSelector) {
 } 
 
 const runWhenDocumentReady = (cb) => {
+  console.log("-> 2");
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    console.log("-> 2.1");
     cb();
   } else {
+    console.log("-> 2.2");
     document.addEventListener(
       'DOMContentLoaded',
       () => cb(),
@@ -163,4 +170,5 @@ const runWhenDocumentReady = (cb) => {
   }
 };
 
+console.log("-> 1");
 runWhenDocumentReady(onLoad);
