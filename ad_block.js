@@ -10,6 +10,11 @@ var adBlockers = [
     "adElementSelector": "article"
   },
   {
+    "site": "facebook.com",
+    "adText": "Sponsored",
+    "adElementSelector": "div[role=\"article\"]"
+  },
+  {
     "site": "reddit.com",
     "adText": "Promoted, Sponsored",
     "adElementSelector": "article"
