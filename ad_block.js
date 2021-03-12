@@ -111,6 +111,8 @@ function adBlockNodes(nodes, adElementSelector) {
       if (adstory.getAttribute('adblocked') === 'true') {
           continue;
       }
+    
+      console.log('--> 5', adstory);
       
       adstory.setAttribute('adblocked', 'true')
 
