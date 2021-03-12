@@ -99,6 +99,7 @@ const onLoad = () => {
             nodes.push(node)
         }
         console.log("-> 4.1", matchingElements)
+        console.log("path", xpath)
         console.log(adElementSelector);
         adBlockNodes(nodes, adElementSelector);
     }, 1000);
