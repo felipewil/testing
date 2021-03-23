@@ -39,7 +39,7 @@ console.log("called")
     } else {
       document.addEventListener(
         'DOMContentLoaded',
-        applyDark,
+        () => applyDark(),
         false,
       );
     }
