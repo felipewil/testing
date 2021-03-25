@@ -25,8 +25,8 @@
 const testingPip = true;
 let index = 0;
 
-setInterval({
+setInterval(function() {
   index += 1;
   console.log('index', index);
-  console.log('index updated);
+  console.log('index updated');
 }, 3000);
