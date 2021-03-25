@@ -5,6 +5,7 @@
       e.stopPropagation();
       console.log('stop prop');
     }, true);
+    v.setAttribute('pip-mode', 'true');
 //     setTimeout(()=>{
 //       v.webkitSetPresentationMode('picture-in-picture');
 //       console.log('pip');
@@ -13,21 +14,10 @@
   
   function helper() {
     let vid = document.querySelector('video');
-    if (vid) {
+    if (vid && vid.getAttribute('pip-mode') !== 'true') {
       act()
-    } else {
-      setTimeout(() => helper(), 1000)
     } 
   }
-
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    console.log('loaded 1');
-    helper();
-  } else {
-    document.addEventListener(
-      'DOMContentLoaded',
-      () => { console.log('loaded 2'); helper(); },
-      false,
-    );
-  }
+  
+  setInterval(() => helper(), 1000)
 })()
