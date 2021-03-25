@@ -5,10 +5,10 @@
       e.stopPropagation();
       console.log('stop prop');
     }, true);
-    setTimeout(()=>{
-      v.webkitSetPresentationMode('picture-in-picture');
-      console.log('pip');
-    }, 1000);
+//     setTimeout(()=>{
+//       v.webkitSetPresentationMode('picture-in-picture');
+//       console.log('pip');
+//     }, 1000);
   }
   
   function helper() {
@@ -17,9 +17,17 @@
       act()
     } else {
       setTimeout(() => helper(), 1000)
-    }
-    
+    } 
   }
-  
-  helper();
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    console.log('loaded 1');
+    helper();
+  } else {
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => { console.log('loaded 2'); helper(); },
+      false,
+    );
+  }
 })()
