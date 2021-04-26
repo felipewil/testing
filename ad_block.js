@@ -10,11 +10,6 @@ var adBlockers = [
     "adElementSelector": "article"
   },
   {
-    "site": "facebook.com",
-    "adText": "Sponsored",
-    "adElementSelector": "div[role=\"article\"]"
-  },
-  {
     "site": "reddit.com",
     "adText": "Promoted, Sponsored",
     "adElementSelector": "article"
@@ -75,54 +70,48 @@ var adBlockers = [
     "site": "google.com",
     "adText": "Ads",
     "adElementSelector": ".commercial-unit-mobile-top"
+  },
+  {
+    "site": "duckduckgo.com",
+    "adText": "Ad",
+    "adElementSelector": ".result--ad"
   }
 ]
 
-const onLoad = () => {
-  var host = document.location.host.replace('www.', '');
 
-  var adBlocks = adBlockers.filter(adBlock => {
-    var site = adBlock.site.split(',');
-    return site.includes(host);
-  });
-  
-  console.log("-> 3", adBlocks);
+var host = document.location.host.replace('www.', '');
 
-  adBlocks.forEach((adBlock) => {
-    var adText = adBlock.adText.split(',');
-    var adTextContainer = adBlock.adTextContainer || 'span';
-    var adElementSelector = adBlock.adElementSelector;
+var adBlocks = adBlockers.filter(adBlock => {
+  var site = adBlock.site.split(',');
+  return site.includes(host);
+});
 
-      console.log("-> 4");
-    
-    setInterval(function() {
-        var search = adText.map(adText => 'normalize-space()=\'' + adText + '\'').join(' or ');
-        var xpath = "//" + adTextContainer + "[" + search + "]";
-        var matchingElements = document.evaluate(xpath, document, null, XPathResult.ANY_TYPE, null);
-        var nodes = []
-        while(node = matchingElements.iterateNext()) {
-            nodes.push(node)
-        }
-        console.log("-> 4.1", matchingElements)
-        console.log("path", xpath)
-        console.log(adElementSelector);
-        adBlockNodes(nodes, adElementSelector);
-    }, 1000);
-  })
-};
+adBlocks.forEach((adBlock) => {
+  var adText = adBlock.adText.split(',');
+  var adTextContainer = adBlock.adTextContainer || 'span';
+  var adElementSelector = adBlock.adElementSelector;
+
+  setInterval(function() {
+      var search = adText.map(adText => 'normalize-space()=\'' + adText + '\'').join(' or ');
+      var xpath = "//" + adTextContainer + "[" + search + "]";
+      var matchingElements = document.evaluate(xpath, document, null, XPathResult.ANY_TYPE, null);
+      var nodes = []
+      while(node = matchingElements.iterateNext()) {
+          nodes.push(node)
+      }
+      adBlockNodes(nodes, adElementSelector);
+  }, 1000);
+})
+
 
 function adBlockNodes(nodes, adElementSelector) {
   for (let node of nodes) {
       let adstory = node.closest(adElementSelector)
-
-      console.log('--> 5', adElementSelector, adstory);
       
       // Preventing same adstory to be handled more than once
       if (!adstory || adstory.getAttribute('adblocked') === 'true') {
           continue;
       }
-    
-      console.log('--> 5.1');
       
       adstory.setAttribute('adblocked', 'true')
 
@@ -166,21 +155,3 @@ function adBlockNodes(nodes, adElementSelector) {
       }
   }
 } 
-
-const runWhenDocumentReady = (cb) => {
-  console.log("-> 2");
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    console.log("-> 2.1");
-    cb();
-  } else {
-    console.log("-> 2.2");
-    document.addEventListener(
-      'DOMContentLoaded',
-      () => cb(),
-      false,
-    );
-  }
-};
-
-console.log("-> 1");
-runWhenDocumentReady(onLoad);
