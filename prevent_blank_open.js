@@ -9,7 +9,7 @@
         return;
       }
       console.log('---> args', arguments);
-      _open.call(arguments);
+      return _open.call(arguments);
     };
   
     const replaceOpen = () => {
