@@ -20,6 +20,7 @@ stars_static "Static" <<<EOT data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAA
 
 }
 @var color redcolor 'my color' red
+@var color whitecolor 'my color' white
 
 ==/UserStyle== */
 .test {
@@ -40,7 +41,7 @@ stars_static "Static" <<<EOT data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAA
 
 @-moz-document url(https://www.bing.com/?toWww=1&redig=7C54F71E1EE64E09968D27DD73AAE969) {
   body {
-    background: white; 
+    background: /*[[whitecolor]]*/; 
   }
 }
 
