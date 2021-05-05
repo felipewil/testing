@@ -37,6 +37,12 @@ stars_static "Static" <<<EOT data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAA
   }
 }
 
+@-moz-document url(https://www.bing.com/) {
+  body {
+    background: white; 
+  }
+}
+
 @-moz-document url('https://www.google.com/') {
   body {
     background: yellow; 
