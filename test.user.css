@@ -25,7 +25,7 @@ stars_static "Static" <<<EOT data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAA
   background: 'red'; 
 }
 
-@-moz-document domain("google.com") {
+@-moz-document domain('google.com') {
   background: 'black'; 
 }
 
