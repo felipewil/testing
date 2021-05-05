@@ -27,7 +27,31 @@ stars_static "Static" <<<EOT data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAA
 
 @-moz-document domain('google.com') {
   body {
-    background: 'black'; 
+    background: black; 
+  }
+}
+
+@-moz-document domain('bing.com') {
+  body {
+    background: black; 
+  }
+}
+
+@-moz-document url('https://www.google.com/') {
+  body {
+    background: yellow; 
+  }
+}
+
+@-moz-document url('https://www.google.com') {
+  body {
+    background: green; 
+  }
+}
+
+@-moz-document url-prefix('https://www.google') {
+  body {
+    background: red; 
   }
 }
 
