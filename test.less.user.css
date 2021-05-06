@@ -1,0 +1,58 @@
+/* ==UserStyle==
+@name           Test style
+@namespace      USO Archive
+@author         felipe
+@description    ``
+@version        20210505.1.0
+@license        CC-BY-NC-4.0
+@preprocessor   uso
+
+@var color redcolor 'my color' red
+@var color whitecolor 'my color' white
+@var color greencolor 'my color' green
+@var color bluecolor 'my color' blue
+@var text size1 'size1' 10px
+@var text2 size2 'size2' 20px
+
+==/UserStyle== */
+.test {
+  background: @redcolor; 
+}
+
+@-moz-document domain('google.com') {
+  body {
+    background: @redcolor; 
+  }
+}
+
+@-moz-document domain('bing.com') {
+  body {
+    background: black; 
+  }
+	
+  .sb_form_q {
+    background: @bluecolor;
+  }
+}
+
+@-moz-document url(https://www.bing.com/?toWww=1&redig=2DFA14A3365D459AAE9FED92E0C320BF) {
+  body {
+    background: @whitecolor;
+  }
+
+  .sb_form_q {
+    background: @greencolor;
+  }
+}
+
+@-moz-document url('https://www.google.com/') {
+  body {
+    margin: @size1 + @size2; 
+  }
+}
+
+@-moz-document url('https://www.google.com') {
+  body {
+    background: green; 
+  }
+}
