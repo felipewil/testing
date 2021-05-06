@@ -1,0 +1,49 @@
+/* ==UserStyle==
+@name           Test style
+@namespace      USO Archive
+@author         felipe
+@description    ``
+@version        20210505.1.0
+@license        CC-BY-NC-4.0
+@preprocessor   stylus
+
+@var color redcolor 'my color' red
+@var color whitecolor 'my color' white
+@var color greencolor 'my color' green
+@var color bluecolor 'my color' blue
+@var text size1 'size1' 10px
+@var text size2 'size2' 20px
+@var text val1 'val1' 10
+@var text val2 'val2' 20
+
+==/UserStyle== */
+.test 
+  background: redcolor
+
+
+@-moz-document domain('google.com')
+  body
+    background: redcolor
+
+@-moz-document domain('bing.com')
+  body
+    background: black
+	
+  .sb_form_q
+    background: bluecolor
+
+@-moz-document url(https://www.bing.com/?toWww=1&redig=2DFA14A3365D459AAE9FED92E0C320BF)
+  body
+    background: whitecolor
+
+  .sb_form_q
+    background: greencolor
+
+sum(nums...)
+  sum = 0
+  sum += n for n in nums
+  
+@-moz-document url('https://www.google.com/')
+  body
+    margin: size1 + size2
+    padding: sum(val1 val2)
