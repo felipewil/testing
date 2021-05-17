@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  Test script
 // @include      *
-// @exclude      http.*://.*\.bing\.com.*
+// @include      *://*.bing.com/*
 // ==/UserScript==
 
 window.alert('injected');
