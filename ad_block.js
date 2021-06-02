@@ -68,7 +68,7 @@ var adBlockers = [
   },
   {
     "site": "google.com",
-    "adText": "Ads",
+    "adText": "Ads·",
     "adElementSelector": ".ptJHdc"
   },
   {
