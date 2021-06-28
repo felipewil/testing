@@ -24,6 +24,7 @@
 // ==/UserScript==
 
 (function() {
+    console.log('----> starting');
     'use strict';
 
     //视频解析服务器
@@ -44,6 +45,7 @@
     //跳转服务器2的监控ID前缀
     var isLoadingServer2 = "__is_loading_server2_";
 
+    console.log('----> starting 2', document.domain == "www.youtube.com");
     //YouTube脚本
     if(document.domain == "www.youtube.com") {
         //获取视频key和分析地址
@@ -54,12 +56,15 @@
         };
         //开始插入button
         var downTimmer = null, dtcount=0;
+        console.log('----> insert btn declare');
         var insertButton = function(){
+            console.log('----> insert btn called', $("#wish_downloader").length);
             if($("#wish_downloader").length > 0) return;
             if(downTimmer) clearTimeout(downTimmer);
             dtcount++;
             if(dtcount> 5000) return;
             var authorInfo = $("#top-row #upload-info.ytd-video-owner-renderer");
+            console.log('----> author info', authorInfo.length);
             if(authorInfo.length > 0){
                 //文字提醒
                 authorInfo.after(`<a id="wish_downloader" href="`+getVideoUrl()+`" target="_blank" style="width: 100px;height: 18px;background-color: rgb(0, 183, 90);color: white;text-align: center;padding: 8px 8px;margin: 0px 10px;font-size: 14px;border: 0px;cursor: pointer;border-radius: 2px;font-family: Roboto, Arial, sans-serif;text-decoration: none;margin-top: 9px;">Downloader</a>`);
@@ -121,6 +126,7 @@
                 GM_addStyle(GM_getResourceText("layercss") + layermorecss);
 
                 //保证按钮100%正确插入
+                console.log('set timeout');
                 setTimeout(function(){
                    if($("#wish_downloader").length ===0){
                        insertButton();
