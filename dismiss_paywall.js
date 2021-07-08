@@ -18,7 +18,7 @@ if (matchDomain('elmercurio.com')) {
 
     removeDOMElement(paywall);
     body.removeAttribute('style');
-  }, 500); // Delay (in milliseconds)
+  }, 1000); // Delay (in milliseconds)
 } else if (matchDomain('repubblica.it')) {
   document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('#paywall')) {
