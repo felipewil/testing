@@ -20,6 +20,11 @@ if (matchDomain('elmercurio.com')) {
 
      console.log('paywall', paywall);
     
+    if (!paywall) {
+      console.log('try to block');
+      blockElement('#paywall-wrapper-iframe-estadao', false);
+    }
+
     removeDOMElement(paywall);
     body.removeAttribute('style');
   }, 1000); // Delay (in milliseconds)
