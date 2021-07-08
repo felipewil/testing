@@ -12,10 +12,14 @@ if (matchDomain('elmercurio.com')) {
     });
   }
 } else if (matchDomain('estadao.com.br')) {
+  console.log('set timeout');
   setTimeout(function () {
+    console.log('fire');
     const paywall = document.querySelector('#paywall-wrapper-iframe-estadao');
     const body = document.querySelector('html');
 
+     console.log('paywall', paywall);
+    
     removeDOMElement(paywall);
     body.removeAttribute('style');
   }, 1000); // Delay (in milliseconds)
