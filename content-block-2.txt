@@ -12,4 +12,4 @@
 ! GitHub issues: https://github.com/easylist/easylist/issues
 ! GitHub pull requests: https://github.com/easylist/easylist/pulls
 !
-pinterest.at,pinterest.ch,pinterest.co.uk,pinterest.com,pinterest.com.au,pinterest.com.mx,pinterest.de,pinterest.es,pinterest.fr,pinterest.it,pinterest.pt#?#div[data-test-id="pin"]:-abp-has(div[title="Publicidade de"])
+pinterest.pt#?#div[data-test-id="pin"]:-abp-has(div[title="Publicidade de"])
