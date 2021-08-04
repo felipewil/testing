@@ -12,3 +12,4 @@
 !------------------------General element hiding rules-------------------------!
 
 medium.com
+||app.adjust.com^$first-party
