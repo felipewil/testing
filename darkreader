@@ -4,7 +4,7 @@
  *
  * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
  */
-!function(e,r){"object"==typeof exports&&"undefined"!=typeof module?r(exports):"function"==typeof define&&define.amd?define(["exports"],r):r((e="undefined"!=typeof globalThis?globalThis:e||self).DarkReader={})}(this,(function(e){"use strict";
+!function(e,r){"object"==typeof exports&&"undefined"!=typeof module&&r(exports)||"function"==typeof define&&define.amd&&define(["exports"],r)||r((e="undefined"!=typeof globalThis?globalThis:e||self).DarkReader={})}(this,(function(e){"use strict";
 /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
 
@@ -22,8 +22,6 @@
 
 (() => {
     const applyDark = () => {
-      console.log("->", DarkReader);
-      console.log("-->", window.DarkReader);
       DarkReader.setFetchMethod(window.fetch)
       DarkReader.auto({
         brightness: 100,
@@ -37,7 +35,7 @@
     } else {
       document.addEventListener(
         'DOMContentLoaded',
-        () => applyDark(),
+        applyDark,
         false,
       );
     }
