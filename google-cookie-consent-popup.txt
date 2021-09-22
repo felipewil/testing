@@ -11,6 +11,6 @@ google.*##.widget-consent-fullscreen.widget-consent
 ! And for Youtube
 ! Updated 13.04.2021
 www.youtube.com###dialog
-m.youtube.com###.consent-bump-v2-lightbox
+m.youtube.com##.consent-bump-v2-lightbox
 www.youtube.com##ytd-popup-container.ytd-app.style-scope
 www.youtube.com##tp-yt-iron-overlay-backdrop
