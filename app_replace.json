@@ -20,7 +20,7 @@
         "to": "tweetbot://%r0"
       },
       {
-        "from": "https:\/\/(www\\.|mobile\\.)?twitter\\.com\/([^\/]*)$",
+        "from": "https:\/\/(www\\.|mobile\\.)?twitter\\.com\/([^\/?]*)$",
         "to": "tweetbot://%r1"
       },
       {
