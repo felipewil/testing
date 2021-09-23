@@ -17,15 +17,15 @@
     "mappings": [
       {
         "from": "https:\/\/((www\\.|mobile\\.)?twitter\\.com\/?)$",
-        "to": "tweetbot://$r0"
+        "to": "tweetbot://%r0"
       },
       {
         "from": "https:\/\/(www\\.|mobile\\.)?twitter\\.com\/([^\/]*)$",
-        "to": "tweetbot://$r1"
+        "to": "tweetbot://%r1"
       },
       {
         "from": "https:\/\/(www\\.|mobile\\.)?twitter\\.com\/(.*)\/status\/(\\d*)",
-        "to": "tweetbot://$r1/status/%r2"
+        "to": "tweetbot://%r1/status/%r2"
       }
     ]
   }
