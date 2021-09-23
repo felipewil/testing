@@ -4,11 +4,11 @@
     "mappings": [
       {
         "from": "https:\/\/((www\\.)?reddit\\.com.*)",
-        "to": "apollo://$0"
+        "to": "apollo://%r0"
       },
       {
         "from": "reddit:\/\/(.*)",
-        "to": "apollo://$0"
+        "to": "apollo://%r0"
       }
     ]
   },
@@ -17,15 +17,15 @@
     "mappings": [
       {
         "from": "https:\/\/((www\\.|mobile\\.)?twitter\\.com\/?)$",
-        "to": "tweetbot://$0"
+        "to": "tweetbot://$r0"
       },
       {
         "from": "https:\/\/(www\\.|mobile\\.)?twitter\\.com\/([^\/]*)$",
-        "to": "tweetbot://$1"
+        "to": "tweetbot://$r1"
       },
       {
         "from": "https:\/\/(www\\.|mobile\\.)?twitter\\.com\/(.*)\/status\/(\\d*)",
-        "to": "tweetbot://$1/status/$2"
+        "to": "tweetbot://$r1/status/%r2"
       }
     ]
   }
