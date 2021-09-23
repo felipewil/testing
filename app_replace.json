@@ -29,7 +29,7 @@
       },
       {
         "from": "https:\/\/(www\\.|mobile\\.)?twitter\\.com\/([^\/?]*)",
-        "to": "tweetbot://%r1"
+        "to": "tweetbot://%r1/user_profile/%r1"
       },
       {
         "from": "https:\/\/((www\\.|mobile\\.)?twitter\\.com\/.*)",
