@@ -3,7 +3,7 @@
     "name": "Reddit to Apollo for Reddit",
     "mappings": [
       {
-        "from": "https:\/\/((www\\.)?reddit\\.com.*)",
+        "from": "https:\/\/((www\\.|amp\\.)?reddit\\.com.*)",
         "to": "apollo://%r0"
       },
       {
