@@ -24,7 +24,7 @@
         "to": "tweetbot://$0"
       },
       {
-        "from": "https:\/\/(www\\.|mobile\\.)?twitter\\.com\/(.*)\/status\/(\d*)",
+        "from": "https:\/\/(www\\.|mobile\\.)?twitter\\.com\/(.*)\/status\/(\\d*)",
         "to": "tweetbot://$0"
       }
     ]
