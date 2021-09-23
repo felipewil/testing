@@ -21,11 +21,11 @@
       },
       {
         "from": "https:\/\/(www\\.|mobile\\.)?twitter\\.com\/([^\/]*)$",
-        "to": "tweetbot://$0"
+        "to": "tweetbot://$1"
       },
       {
         "from": "https:\/\/(www\\.|mobile\\.)?twitter\\.com\/(.*)\/status\/(\\d*)",
-        "to": "tweetbot://$0"
+        "to": "tweetbot://$1/status/$2"
       }
     ]
   }
