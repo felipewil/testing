@@ -1,35 +1,145 @@
 {
-	"Google Search": {
-		"querySelector": {
-			"phone": ".mnr-c .KJDcUb a.BmP5tf",
-			"pad": ".kCrYT > a",
-			"desktop": ".yuRUbf > a"
-		},
-		"search_engine_json": {
-			"required_params": ["q"],
-			"required_prefix": "google.com/search"
-		}
-	},
-	"DuckDuckGo": {
-		"querySelector": {
-			"phone": ".result__a",
-			"pad": ".result__a",
-			"desktop": ".result__url__domain"
-		},
-		"search_engine_json": {
-			"required_params": ["q"],
-			"required_prefix": "duckduckgo.com"
-		}
-	},
-	"Bing": {
-	    "querySelector": {
-	      "phone": ".b_attribution cite",
-	      "pad": ".b_attribution cite",
-	      "desktop": ".b_attribution cite"
-	    },
-	    "search_engine_json": {
-	      "required_params": ["q"],
-	      "required_prefix": "bing.com/search"
-	    }
-  	}
+  "Google Search": {
+    "querySelector": {
+      "phone": ".mnr-c .KJDcUb a.BmP5tf",
+      "pad": ".hlcw0c .yuRUbf > a",
+      "desktop": "#center_col div:not(.kp-blk *) > .yuRUbf > a cite",
+      "result_container_selector": "[data-hveid]",
+      "featured": [".kp-blk.c2xzTb .yuRUbf > a"],
+      "highlight": ".MBeuO"
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "required_params": ["q"],
+      "required_prefix": "google.com/search"
+    }
+  },
+  "DuckDuckGo": {
+    "querySelector": {
+      "phone": ".result__body a",
+      "pad": ".result__body a",
+      "desktop": "a.result__url.js-result-extras-url",
+      "result_container_selector": ".result__body",
+      "featured": [],
+      "highlight": ""
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "required_params": ["q"],
+      "required_prefix": "duckduckgo.com"
+    }
+  },
+  "Bing": {
+    "querySelector": {
+      "phone": ".b_attribution cite",
+      "pad": ".b_attribution cite",
+      "desktop": ".b_attribution cite",
+      "result_container_selector": ".b_algo",
+      "featured": [],
+      "highlight": ""
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "required_params": ["q"],
+      "required_prefix": "bing.com/search"
+    }
+  },
+  "Amazon US": {
+    "querySelector": {
+      "desktop": "",
+      "featured": [],
+      "pad": "",
+      "phone": "",
+      "result_container_selector": "",
+      "highlight": ""
+    },
+    "search_engine_json": {
+      "is_web_search": false,
+      "required_params": ["k"],
+      "required_prefix": "amazon.com/s"
+    }
+  },
+  "Ecosia": {
+    "querySelector": {
+      "desktop": "div:not(.card-ad) > .result .result-url",
+      "featured": [],
+      "pad": "div:not(.card-ad) > .result .result-url",
+      "phone": "div:not(.card-ad) > .result .result-url",
+      "result_container_selector": ".result",
+      "highlight": ""
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "required_params": ["q"],
+      "required_prefix": "ecosia.org/search"
+    }
+  },
+  "Neeva": {
+    "querySelector": {
+      "desktop": "div[data-gtid=result-item] .web-index__linkTitle-oESam a",
+      "featured": [],
+      "pad": "div[data-gtid=result-item] .web-index__linkTitle-oESam a",
+      "phone": "div[data-gtid=result-item] .web-index__linkTitle-oESam a",
+      "result_container_selector": ".result-container__wrapper-38pV8",
+      "highlight": ""
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "required_params": ["q"],
+      "required_prefix": "neeva.com/search"
+    }
+  },
+  "Brave": {
+    "querySelector": {
+      "desktop": "#results .snippet a.result-header",
+      "featured": [],
+      "pad": "#results .snippet a.result-header",
+      "phone": "#results .snippet a.result-header",
+      "result_container_selector": "#results .snippet",
+      "highlight": ""
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "required_params": ["q"],
+      "required_prefix": "search.brave.com/search"
+    }
+  },
+  "Startpage": {
+    "querySelector": {
+      "desktop": "",
+      "featured": [],
+      "pad": "",
+      "phone": "",
+      "result_container_selector": "",
+      "highlight": ""
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "required_params": ["query"],
+      "required_prefix": "startpage.com/sp/search",
+      "other_params": {
+        "cat": "web",
+	"pl": "opensearch",
+	"language": "english"
+      }
+    }
+  },
+  "Qwant": {
+    "querySelector": {
+      "desktop": "",
+      "featured": [],
+      "pad": "",
+      "phone": "",
+      "result_container_selector": "",
+      "highlight": ""
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "required_params": ["q"],
+      "required_prefix": "qwant.com?q",
+      "other_params": {
+	"client": "opensearch"
+      }
+    }
+  }
 }
