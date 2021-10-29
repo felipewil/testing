@@ -4,4 +4,4 @@
 ! Licence: https://creativecommons.org/licenses/by-sa/4.0/
 ! Version: 20210303
 
-*##button;text~=cookies;text~=accepts
+*##button;text~=cookies;text~=accept
