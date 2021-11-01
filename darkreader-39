@@ -23,7 +23,13 @@
 
 (() => {
   console.log('load darkreader');
-  DarkReader.setFetchMethod(window.fetch)
+  const bgFetch = (input, options) => {
+    console.log('bgfetch', input, options);
+    const result = await chrome.runtime.sendMessage({ type: 'FETCH_REQUEST_MESSAGE', input, options });
+    console.log('bgfetched', result);
+    return result;
+  };
+  DarkReader.setFetchMethod(bgFetch);
   DarkReader.auto({
     brightness: 100,
     contrast: 90,
