@@ -100,7 +100,14 @@
       }
     };
 
-    checkButtonsIn(document.body);
+    const buildRuleAndClick = (button) => {
+      if (!button) { return; }
+
+      const selector = buildSelector(button).join(' > ');
+      clickElement(button, selector, 0);
+    };
+
+    buildRuleAndClick(checkButtonsIn(document.body));
 
     const observer = new MutationObserver((mutationsList) => {
       const findPossibleCookie = () => {
@@ -123,8 +130,7 @@
       const button = findPossibleCookie();
   
       if (button) {
-        const selector = buildSelector(button).join(' > ');
-        clickElement(button, selector, 0);
+        buildRuleAndClick(button);
         observer.disconnect();
       }
     });
