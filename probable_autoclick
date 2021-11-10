@@ -1,13 +1,43 @@
 (() => {
+  const COOKIES_MODAL_MAX_HEIGHT = 500.0
+
+  const buildSelector = (element) => {
+    let currentElement = element;
+    let selectors = [];
+  
+    while (currentElement) {
+      let id;
+  
+      // Selector rule should not start with number
+      if (currentElement.id.trim() && !currentElement.id.trim().match('^\\d')) {
+        id = `#${ currentElement.id.trim() }`;
+      }
+  
+      let selector = id || currentElement.tagName.toLowerCase();
+  
+      const classes = [ ...currentElement.classList ];
+      if (classes.length) {
+        selector = `${ selector }.${ classes.join('.') }`;
+      }
+  
+      selectors.unshift(selector);
+  
+      if (currentElement === document.body || 
+          currentElement.parentElement && currentElement.parentElement === document.body) {
+        break;
+      }
+  
+      currentElement = currentElement.parentElement;
+    }
+  
+    return selectors;
+  };
+
   const clickElement = (el, selector, tryCount) => {
     el.click()
   
-    console.log(selector);
-    console.log('--> clicked', tryCount, el);
-  
     // If element still exists maybe it did not work correctly, try again
     if (document.querySelector(selector) && tryCount < 3) {
-      console.log('--> still exists', document.querySelector(selector))
       setTimeout(() => clickElement(el, selector, tryCount + 1), 250);
     }
   };
