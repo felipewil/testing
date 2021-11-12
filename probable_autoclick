@@ -35,7 +35,6 @@
 
   const clickElement = (el, selector, tryCount) => {
     el.click();
-    console.log('click el', tryCount, el);
     // If element still exists maybe it did not work correctly, try again
     setTimeout(() => document.querySelector(selector) && tryCount < 3 && clickElement(el, selector, tryCount + 1), 250);
   };
@@ -111,11 +110,7 @@
       try {
         const elements = Array.from(element.querySelectorAll('button, a'));
 
-        for (let element of elements) {
-          if (element.innerText.toLocaleLowerCase().includes('accept')) {
-            console.log('is auto click', isPossibleAcceptCookies(element), element);
-          }
-        
+        for (let element of elements) {        
           if (isPossibleAcceptCookies(element)) {
             return element;
           }
@@ -144,8 +139,6 @@
               for (const node of nodes) {
                 const isTarget = node instanceof HTMLButtonElement || node instanceof HTMLAnchorElement;
                 
-                console.log('is target', node);
-                
                 if (isTarget && isPossibleAcceptCookies(node)) {
                   return node;
                 } else if (node.nodeType == Node.ELEMENT_NODE) {
@@ -164,14 +157,13 @@
         
         if (element) {
           buildRuleAndClick(element);
-          console.log('disc');
           observer.disconnect();
         }
       });
     
       observer.observe(document, { childList: true, subtree: true });
     
-      setTimeout(() => { console.log('--> disc'); observer.disconnect(); }, 10 * 1000);
+      setTimeout(() => observer.disconnect(), 10 * 1000);
     }
   };
   
