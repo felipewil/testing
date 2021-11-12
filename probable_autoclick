@@ -107,17 +107,19 @@
   
   const run = () => {
     const checkElementsIn = (element) => {
-      console.log('check elements in', element);
-      const elements = Array.from(element.querySelectorAll('button, a'));
+      try {
+        console.log('check elements in', element);
+        const elements = Array.from(element.querySelectorAll('button, a'));
 
-      console.log(elements);
-      console.log('--');
-              
-      for (let element of elements) {
-        if (isPossibleAcceptCookies(element)) {
-          return element;
+        console.log(elements);
+        console.log('--');
+
+        for (let element of elements) {
+          if (isPossibleAcceptCookies(element)) {
+            return element;
+          }
         }
-      }
+      } catch {}
     };
 
     const buildRuleAndClick = (element) => {
