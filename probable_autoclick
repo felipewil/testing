@@ -147,10 +147,13 @@
                 console.log('is target', node);
                 
                 if (isTarget && isPossibleAcceptCookies(node)) {
-                  console.log('is target autoclick', node);
                   return node;
                 } else if (node.nodeType == Node.ELEMENT_NODE) {
-                  checkElementsIn(node);
+                  const possibleElement = checkElementsIn(node);
+                  
+                  if (possibleElement) {
+                    return possibleElement;
+                  }
                 }
               }
             }
@@ -161,6 +164,7 @@
         
         if (element) {
           buildRuleAndClick(element);
+          console.log('disc');
           observer.disconnect();
         }
       });
