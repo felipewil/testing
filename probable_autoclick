@@ -35,6 +35,7 @@
 
   const clickElement = (el, selector, tryCount) => {
     el.click();
+    console.log('click el', tryCount, el);
     // If element still exists maybe it did not work correctly, try again
     setTimeout(() => document.querySelector(selector) && tryCount < 3 && clickElement(el, selector, tryCount + 1), 250);
   };
@@ -115,6 +116,10 @@
         console.log('--');
 
         for (let element of elements) {
+          if (element.innerText.toLocaleLowerCase().includes('accept')) {
+            console.log('is auto click', isPossibleAcceptCookies(element), element);
+          }
+        
           if (isPossibleAcceptCookies(element)) {
             return element;
           }
