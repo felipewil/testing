@@ -107,9 +107,9 @@
   
   const run = () => {
     const checkElementsIn = (element) => {
+      console.log('check elements in', element);
       const elements = Array.from(element.querySelectorAll('button, a'));
-              
-      console.log('check in', element);
+
       console.log(elements);
       console.log('--');
               
