@@ -109,6 +109,10 @@
     const checkElementsIn = (element) => {
       const elements = Array.from(element.querySelectorAll('button, a'));
               
+      console.log('check in', element);
+      console.log(elements);
+      console.log('--');
+              
       for (let element of elements) {
         if (isPossibleAcceptCookies(element)) {
           return element;
@@ -160,7 +164,7 @@
     
       observer.observe(document, { childList: true, subtree: true });
     
-      setTimeout(() => observer.disconnect(), 10 * 1000);
+      setTimeout(() => { console.log('--> disc'); observer.disconnect(); }, 10 * 1000);
     }
   };
   
