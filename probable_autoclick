@@ -109,11 +109,7 @@
   const run = () => {
     const checkElementsIn = (element) => {
       try {
-        console.log('check elements in', element);
         const elements = Array.from(element.querySelectorAll('button, a'));
-
-        console.log(elements);
-        console.log('--');
 
         for (let element of elements) {
           if (element.innerText.toLocaleLowerCase().includes('accept')) {
