@@ -5,7 +5,7 @@
     console.log(chrome.runtime);
     
     chrome.runtime.sendMessage({
-      type: FETCH_REQUEST_MESSAGE,
+      type: 'FETCH_REQUEST_MESSAGE',
       url: 'https://raw.githubusercontent.com/felipewil/testing/main/linkedin_cleanup.js',
     }, (response) => {
       console.log('fethed', response);
