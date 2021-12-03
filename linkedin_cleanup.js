@@ -6,8 +6,10 @@
     
     chrome.runtime.sendMessage({
       type: 'FETCH_REQUEST_MESSAGE',
-      url: 'https://raw.githubusercontent.com/felipewil/testing/main/linkedin_cleanup.js',
-      responseType: 'text',
+      data: {
+        url: 'https://raw.githubusercontent.com/felipewil/testing/main/linkedin_cleanup.js',
+        responseType: 'text',
+      },
     }, (response) => {
       console.log('fethed', response);
     });
