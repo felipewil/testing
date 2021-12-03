@@ -1,4 +1,12 @@
 (() => {
+  try {
+    console.log('--> injected');
+    console.log(chrome);
+    console.log(chrome.runtime);
+  } catch(e) {
+    console.log('error', e);
+  }
+  
   const FEED_SELECTOR = '#feed-container';
   const WRAPPER_SELECTOR = '.feed-item.new-feed';
   const HEADER_SELECTOR = '.feed-header';
