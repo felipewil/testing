@@ -80,7 +80,7 @@
   const run = () => {
     const query = QUERIES.find((q) => {
       return q.host.find((host) => location.hostname.match(host))
-          && (!query.path || location.pathname === query.path);
+          && (!q.path || location.pathname === q.path);
     });
 
     if (!query) { return; }
@@ -117,7 +117,7 @@
     };
 
     const handleElement = (element) => {
-      if (!element || element.getAttribute(OBSERVED_ATTRIBUTE) === '1') { return; }
+      if (!element.getAttribute || element.getAttribute(OBSERVED_ATTRIBUTE) === '1') { return; }
 
       const isTarget = element.matches(selector)
   
