@@ -1,3 +1,4 @@
+console.log('will inject clean up');
 (() => {
   try {
     console.log('--> injected');
