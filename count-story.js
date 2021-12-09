@@ -88,6 +88,10 @@
   const getCounterValue = async () => {
     return new Promise((resolve) => {
       const onReceive = (event) => {
+        const data = event?.detail;
+
+        if (data.key !== 'STORY_COUNT_KEY') { return; }
+
         const count = event?.detail?.data;
         resolve(typeof count === 'number' ? count : 0);
         window.removeEventListener('HYPERWEB_DATA_RECEIVED_EVENT', onReceive);
@@ -113,7 +117,7 @@
 
     const observeIntersection = (target) => {
       const onIntersect = (entries, observer) => {
-        for (entry of entries) {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             const element = entry.target;
 
