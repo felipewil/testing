@@ -6,19 +6,19 @@
   const QUERIES = [
     {
       host: ['facebook\\.com'],
-      path: '/',
+      path: '\/',
       root: '#root',
       phone: 'article._55wo._5rgr._5gh8',
     },
     {
       host: ['twitter\\.com'],
-      path: '/',
+      path: '\/(home)?',
       root: '.css-1dbjc4n',
       phone: 'div.css-1dbjc4n.r-1igl3o0.r-qklmqi.r-1adg3ll.r-1ny4l3l',
     },
     {
       host: ['instagram\\.com'],
-      path: '/',
+      path: '\/',
       phone: 'article._8Rm4L.M9sTE._1gNme.h0YNM.SgTZ1',
     }
   ];
@@ -74,13 +74,39 @@
   };
 
   const updateCounter = (counter, count) => {
+    window.dispatchEvent(new CustomEvent('HYPERWEB_EVENT', {
+      detail: {
+        type: 'OPEN_STORE_MESSAGE',
+        key: 'STORY_COUNT_KEY',
+        value: count,
+      }
+    }));
+
     counter.innerText = `Stories: ${ count }`;
   };
 
-  const run = () => {
+  const getCounterValue = async () => {
+    return new Promise((resolve) => {
+      const onReceive = (event) => {
+        const count = event?.detail?.data;
+        resolve(typeof count === 'number' ? count : 0);
+        window.removeEventListener('HYPERWEB_DATA_RECEIVED_EVENT', onReceive);
+      };
+  
+      window.addEventListener('HYPERWEB_DATA_RECEIVED_EVENT', onReceive);
+      window.dispatchEvent(new CustomEvent('HYPERWEB_EVENT', {
+        detail: {
+          type: 'OPEN_STORE_GET_MESSAGE',
+          key: 'STORY_COUNT_KEY',
+        },
+      }));
+    })
+  };
+
+  const run = async () => {
     const query = QUERIES.find((q) => {
       return q.host.find((host) => location.hostname.match(host))
-          && (!q.path || location.pathname === q.path);
+          && (!q.path || location.pathname.match(q.path));
     });
 
     if (!query) { return; }
@@ -90,7 +116,6 @@
         for (entry of entries) {
           if (entry.isIntersecting) {
             const element = entry.target;
-            element.style.background = 'red';
 
             if (element.getAttribute(COUNTED_ATTRIBUTE) === '1') {
               observer.disconnect();
@@ -148,10 +173,10 @@
       observer.observe(root, { childList: true, subtree: true });
     };
 
+    let count = await getCounterValue();
     const counter = addCounter();
     const selector = navigator.userAgent.includes('iPhone') ? query.phone : '';
     const targets = document.querySelectorAll(selector);
-    let count = 0;
 
     targets.forEach(handleElement);
 
