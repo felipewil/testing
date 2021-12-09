@@ -6,19 +6,19 @@
   const QUERIES = [
     {
       host: ['facebook\\.com'],
-      path: '\/',
+      path: '\/$',
       root: '#root',
       phone: 'article._55wo._5rgr._5gh8',
     },
     {
       host: ['twitter\\.com'],
-      path: '\/(home)?',
+      path: '\/(home)?$',
       root: '.css-1dbjc4n',
       phone: 'div.css-1dbjc4n.r-1igl3o0.r-qklmqi.r-1adg3ll.r-1ny4l3l',
     },
     {
       host: ['instagram\\.com'],
-      path: '\/',
+      path: '\/$',
       phone: 'article._8Rm4L.M9sTE._1gNme.h0YNM.SgTZ1',
     }
   ];
