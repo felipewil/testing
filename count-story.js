@@ -19,20 +19,17 @@ const COUNTED_ATTRIBUTE = 'hw-story-counted';
 const THRESHOLD = 0.5;
 const QUERIES = [
   {
-    host: ['(.*\\.)?facebook\\.com'],
-    path: '\/$',
+    host: [ '(.*\\.)?facebook\\.com\/(home.php)?$' ],
     root: '#root',
     phone: 'article._55wo._5rgr._5gh8',
   },
   {
-    host: ['twitter\\.com'],
-    path: '\/(home)?$',
+    host: [ 'twitter\\.com\/(home)?$' ],
     root: '.css-1dbjc4n',
     phone: 'div.css-1dbjc4n.r-1igl3o0.r-qklmqi.r-1adg3ll.r-1ny4l3l',
   },
   {
-    host: ['instagram\\.com'],
-    path: '\/$',
+    host: [ 'instagram\\.com\/$'],
     phone: 'article._8Rm4L.M9sTE._1gNme.h0YNM.SgTZ1',
   }
 ];
@@ -88,43 +85,14 @@ const addCounter = () => {
 };
 
 const updateCounter = (counter, count) => {
-  window.dispatchEvent(new CustomEvent('HYPERWEB_EVENT', {
-    detail: {
-      type: 'OPEN_STORE_MESSAGE',
-      key: 'STORY_COUNT_KEY',
-      value: count,
-    }
-  }));
-
+  GM.setValue('STORY_COUNT_KEY', count);
   counter.innerText = `Stories: ${ count }`;
-};
-
-const getCounterValue = async () => {
-  return new Promise((resolve) => {
-    const onReceive = (event) => {
-      const data = event?.detail;
-
-      if (data.key !== 'STORY_COUNT_KEY') { return; }
-
-      const count = event?.detail?.data;
-      resolve(typeof count === 'number' ? count : 0);
-      window.removeEventListener('HYPERWEB_DATA_RECEIVED_EVENT', onReceive);
-    };
-
-    window.addEventListener('HYPERWEB_DATA_RECEIVED_EVENT', onReceive);
-    window.dispatchEvent(new CustomEvent('HYPERWEB_EVENT', {
-      detail: {
-        type: 'OPEN_STORE_GET_MESSAGE',
-        key: 'STORY_COUNT_KEY',
-      },
-    }));
-  })
 };
 
 const run = async () => {
   const query = QUERIES.find((q) => {
-    return q.host.find((host) => location.hostname.match(host))
-        && (!q.path || location.pathname.match(q.path));
+    const url = location.hostname + location.pathname;
+    return q.host.find((host) => url.match(host));
   });
 
   if (!query) { return; }
@@ -191,7 +159,7 @@ const run = async () => {
     observer.observe(root, { childList: true, subtree: true });
   };
 
-  let count = await getCounterValue();
+  let count = await GM.getValue('STORY_COUNT_KEY');
   const counter = addCounter();
   const selector = navigator.userAgent.includes('iPhone') ? query.phone : '';
   const targets = document.querySelectorAll(selector);
