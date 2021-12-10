@@ -3,9 +3,15 @@
     const url = document.location;
     const config = {
       host: 'linkedin\\.com',
-      listSelector: '#feed-container',
-      itemWrapperSelector: 'li.feed-item.new-feed',
-      itemSelector: '.feed-header',
+      phone: {
+        listSelector: '#feed-container',
+        itemWrapperSelector: 'li.feed-item.new-feed',
+        itemSelector: '.feed-header',
+      },
+      pad: {
+        itemWrapperSelector: '.feed-shared-update-v2',
+        itemSelector: '.feed-shared-text-view',
+      },
       mustHaveWords: [
         'like', 'likes', 'follow', 'follows', 'commented', 'love', 'loves', 'support', 'supports', 'celebrate', 'celebrates', 'reacted',
         'gostaram', 'gostou', 'seguem', 'segue', 'comentaram', 'comentou', 'amaram', 'amou', 'parabenizou', 'parabenizaram',
@@ -16,35 +22,31 @@
     if (!url.href.match(config.host)) { return; }
   
     const mustHaveWords = config.mustHaveWords;
-    const feed = document.querySelector(config.listSelector);
+    const query = navigator.userAgent.includes('iPhone') ? config.phone : config.pad;
+    const feed = document.querySelector(query.listSelector) ?? document;
   
     if (!feed) { return; }
   
     const verifyAndRemove = (element) => {
-      console.log('will verify', element.innerText)
-  
       const matches = mustHaveWords.some((word) => {
         return element.innerText.match(`.+ ${ word } [\\w\\s]+`);
       });
   
       if (matches) {
-        console.log('will remove', element.innerText)
-  
-        const container = element.closest(config.itemWrapperSelector);
+        const container = element.closest(query.itemWrapperSelector);
   
         if (!container) { return; }
-        //container?.parentElement?.removeChild(container);
         container.style.opacity = '0.3';
       }
     };
   
     const isTargetOrFindIn = (element) => {
-      const isHeader = element.classList.contains(config.itemSelector);
+      const isHeader = element.classList?.contains(query.itemSelector);
   
       if (isHeader) {
         verifyAndRemove(element);
-      } else {
-        const elements = Array.from(element.querySelectorAll(config.itemSelector));
+      } else if (element.querySelectorAll) {
+        const elements = Array.from(element.querySelectorAll(query.itemSelector));
   
         elements.forEach(verifyAndRemove);
       }
