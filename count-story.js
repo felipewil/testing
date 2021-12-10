@@ -129,7 +129,8 @@ const run = async () => {
   };
   
   const setCounter = () => {
-    counter.innerText = `Stories: ${ countMap[query.id] }`;
+    const value = countMap[query.id]?.value || 0;
+    counter.innerText = `Stories: ${ value }`;
   };
 
   const observeIntersection = (target) => {
