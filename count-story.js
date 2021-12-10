@@ -159,7 +159,10 @@ const run = async () => {
     observer.observe(root, { childList: true, subtree: true });
   };
 
+  console.log('will get count', GM);
+  console.log('will get count', GM.getValue);
   let count = await GM.getValue('STORY_COUNT_KEY');
+  console.log('did get count', count);
   const counter = addCounter();
   const selector = navigator.userAgent.includes('iPhone') ? query.phone : '';
   const targets = document.querySelectorAll(selector);
@@ -168,5 +171,5 @@ const run = async () => {
 
   observeMutation();
 };
-
+console.log('will run');
 run();
