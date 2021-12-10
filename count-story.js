@@ -22,17 +22,20 @@ const QUERIES = [
     host: [ '(.*\\.)?facebook\\.com\/(home.php)?$' ],
     root: '#root',
     phone: 'article._55wo._5rgr._5gh8',
+    pad: 'div.du4w35lb.k4urcfbm.l9j0dhe7.sjgh65i0',
   },
   {
     id: 'twitrer',
     host: [ 'twitter\\.com\/(home)?$' ],
     root: '.css-1dbjc4n',
     phone: 'div.css-1dbjc4n.r-1igl3o0.r-qklmqi.r-1adg3ll.r-1ny4l3l',
+    pad: 'article.css-1dbjc4n.r-1loqt21.r-18u37iz.r-1ny4l3l.r-1udh08x.r-1qhn6m8.r-i023vh.r-o7ynqc.r-6416eg',
   },
   {
     id: 'instagram',
     host: [ 'instagram\\.com\/$'],
     phone: 'article._8Rm4L.M9sTE._1gNme.h0YNM.SgTZ1',
+    pad: 'article._8Rm4L.bLWKA.M9sTE._1gNme.L_LMM.SgTZ1.ePUX4',
   }
 ];
 
@@ -202,7 +205,7 @@ const run = async () => {
 
   console.log('did get countmap', countMap);
   const counter = addCounter();
-  const selector = navigator.userAgent.includes('iPhone') ? query.phone : '';
+  const selector = navigator.userAgent.includes('iPhone') ? query.phone : query.pad;
   const targets = document.querySelectorAll(selector);
 
   targets.forEach(handleElement);
