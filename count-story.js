@@ -194,6 +194,11 @@ const run = async () => {
 
   console.log('will get countmap');
   let countMap = await GM.getValue('STORY_COUNT_KEY') ?? {};
+
+  if (typeof countMap !== 'object') {
+    countMap = {};
+  }
+
   console.log('did get countmap', countMap);
   const counter = addCounter();
   const selector = navigator.userAgent.includes('iPhone') ? query.phone : '';
