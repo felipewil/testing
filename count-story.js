@@ -18,16 +18,19 @@ const COUNTED_ATTRIBUTE = 'hw-story-counted';
 const THRESHOLD = 0.5;
 const QUERIES = [
   {
+    id: 'facebook',
     host: [ '(.*\\.)?facebook\\.com\/(home.php)?$' ],
     root: '#root',
     phone: 'article._55wo._5rgr._5gh8',
   },
   {
+    id: 'twitrer',
     host: [ 'twitter\\.com\/(home)?$' ],
     root: '.css-1dbjc4n',
     phone: 'div.css-1dbjc4n.r-1igl3o0.r-qklmqi.r-1adg3ll.r-1ny4l3l',
   },
   {
+    id: 'instagram',
     host: [ 'instagram\\.com\/$'],
     phone: 'article._8Rm4L.M9sTE._1gNme.h0YNM.SgTZ1',
   }
@@ -83,11 +86,6 @@ const addCounter = () => {
   return counter;
 };
 
-const updateCounter = (counter, count) => {
-  GM.setValue('STORY_COUNT_KEY', count);
-  counter.innerText = `Stories: ${ count }`;
-};
-
 const run = async () => {
   const query = QUERIES.find((q) => {
     const url = location.hostname + location.pathname;
@@ -95,6 +93,44 @@ const run = async () => {
   });
 
   if (!query) { return; }
+
+  const shouldReset = () => {
+    const map = countMap[query.id] || {};
+    const lastUpdate = new Date(map.lastUpdate ?? 0);
+    const now = new Date();
+    return now.getDate() !== lastUpdate.getDate()
+        || now.getMonth() !== lastUpdate.getMonth()
+        || now.getYear() !== lastUpdate.getYear();
+  };
+  
+  const validateCounter = (countMap, query) => {
+    if (shouldReset()) { 
+      countMap[query.id] = {
+        value: 0,
+        lastUpdate: Date.now(),
+      };
+    }
+
+    setCounter();
+  };
+  
+  const updateCounter = () => {
+    const map = countMap[query.id] || {};
+    const reset = shouldReset();
+    const value = reset ? 1 : (map.value || 0) + 1;
+  
+    countMap[query.id] = {
+      value,
+      lastUpdate: Date.now()
+    };
+  
+    GM.setValue('STORY_COUNT_KEY', countMap);
+    setCounter();
+  };
+  
+  const setCounter = () => {
+    counter.innerText = `Stories: ${ countMap[query.id] }`;
+  };
 
   const observeIntersection = (target) => {
     const onIntersect = (entries, observer) => {
@@ -107,11 +143,9 @@ const run = async () => {
             return;
           }
 
-          count += 1;
-
           element.setAttribute(COUNTED_ATTRIBUTE, '1');
 
-          updateCounter(counter, count);
+          updateCounter();
 
           observer.disconnect();
         }
@@ -158,17 +192,17 @@ const run = async () => {
     observer.observe(root, { childList: true, subtree: true });
   };
 
-  console.log('will get count', GM);
-  console.log('will get count', GM.getValue);
-  let count = await GM.getValue('STORY_COUNT_KEY');
-  console.log('did get count', count);
+  console.log('will get countmap');
+  let countMap = await GM.getValue('STORY_COUNT_KEY') ?? {};
+  console.log('did get countmap', countMap);
   const counter = addCounter();
   const selector = navigator.userAgent.includes('iPhone') ? query.phone : '';
   const targets = document.querySelectorAll(selector);
 
   targets.forEach(handleElement);
 
+  validateCounter();
   observeMutation();
 };
-console.log('will run');
+
 run();
