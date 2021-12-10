@@ -7,11 +7,10 @@
 // @match     https://www.reddit.com/*
 // @match     https://twitter.com/home?
 // @match     https://mobile.twitter.com/home?
-// @version   1.0.0
-// ==/UserScript==
-
 // @grant     GM.getValue
 // @grant     GM.setValue
+// @version   1.0.0
+// ==/UserScript==
 
 const WRAPPER_SELECTOR = 'hw-story-counter';
 const OBSERVED_ATTRIBUTE = 'hw-story-observed';
