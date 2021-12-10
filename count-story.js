@@ -103,7 +103,7 @@ const run = async () => {
         || now.getYear() !== lastUpdate.getYear();
   };
   
-  const validateCounter = (countMap, query) => {
+  const validateCounter = () => {
     if (shouldReset()) { 
       countMap[query.id] = {
         value: 0,
