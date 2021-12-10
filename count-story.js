@@ -19,7 +19,7 @@ const COUNTED_ATTRIBUTE = 'hw-story-counted';
 const THRESHOLD = 0.5;
 const QUERIES = [
   {
-    host: ['facebook\\.com'],
+    host: ['(.*\\.)?facebook\\.com'],
     path: '\/$',
     root: '#root',
     phone: 'article._55wo._5rgr._5gh8',
