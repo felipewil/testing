@@ -193,18 +193,15 @@ const run = async () => {
     });
 
     const root = query.root && document.querySelector(query.root) || document.body;
-    console.log('--> root', root);
     observer.observe(root, { childList: true, subtree: true });
   };
 
-  console.log('will get countmap');
   let countMap = await GM.getValue('STORY_COUNT_KEY') ?? {};
 
   if (typeof countMap !== 'object') {
     countMap = {};
   }
 
-  console.log('did get countmap', countMap);
   const counter = addCounter();
   const selector = navigator.userAgent.includes('iPhone') ? query.phone : query.pad;
   const targets = document.querySelectorAll(selector);
