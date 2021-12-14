@@ -161,7 +161,6 @@ const run = async () => {
     };
 
     const observer = new IntersectionObserver(onIntersect, options);
-    console.log('-> observe int', target);
     observer.observe(target);
   };
 
@@ -193,8 +192,7 @@ const run = async () => {
       }
     });
 
-    const root = query.root ? document.querySelector(query.root) : document;
-    console.log('-> observe root', root);
+    const root = query.root && document.querySelector(query.root) || document;
     observer.observe(root, { childList: true, subtree: true });
   };
 
