@@ -192,7 +192,8 @@ const run = async () => {
       }
     });
 
-    const root = query.root && document.querySelector(query.root) || document;
+    const root = query.root && document.querySelector(query.root) || document.body;
+    console.log('--> root', root);
     observer.observe(root, { childList: true, subtree: true });
   };
 
