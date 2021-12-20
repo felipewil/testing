@@ -101,6 +101,7 @@ adBlocks.forEach((adBlock) => {
       var xpath = "//" + adTextContainer + "[" + search + "]";
       var matchingElements = document.evaluate(xpath, document, null, XPathResult.ANY_TYPE, null);
       var nodes = [];
+      var node;
       while(node = matchingElements.iterateNext()) {
           nodes.push(node)
       }
