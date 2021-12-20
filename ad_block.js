@@ -68,13 +68,13 @@ var adBlockers = [
   },
   {
     "site": "google.com",
-    "adText": "Ads,Ads·",
-    "adElementSelector": ".ptJHdc"
+    "adText": "Ads",
+    "adElementSelector": ".commercial-unit-mobile-top"
   },
   {
     "site": "google.com",
-    "adText": "Ads",
-    "adElementSelector": ".commercial-unit-mobile-top"
+    "adText": "Ads,Ads·",
+    "adElementSelector": ".ptJHdc"
   },
   {
     "site": "duckduckgo.com",
@@ -100,7 +100,7 @@ adBlocks.forEach((adBlock) => {
       var search = adText.map(adText => 'normalize-space()=\'' + adText + '\'').join(' or ');
       var xpath = "//" + adTextContainer + "[" + search + "]";
       var matchingElements = document.evaluate(xpath, document, null, XPathResult.ANY_TYPE, null);
-      var nodes = []
+      var nodes = [];
       while(node = matchingElements.iterateNext()) {
           nodes.push(node)
       }
