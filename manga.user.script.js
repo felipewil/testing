@@ -62,6 +62,8 @@
 (function() {
   'use strict';
 
+  debugger;
+
   var W = (typeof unsafeWindow === 'undefined') ? window : unsafeWindow;
 
   console.log('--> W', W)
