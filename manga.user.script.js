@@ -858,6 +858,7 @@
   ];
 
   console.log('--> sites', sites)
+  console.log('--> GM_getValue', GM_getValue)
 
   function logScript() {
     for (var _len = arguments.length, text = new Array(_len), _key = 0; _key < _len; _key++) {
