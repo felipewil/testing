@@ -62,13 +62,14 @@
 (function() {
   'use strict';
 
-  console.log('--> window', window)
-  console.log('--> unsafeWindow', unsafeWindow)
-  console.log('--> unsafeWindow', Object)
+  console.log('--> window', window);
+  console.log('--> unsafeWindow');
+  console.log('--> unsafeWindow', unsafeWindow);
+  console.log('--> unsafeWindow', Object);
 
   var W = (typeof unsafeWindow === 'undefined') ? window : unsafeWindow;
 
-  console.log('--> W', W)
+  console.log('--> W', W);
 
   var batoto = {
     name: 'Batoto',
