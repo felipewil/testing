@@ -59,10 +59,12 @@
 // @exclude /https?:\/\/(www.)?pururin.io\/.+/
 // ==/UserScript==
 
+console.log('--> will start')
 (function() {
   'use strict';
 
-  debugger;
+  console.log('--> window', window)
+  console.log('--> unsafeWindow', unsafeWindow)
 
   var W = (typeof unsafeWindow === 'undefined') ? window : unsafeWindow;
 
