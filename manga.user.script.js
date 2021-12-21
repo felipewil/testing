@@ -1087,6 +1087,7 @@
   }
   console.log('--> mange 1.5');
   console.log('--> mange 1.6', getValueGM('MangaTheme', 'Light'));
+  console.log('--> manga 1.7', JSON.parse(getValueGM('MangaBookmarks', '[]')));
   const settings = {
     Theme: getValueGM('MangaTheme', 'Light'),
     CustomTheme: getValueGM('MangaCustomTheme', '#3d0099'),
