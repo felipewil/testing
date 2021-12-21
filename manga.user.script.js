@@ -1086,6 +1086,7 @@
     }
   }
   console.log('--> mange 1.5');
+  console.log('--> mange 1.6', getValueGM('MangaTheme', 'Light'));
   const settings = {
     Theme: getValueGM('MangaTheme', 'Light'),
     CustomTheme: getValueGM('MangaCustomTheme', '#3d0099'),
