@@ -845,6 +845,8 @@ console.log('--> will start')
     }
   };
 
+  console.log('--> before sites')
+
   var sites = [asurasflamecans, comicastle, disasterscans, dysnatyscans, foolslide, funmanga, hatigarmscans,
     komiraw, leitor, lhtranslation, madarawp, mangadex, mangadoom, mangafreak, mangafox,
     mangahere,
@@ -853,6 +855,8 @@ console.log('--> will start')
     tmofans, unionmangas,
     batoto
   ];
+
+  console.log('--> sites', sites)
 
   function logScript() {
     for (var _len = arguments.length, text = new Array(_len), _key = 0; _key < _len; _key++) {
@@ -876,6 +880,8 @@ console.log('--> will start')
     return logScript('Getting: ', name, '=', defaultValue)[3];
   };
   const setValueGM = typeof GM_setValue !== 'undefined' ? GM_setValue : (name, value) => logScript('Getting: ', name, '=', value);
+
+  console.log('--> mange 0')
 
   function getBrowser() {
     const ua = navigator.userAgent;
@@ -925,6 +931,8 @@ console.log('--> will start')
     });
     if (superClass) _setPrototypeOf(subClass, superClass);
   }
+
+  console.log('--> mange 1')
 
   function _wrapRegExp() {
     _wrapRegExp = function(re, groups) {
@@ -1093,6 +1101,9 @@ console.log('--> will start')
     lazyStart: parseInt(getValueGM('MangaLazyStart', 50), 10),
     hidePageControls: getValueGM('MangaHidePageControls', false)
   };
+
+  console.log('--> mange 2')
+
   if (isMobile) {
     settings.lazyLoadImages = true;
     settings.lazyStart = parseInt(getValueGM('MangaLazyStart', 5), 10);
@@ -1212,6 +1223,8 @@ console.log('--> will start')
     if (loaded === total) onImagesDone();
   }
 
+  console.log('--> mange 3')
+
   function onImagesProgress(imgLoad, image) {
     const $item = $(image.img);
     if (image.isLoaded) {
@@ -1316,7 +1329,11 @@ console.log('--> will start')
     }
   }
 
+  console.log('--> mange 3.5')
+
   const scheme = new ColorScheme().scheme('mono').variation('default');
+
+  console.log('--> mange 4')
 
   function addTheme(theme) {
     return "<style type='text/css' name='".concat(theme[0], "'>\n  .").concat(theme[0], " .controlLabel, .").concat(theme[0], " .ViewerTitle, .").concat(theme[0], ", .PageFunctions a.visible, .").concat(theme[0], " a, .").concat(theme[0], " a:link, .").concat(theme[0], " a:visited, .").concat(theme[0], " a:active, .").concat(theme[0], " a:focus{ text-decoration:none; color: ").concat(theme[2], ";}\n  .").concat(theme[0], " {background-repeat: repeat;background-position: 0 0;background-image: none;background-color: ").concat(theme[1], ";background-attachment: scroll;}\n  .").concat(theme[0], " #ImageOptions #menu .menuOuterArrow {border-left-width: 10px;border-left-style: solid;border-left-color: ").concat(theme[4], ";}\n  .").concat(theme[0], " #ImageOptions #menu .menuInnerArrow {border-left-width: 5px;border-left-style: solid;border-left-color: ").concat(theme[1], ";}\n  .").concat(theme[0], " .PageFunctions { border: 1px solid ").concat(theme[3], "; border-bottom: medium none; border-left: medium none; border-right: medium none;}\n  /*.").concat(theme[0], " #Chapter { border: 1px solid ").concat(theme[3], "; border-top: medium none; border-left: medium none; border-right: medium none;}*/\n  .").concat(theme[0], " .PageFunctions > span, .").concat(theme[0], " .Thumbnail span {background: none repeat scroll 0 0 ").concat(theme[4], ";}\n  .").concat(theme[0], " .panel {background: none repeat scroll 0 0 ").concat(theme[4], "; border: thin solid ").concat(theme[3], ";}\n  .").concat(theme[0], " .PageContent, .").concat(theme[0], " .Thumbnail img { outline: 2px solid ").concat(theme[3], "; background: none repeat scroll 0 0 ").concat(theme[4], ";}\n  .").concat(theme[0], " .ChapterControl a { border: 1px solid ").concat(theme[3], "; background-color: ").concat(theme[5], ";\n  </style>");
@@ -1352,6 +1369,8 @@ console.log('--> will start')
   const themes = loadThemes();
   const themesSelector = R.map(theme => "<option value='".concat(theme[0], "' ").concat(settings.Theme === theme[0] ? 'selected' : '', ">").concat(theme[0].replace('_', ' '), "</option>"), themes);
   const themesCSS = R.map(theme => addTheme(theme), themes).join('');
+
+  console.log('--> mange 5')
 
   function scrollToElement(ele) {
     $(W).scrollTop(ele.offset().top).scrollLeft(ele.offset().left);
