@@ -983,16 +983,20 @@
     }
     return _wrapRegExp.apply(this, arguments);
   }
+  console.log('--> mange 1.1')
   const cache = {
     zip: new JSZip(),
     downloadFiles: 0,
     Data: {}
   };
+  console.log('--> mange 1.2')
   const getExtension = mimeType => ((_wrapRegExp(/image\/(jpe?g|png|webp)/, {
     ext: 1
   }).exec(mimeType) || {}).groups || {}).ext || '' || 'png';
+  console.log('--> mange 1.3')
   const getFilename = (name, index, total, ext) => "".concat(name).concat((index + 1).toString().padStart(Math.floor(Math.log10(total)) + 1, '0'), ".").concat(ext.replace('jpeg', 'jpg'));
 
+  console.log('--> mange 1.4');
   function generateZip() {
     if (cache.downloadFiles === 0) {
       const filenameRegex = _wrapRegExp(/^(.*?)([0-9]+)\.([0-9A-Z_a-z]+)$/, {
@@ -1080,7 +1084,7 @@
       }
     }
   }
-
+  console.log('--> mange 1.5');
   const settings = {
     Theme: getValueGM('MangaTheme', 'Light'),
     CustomTheme: getValueGM('MangaCustomTheme', '#3d0099'),
