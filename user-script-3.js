@@ -128,6 +128,8 @@
                 //保证按钮100%正确插入
                 console.log('set timeout');
                 setTimeout(function(){
+                    console.log('timeout called');
+                    console.log($("#wish_downloader").length);
                    if($("#wish_downloader").length ===0){
                        insertButton();
                    }
