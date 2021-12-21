@@ -64,6 +64,8 @@
 
   var W = (typeof unsafeWindow === 'undefined') ? window : unsafeWindow;
 
+  console.log('--> W', W)
+
   var batoto = {
     name: 'Batoto',
     url: /https?:\/\/(www.)?bato.to\/chapter.*/,
@@ -1884,6 +1886,7 @@
     test(sites);
   }
 
+  console.log('--> start')
   start(sites);
 
 })();
