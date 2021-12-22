@@ -90,11 +90,6 @@ const test4 = () => {
 const test5 = async () => {
   console.log('Test Script: will set clipboard to "test" native');
 
-  const item = new ClipboardItem({ ['text/plain']: 'test' });
-  const result = await navigator.clipboard.write([ item ]);
-
-  console.log('Test Script: result:', result);
-
   console.log('Test Script: current text is "test"', (await navigator.clipboard.readText()) === 'test');
   console.log('Test Script: will set clipboard to "new test" with GM');
 
