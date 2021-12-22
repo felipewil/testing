@@ -35,8 +35,8 @@ const test1 = () => {
 
 const test2 = () => {
   console.log('Test Script: will test resource');
-  console.log('Resource URL is available', GM_getResourceURL('layercss') === 'https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/theme/default/layer.min.css');
-  console.log('Resource text is available', !!GM_getResourceText('layercss'));
+  console.log('Test Script: Resource URL is available', GM_getResourceURL('layercss') === 'https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/theme/default/layer.min.css');
+  console.log('Test Script: Resource text is available', !!GM_getResourceText('layercss'));
 };
 
 const test3 = () => {
@@ -49,12 +49,12 @@ const test3 = () => {
 
   GM_addValueChangeListener('one', (name, oldValue, newValue) => {
     onChangeOneCalled += 1;
-    console.log('Listener One called, old value:', oldValue, ', new value:', newValue);
+    console.log('Test Script: Listener One called, old value:', oldValue, ', new value:', newValue);
   });
 
   GM_addValueChangeListener('two', (name, oldValue, newValue) => {
     onChangeTwoCalled += 1;
-    console.log('Listener two called, old value:', oldValue, ', new value:', newValue);
+    console.log('Test Script: Listener two called, old value:', oldValue, ', new value:', newValue);
   });
 
   setTimeout(() => {
@@ -74,8 +74,8 @@ const test3 = () => {
     setTimeout(() => {
       console.log('Test Script: listener one called again', onChangeOneCalled === 3);
       console.log('Test Script: listener two not called', onChangeOneCalled === 1);
-    }, 200);
-  }, 200);
+    }, 500);
+  }, 500);
 };
 
 test1();
