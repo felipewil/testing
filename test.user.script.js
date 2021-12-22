@@ -98,6 +98,31 @@ const test5 = async () => {
   console.log('Test Script: current text is "new test"', (await navigator.clipboard.readText()) === 'new test');
 };
 
+const buildUI = () => {
+  const div = document.createElement('div');
+  div.style = `
+    position: aboslute;
+    background: white;
+    color: black;
+    padding: 12px;
+    left: 16px;
+    bottom: 16px;
+  `;
+  div.innerText = 'Copy';
+  div.onclick = () => {
+    console.log('Test Script: will set clipboard to "test" native');
+
+    console.log('Test Script: current text is "test"', (await navigator.clipboard.readText()) === 'test');
+    console.log('Test Script: will set clipboard to "new test" with GM');
+
+    GM_setClipboard('new test');
+
+    console.log('Test Script: current text is "new test"', (await navigator.clipboard.readText()) === 'new test');
+  };
+
+  document.body.appendChild(div);
+};
+
 test1();
 console.log('\n\n');
 test2();
@@ -107,3 +132,5 @@ console.log('\n\n');
 // test4();
 console.log('\n\n');
 test5();
+
+buildUI();
