@@ -90,7 +90,8 @@ const test4 = () => {
 const test5 = async () => {
   console.log('Test Script: will set clipboard to "test" native');
 
-  const result = await navigator.clipboard.writeText('test');
+  const item = new ClipboardItem({ ['text/plain']: 'test' });
+  const result = await navigator.clipboard.write([ item ]);
 
   console.log('Test Script: result:', result);
 
