@@ -99,6 +99,8 @@ const test5 = async () => {
 };
 
 const buildUI = () => {
+  console.log('Test Script: will add copy UI');
+
   const div = document.createElement('div');
   div.style = `
     position: aboslute;
@@ -109,7 +111,7 @@ const buildUI = () => {
     bottom: 16px;
   `;
   div.innerText = 'Copy';
-  div.onclick = () => {
+  div.onclick = async () => {
     console.log('Test Script: will set clipboard to "test" native');
 
     console.log('Test Script: current text is "test"', (await navigator.clipboard.readText()) === 'test');
@@ -121,6 +123,7 @@ const buildUI = () => {
   };
 
   document.body.appendChild(div);
+  console.log('Test Script: copy UI added');
 };
 
 test1();
