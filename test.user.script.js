@@ -112,14 +112,17 @@ const buildUI = () => {
   `;
   div.innerText = 'Copy';
   div.onclick = async () => {
-    console.log('Test Script: will set clipboard to "test" native');
+    console.log('Test Script: will set clipboard');
 
-    console.log('Test Script: current text is "test"', (await navigator.clipboard.readText()) === 'test');
-    console.log('Test Script: will set clipboard to "new test" with GM');
+    const requestId = Array
+      .from(crypto.getRandomValues(new Uint8Array(10)), (dec) => dec.toString(16).padStart(2, '0'))
+      .join('');
 
-    GM_setClipboard('new test');
+    console.log(`Test Script: will set clipboard to ${ requestId } with GM`);
 
-    console.log('Test Script: current text is "new test"', (await navigator.clipboard.readText()) === 'new test');
+    GM_setClipboard(requestId);
+
+    console.log(`Test Script: current text is ${ requestId }`, (await navigator.clipboard.readText()) === requestId);
   };
 
   document.body.appendChild(div);
