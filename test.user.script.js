@@ -20,16 +20,62 @@
 // ==/UserScript==
 
 const test1 = () => {
-  console.log('Will test GM_setValue');
+  console.log('Test Script: will test GM_setValue');
   GM_setValue('test_key', 'test_value');
 
-  console.log('Will test GM_getValue');
-  console.log('Get was successful', GM_getValue('test_key') === 'test_value');
+  console.log('Test Script: will test GM_getValue');
+  console.log('Test Script: get was successful', GM_getValue('test_key') === 'test_value');
 
-  console.log('Will test GM_deleteValue');
+  console.log('Test Script: will test GM_deleteValue');
   GM_deleteValue('test_key');
 
-  console.log('Delete was successful', GM_getValue('test_key') === undefined);
+  console.log(GM_getValue('test_key'))
+  console.log('Test Script: delete was successful', GM_getValue('test_key') === undefined);
+};
+
+const test2 = () => {
+  console.log('Test Script: will test resource');
+  console.log('Resource URL is available', GM_getResourceURL('layercss') === 'https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/theme/default/layer.min.css');
+  console.log('Resource text is available', !!GM_getResourceText('layercss'));
+};
+
+const test3 = () => {
+  console.log('Test Script: will test listeners');
+
+  let onChangeOneCalled = 0;
+  let onChangeTwoCalled = 0;
+
+  console.log('Test Script: adding listeners one and two');
+
+  GM_addValueChangeListener('one', (name, oldValue, newValue) => {
+    onChangeOneCalled += 1;
+    console.log('Listener One called, old value:', oldValue, ', new value:', newValue);
+  });
+
+  GM_addValueChangeListener('two', (name, oldValue, newValue) => {
+    onChangeTwoCalled += 1;
+    console.log('Listener two called, old value:', oldValue, ', new value:', newValue);
+  });
+
+  GM_setValue('one', 1);
+  GM_setValue('one', 2);
+  GM_setValue('two', 'new value');
+
+  console.log('Test Script: listener one called twice', onChangeOneCalled === 2);
+  console.log('Test Script: listener two called once', onChangeOneCalled === 1);
+  console.log('Test Script: will remove listener two');
+
+  GM_removeValueChangeListener('two');
+
+  GM_setValue('one', 3);
+  GM_setValue('two', 'new other value');
+
+  console.log('Test Script: listener one called again', onChangeOneCalled === 3);
+  console.log('Test Script: listener two not called', onChangeOneCalled === 1);
 };
 
 test1();
+console.log('\n\n');
+test2();
+console.log('\n\n');
+test3();
