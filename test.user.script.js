@@ -80,29 +80,11 @@ const test3 = () => {
   }, 500);
 };
 
-const test4 = () => {
-  console.log('Test Script: will test open in tab');
-
-  GM_openInTab('https:/www.google.com/search?q=one', true)
-  GM_openInTab('https:/www.google.com/search?q=two')
-};
-
-const test5 = async () => {
-  console.log('Test Script: will set clipboard to "test" native');
-
-  console.log('Test Script: current text is "test"', (await navigator.clipboard.readText()) === 'test');
-  console.log('Test Script: will set clipboard to "new test" with GM');
-
-  GM_setClipboard('new test');
-
-  console.log('Test Script: current text is "new test"', (await navigator.clipboard.readText()) === 'new test');
-};
-
 const buildUI = () => {
   console.log('Test Script: will add copy UI');
 
-  const div = document.createElement('div');
-  div.style = `
+  const wrapper = document.createElement('div');
+  wrapper.style = `
     position: absolute;
     background: white;
     color: black;
@@ -110,8 +92,12 @@ const buildUI = () => {
     left: 16px;
     bottom: 16px;
   `;
-  div.innerText = 'Copy';
-  div.onclick = async () => {
+  
+  const copy = document.createElement('div');
+  const openInTab = document.createElement('div');
+
+  copy.innerText = 'Copy';
+  copy.onclick = async () => {
     console.log('Test Script: will set clipboard');
 
     const requestId = Array
@@ -125,7 +111,21 @@ const buildUI = () => {
     console.log(`Test Script: current text is ${ requestId }`, (await navigator.clipboard.readText()) === requestId);
   };
 
-  document.body.appendChild(div);
+  openInTab.style = `
+    left-margin: 8px;
+  `;
+  openInTab.innerText = 'Copy';
+  openInTab.onclick = async () => {
+    console.log('Test Script: will test open in tab');
+
+    GM_openInTab('https:/www.google.com/search?q=one', true)
+    GM_openInTab('https:/www.google.com/search?q=two')
+  };
+
+  wrapper.appendChild(copy)
+  wrapper.appendChild(openInTab)
+
+  document.body.appendChild(wrapper);
   console.log('Test Script: copy UI added');
 };
 
@@ -135,8 +135,5 @@ test2();
 console.log('\n\n');
 test3();
 console.log('\n\n');
-// test4();
-console.log('\n\n');
-test5();
 
 buildUI();
