@@ -19,7 +19,7 @@
 // @grant        GM_setClipboard
 // ==/UserScript==
 
-const testSetGetDelete = () => {
+const test1 = () => {
   console.log('Will test GM_setValue');
   GM_setValue('test_key', 'test_value');
 
@@ -31,3 +31,5 @@ const testSetGetDelete = () => {
 
   console.log('Delete was successful', GM_getValue('test_key') === undefined);
 };
+
+test1();
