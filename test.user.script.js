@@ -57,21 +57,25 @@ const test3 = () => {
     console.log('Listener two called, old value:', oldValue, ', new value:', newValue);
   });
 
-  GM_setValue('one', 1);
-  GM_setValue('one', 2);
-  GM_setValue('two', 'new value');
+  setTimeout(() => {
+    GM_setValue('one', 1);
+    GM_setValue('one', 2);
+    GM_setValue('two', 'new value');
 
-  console.log('Test Script: listener one called twice', onChangeOneCalled === 2);
-  console.log('Test Script: listener two called once', onChangeOneCalled === 1);
-  console.log('Test Script: will remove listener two');
+    console.log('Test Script: listener one called twice', onChangeOneCalled === 2);
+    console.log('Test Script: listener two called once', onChangeOneCalled === 1);
+    console.log('Test Script: will remove listener two');
 
-  GM_removeValueChangeListener('two');
+    GM_removeValueChangeListener('two');
 
-  GM_setValue('one', 3);
-  GM_setValue('two', 'new other value');
+    GM_setValue('one', 3);
+    GM_setValue('two', 'new other value');
 
-  console.log('Test Script: listener one called again', onChangeOneCalled === 3);
-  console.log('Test Script: listener two not called', onChangeOneCalled === 1);
+    setTimeout(() => {
+      console.log('Test Script: listener one called again', onChangeOneCalled === 3);
+      console.log('Test Script: listener two not called', onChangeOneCalled === 1);
+    });
+  }, 100);
 };
 
 test1();
