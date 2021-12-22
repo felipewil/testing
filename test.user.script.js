@@ -83,8 +83,8 @@ const test3 = () => {
 const test4 = () => {
   console.log('Test Script: will test open in tab');
 
-  GM_openInTab('google.com/search?q=one', true)
-  GM_openInTab('google.com/search?q=two')
+  GM_openInTab('https:/www.google.com/search?q=one', true)
+  GM_openInTab('https:/www.google.com/search?q=two')
 };
 
 test1();
