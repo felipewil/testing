@@ -74,8 +74,8 @@ const test3 = () => {
     setTimeout(() => {
       console.log('Test Script: listener one called again', onChangeOneCalled === 3);
       console.log('Test Script: listener two not called', onChangeOneCalled === 1);
-    });
-  }, 100);
+    }, 200);
+  }, 200);
 };
 
 test1();
