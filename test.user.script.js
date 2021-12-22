@@ -103,7 +103,7 @@ const buildUI = () => {
 
   const div = document.createElement('div');
   div.style = `
-    position: aboslute;
+    position: absolute;
     background: white;
     color: black;
     padding: 12px;
