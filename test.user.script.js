@@ -87,6 +87,19 @@ const test4 = () => {
   GM_openInTab('https:/www.google.com/search?q=two')
 };
 
+const test5 = async () => {
+  console.log('Test Script: will set clipboard to "test" native');
+
+  navigator.clipboard.writeText('test');
+
+  console.log('Test Script: current text is "test"', (await navigator.clipboard.readText()) === 'test');
+  console.log('Test Script: will set clipboard to "new test" with GM');
+
+  GM_setClipboard('new test');
+
+  console.log('Test Script: current text is "new test"', (await navigator.clipboard.readText()) === 'new test');
+};
+
 test1();
 console.log('\n\n');
 test2();
@@ -94,3 +107,5 @@ console.log('\n\n');
 test3();
 console.log('\n\n');
 // test4();
+console.log('\n\n');
+test5();
