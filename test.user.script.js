@@ -18,6 +18,7 @@
 // @grant        GM_xmlHttpRequest
 // @grant        GM_setClipboard
 // @grant        GM_openInTab
+// @noframes
 // ==/UserScript==
 
 const test1 = () => {
