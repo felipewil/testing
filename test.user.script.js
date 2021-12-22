@@ -112,9 +112,9 @@ const buildUI = () => {
   };
 
   openInTab.style = `
-    left-margin: 8px;
+    margin-top: 8px;
   `;
-  openInTab.innerText = 'Copy';
+  openInTab.innerText = 'Open in tab';
   openInTab.onclick = async () => {
     console.log('Test Script: will test open in tab');
 
