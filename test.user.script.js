@@ -82,6 +82,7 @@ const test3 = () => {
 };
 
 const test4 = () => {
+  console.log('Test Script: will test request')
   GM_xmlHttpRequest({
     url: "http://www.example.com",
     method: "HEAD",
@@ -95,7 +96,7 @@ const test4 = () => {
 };
 
 const test5 = () => {
-  console.log('test 5')
+  console.log('Test Script: will test download')
   GM_download({
     url: "http://www.example.com",
     name: 'test_download',
