@@ -80,6 +80,19 @@ const test3 = () => {
   }, 500);
 };
 
+const test4 = () => {
+  GM.xmlHttpRequest({
+    url: "http://www.example.com",
+    method: "HEAD",
+    onload: function(response) {
+      console.log('Test Script: onload', response.responseHeaders);
+    },
+    onprogress: function(response) {
+      console.log('Test Script: onprogress', response);
+    }
+  });
+};
+
 const buildUI = () => {
   console.log('Test Script: will add copy UI');
 
@@ -95,6 +108,7 @@ const buildUI = () => {
   
   const copy = document.createElement('div');
   const openInTab = document.createElement('div');
+  const request = document.createElement('div');
 
   copy.innerText = 'Copy';
   copy.onclick = async () => {
@@ -108,7 +122,7 @@ const buildUI = () => {
 
     GM_setClipboard(requestId);
 
-    console.log(`Test Script: current text is ${ requestId }`, (await navigator.clipboard.readText()) === requestId);
+    console.log(`Test Script: test if current text ${ (await navigator.clipboard.readText()) } is ${ requestId }`, (await navigator.clipboard.readText()) === requestId);
   };
 
   openInTab.style = `
@@ -122,8 +136,15 @@ const buildUI = () => {
     GM_openInTab('https:/www.google.com/search?q=two')
   };
 
-  wrapper.appendChild(copy)
-  wrapper.appendChild(openInTab)
+  request.style = `
+    margin-top: 8px;
+  `;
+  request.innerText = 'Request';
+  request.onclick = async () => test4();
+
+  wrapper.appendChild(copy);
+  wrapper.appendChild(openInTab);
+  wrapper.appendChild(request)
 
   document.body.appendChild(wrapper);
   console.log('Test Script: copy UI added');
@@ -134,6 +155,8 @@ console.log('\n\n');
 test2();
 console.log('\n\n');
 test3();
+console.log('\n\n');
+test4();
 console.log('\n\n');
 
 buildUI();
