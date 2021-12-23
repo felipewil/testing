@@ -19,6 +19,7 @@
 // @grant        GM_setClipboard
 // @grant        GM_openInTab
 // @grant        GM_download
+// @grant        GM_notification
 // @noframes
 // ==/UserScript==
 
@@ -103,6 +104,14 @@ const test5 = () => {
   });
 };
 
+const test6 = () => {
+  console.log('Test Script: will test notification')
+  GM_notification({
+    text: 'test-text',
+    title: 'test-title',
+  });
+};
+
 const buildUI = () => {
   console.log('Test Script: will add copy UI');
 
@@ -120,6 +129,7 @@ const buildUI = () => {
   const openInTab = document.createElement('div');
   const request = document.createElement('div');
   const download = document.createElement('div');
+  const notification = document.createElement('div');
 
   copy.innerText = 'Copy';
   copy.onclick = async () => {
@@ -159,10 +169,17 @@ const buildUI = () => {
   download.innerText = 'Download';
   download.onclick = async () => test5();
 
+  notification.style = `
+    margin-top: 8px;
+  `;
+  notification.innerText = 'Notification';
+  notification.onclick = async () => test6();
+
   wrapper.appendChild(copy);
   wrapper.appendChild(openInTab);
   wrapper.appendChild(request);
   wrapper.appendChild(download);
+  wrapper.appendChild(notification);
 
   document.body.appendChild(wrapper);
   console.log('Test Script: copy UI added');
