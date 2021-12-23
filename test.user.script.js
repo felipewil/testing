@@ -97,7 +97,7 @@ const test4 = () => {
 };
 
 const test5 = () => {
-  console.log('Test Script: will test download')
+  console.log('Test Script: will test download');
   GM_download({
     url: "http://www.example.com",
     name: 'test_download',
@@ -109,6 +109,8 @@ const test6 = () => {
   GM_notification({
     text: 'test-text',
     title: 'test-title',
+    onclick: () => console.log('Test Script: notification clicked'),
+    ondone: () => console.log('Test Script: notification dimissed'),
   });
 };
 
