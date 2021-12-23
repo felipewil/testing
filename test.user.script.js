@@ -93,6 +93,13 @@ const test4 = () => {
   });
 };
 
+const test5 = () => {
+  GM_download({
+    url: "http://www.example.com",
+    name: 'test_download',
+  });
+};
+
 const buildUI = () => {
   console.log('Test Script: will add copy UI');
 
@@ -109,6 +116,7 @@ const buildUI = () => {
   const copy = document.createElement('div');
   const openInTab = document.createElement('div');
   const request = document.createElement('div');
+  const download = document.createElement('div');
 
   copy.innerText = 'Copy';
   copy.onclick = async () => {
@@ -142,6 +150,12 @@ const buildUI = () => {
   request.innerText = 'Request';
   request.onclick = async () => test4();
 
+  download.style = `
+    margin-top: 8px;
+  `;
+  download.innerText = 'Download';
+  download.onclick = async () => test5();
+
   wrapper.appendChild(copy);
   wrapper.appendChild(openInTab);
   wrapper.appendChild(request)
@@ -155,8 +169,6 @@ console.log('\n\n');
 test2();
 console.log('\n\n');
 test3();
-console.log('\n\n');
-test4();
 console.log('\n\n');
 
 buildUI();
