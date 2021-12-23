@@ -81,7 +81,7 @@ const test3 = () => {
 };
 
 const test4 = () => {
-  GM.xmlHttpRequest({
+  GM_xmlHttpRequest({
     url: "http://www.example.com",
     method: "HEAD",
     onload: function(response) {
