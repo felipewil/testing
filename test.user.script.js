@@ -158,7 +158,8 @@ const buildUI = () => {
 
   wrapper.appendChild(copy);
   wrapper.appendChild(openInTab);
-  wrapper.appendChild(request)
+  wrapper.appendChild(request);
+  wrapper.appendChild(download);
 
   document.body.appendChild(wrapper);
   console.log('Test Script: copy UI added');
