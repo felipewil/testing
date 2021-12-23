@@ -94,6 +94,7 @@ const test4 = () => {
 };
 
 const test5 = () => {
+  console.log('test 5')
   GM_download({
     url: "http://www.example.com",
     name: 'test_download',
