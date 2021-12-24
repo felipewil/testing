@@ -4,6 +4,7 @@
 // @description  Script to test GM methods
 // @author       Felipe
 // @match        *
+// @match        *://*/*
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js
 // @resource     layercss https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/theme/default/layer.min.css
 // @grant        GM_addStyle
@@ -105,13 +106,18 @@ const test5 = () => {
 };
 
 const test6 = () => {
-  console.log('Test Script: will test notification')
+  console.log('Test Script: will test notification');
   GM_notification({
     text: 'test-text',
     title: 'test-title',
     onclick: () => console.log('Test Script: notification clicked'),
     ondone: () => console.log('Test Script: notification dimissed'),
   });
+};
+
+const test7 = () => {
+  console.log('Test Script: will test register menu command');
+  GM_registerMenuCommand('Test menu', () => console.log('menu clicked'));
 };
 
 const buildUI = () => {
@@ -132,6 +138,7 @@ const buildUI = () => {
   const request = document.createElement('div');
   const download = document.createElement('div');
   const notification = document.createElement('div');
+  const register = document.createElement('div');
 
   copy.innerText = 'Copy';
   copy.onclick = async () => {
@@ -148,9 +155,7 @@ const buildUI = () => {
     console.log(`Test Script: test if current text ${ (await navigator.clipboard.readText()) } is ${ requestId }`, (await navigator.clipboard.readText()) === requestId);
   };
 
-  openInTab.style = `
-    margin-top: 8px;
-  `;
+  openInTab.style = 'margin-top: 8px;';
   openInTab.innerText = 'Open in tab';
   openInTab.onclick = async () => {
     console.log('Test Script: will test open in tab');
@@ -159,9 +164,7 @@ const buildUI = () => {
     GM_openInTab('https:/www.google.com/search?q=two')
   };
 
-  request.style = `
-    margin-top: 8px;
-  `;
+  request.style = 'margin-top: 8px;';
   request.innerText = 'Request';
   request.onclick = async () => test4();
 
@@ -171,17 +174,20 @@ const buildUI = () => {
   download.innerText = 'Download';
   download.onclick = async () => test5();
 
-  notification.style = `
-    margin-top: 8px;
-  `;
+  notification.style = 'margin-top: 8px;';
   notification.innerText = 'Notification';
   notification.onclick = async () => test6();
+
+  register.style = 'margin-top: 8px;';
+  register.innerText = 'Register';
+  register.onclick = () => test7();
 
   wrapper.appendChild(copy);
   wrapper.appendChild(openInTab);
   wrapper.appendChild(request);
   wrapper.appendChild(download);
   wrapper.appendChild(notification);
+  wrapper.appendChild(register);
 
   document.body.appendChild(wrapper);
   console.log('Test Script: copy UI added');
