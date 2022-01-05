@@ -87,7 +87,7 @@ const test3 = () => {
 
 const test4 = () => {
   console.log('Test Script: will test request')
-  GM_xmlHttpRequest({
+  GM_xmlhttpRequest({
     url: "http://www.example.com",
     method: "HEAD",
     onload: function(response) {
