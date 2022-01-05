@@ -21,7 +21,6 @@
 // @grant        GM_openInTab
 // @grant        GM_download
 // @grant        GM_notification
-// @grant        GM_registerMenuCommand
 // @noframes
 // ==/UserScript==
 
@@ -121,6 +120,11 @@ const test7 = () => {
   GM_registerMenuCommand('Test menu', () => console.log('menu clicked'));
 };
 
+const test8 = () => {
+  console.log('Test Script: will test unregister menu command');
+  GM_registerMenuCommand('Test menu', () => console.log('menu clicked'));
+};
+
 const buildUI = () => {
   console.log('Test Script: will add copy UI');
 
@@ -140,6 +144,7 @@ const buildUI = () => {
   const download = document.createElement('div');
   const notification = document.createElement('div');
   const register = document.createElement('div');
+  const unregister = document.createElement('div');
 
   copy.innerText = 'Copy';
   copy.onclick = async () => {
@@ -183,12 +188,17 @@ const buildUI = () => {
   register.innerText = 'Register';
   register.onclick = () => test7();
 
+  unregister.style = 'margin-top: 8px;';
+  unregister.innerText = 'Unregister';
+  unregister.onclick = () => test8();
+
   wrapper.appendChild(copy);
   wrapper.appendChild(openInTab);
   wrapper.appendChild(request);
   wrapper.appendChild(download);
   wrapper.appendChild(notification);
   wrapper.appendChild(register);
+  wrapper.appendChild(unregister);
 
   document.body.appendChild(wrapper);
   console.log('Test Script: copy UI added');
