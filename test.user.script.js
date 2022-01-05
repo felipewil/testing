@@ -119,12 +119,14 @@ const test6 = () => {
 
 const test7 = () => {
   console.log('Test Script: will test register menu command');
-  GM_registerMenuCommand('Test menu', () => console.log('menu clicked'));
+  GM_registerMenuCommand('Test menu 1', () => console.log('menu 1 clicked'));
+  GM_registerMenuCommand('Test menu 2', () => console.log('menu 2 clicked'));
+  GM_registerMenuCommand('Test menu 3', () => console.log('menu 3 clicked'));
 };
 
 const test8 = () => {
   console.log('Test Script: will test unregister menu command');
-  GM_unregisterMenuCommand('Test menu');
+  GM_unregisterMenuCommand('Test menu 2');
 };
 
 const buildUI = () => {
