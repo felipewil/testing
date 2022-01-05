@@ -21,6 +21,8 @@
 // @grant        GM_openInTab
 // @grant        GM_download
 // @grant        GM_notification
+// @grant        GM_registerMenuCommand
+// @grant        GM_unregisterMenuCommand
 // @noframes
 // ==/UserScript==
 
