@@ -16,7 +16,7 @@
 // @grant        GM_getValue
 // @grant        GM_listValues
 // @grant        GM_deleteValue
-// @grant        GM_xmlHttpRequest
+// @grant        GM_xmlhttpRequest
 // @grant        GM_setClipboard
 // @grant        GM_openInTab
 // @grant        GM_download
