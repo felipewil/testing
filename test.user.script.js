@@ -124,7 +124,7 @@ const test7 = () => {
 
 const test8 = () => {
   console.log('Test Script: will test unregister menu command');
-  GM_registerMenuCommand('Test menu', () => console.log('menu clicked'));
+  GM_unregisterMenuCommand('Test menu');
 };
 
 const buildUI = () => {
