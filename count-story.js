@@ -127,7 +127,7 @@ const run = async () => {
       lastUpdate: Date.now()
     };
   
-    const mapStr = JSON.stringify(map);
+    const mapStr = JSON.stringify(countMap);
     GM.setValue('STORY_COUNT_KEY', mapStr);
     setCounter();
   };
