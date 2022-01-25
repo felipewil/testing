@@ -127,7 +127,8 @@ const run = async () => {
       lastUpdate: Date.now()
     };
   
-    GM.setValue('STORY_COUNT_KEY', countMap);
+    const mapStr = JSON.stringify(map);
+    GM.setValue('STORY_COUNT_KEY', mapStr);
     setCounter();
   };
   
@@ -196,7 +197,12 @@ const run = async () => {
     observer.observe(root, { childList: true, subtree: true });
   };
 
-  let countMap = await GM.getValue('STORY_COUNT_KEY') ?? {};
+  const countMapStr = await GM.getValue('STORY_COUNT_KEY') ?? '{}';
+  let countMap;
+
+  try {
+    countMap = JSON.parse(countMapStr);
+  } catch {}
 
   if (typeof countMap !== 'object') {
     countMap = {};
