@@ -1,5 +1,4 @@
 [Adblock Plus 3.1]
 ! Title: Test list
 ! 
-||googlevideo.com/videoplayback?*&pltype=adhost$xmlhttprequest,domain=www.youtube.com|m.youtube.com|music.youtube.com
-||googlevideo.com/videoplayback?*&pltype=adhost
+||googlevideo.com/videoplayback?*&pltype=adhost$other,domain=www.youtube.com|m.youtube.com|music.youtube.com
