@@ -2,3 +2,4 @@
 ! Title: Test list
 ! 
 ||googlevideo.com/videoplayback?*&pltype=adhost$xmlhttprequest,domain=www.youtube.com|m.youtube.com|music.youtube.com
+||googlevideo.com/videoplayback?*&pltype=adhost
