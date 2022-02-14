@@ -1,4 +1,7 @@
 () => {
+  const NO_REDIRECT_PARAM_KEY = 'hyperweb-d-r';
+  let lastUrl = location.href;
+
   const tryRedirect = () => {
     try {
       const url = new URL(location.href);
@@ -11,8 +14,6 @@
       }
     } catch {}
   };
-
-  let lastUrl = location.href;
 
   new MutationObserver(() => {
     const url = location.href;
