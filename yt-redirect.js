@@ -1,4 +1,4 @@
-() => {
+(() => {
   const NO_REDIRECT_PARAM_KEY = 'hyperweb-d-r';
   let lastUrl = location.href;
 
@@ -24,4 +24,4 @@
   }).observe(document, { subtree: true, childList: true });
 
   tryRedirect();
-}();
+})();
