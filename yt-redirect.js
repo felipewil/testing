@@ -35,7 +35,6 @@
 
       if (shouldRedirect) {
         testLatency((avg) => {
-          console.log('download time', avg);
           if (avg <= threshold) {
             tryRedirect();
           }
