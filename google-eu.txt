@@ -1,0 +1,20 @@
+! Google - remove cookie-consent-popup and restore scroll functionality
+! Updated 03.02.2022
+google.*##.wwYr3.aID8W.bErdLd
+google.*##.aID8W.m114nf.t7xA6
+google.*##.jw8mI
+google.*##.vUd4jb
+google.*##div[jsname][jsaction^="dg_close"]
+google.*##html:style(overflow: visible scroll !important;)
+google.*##.widget-consent-fullscreen.widget-consent
+google.*###xe7COe.HTjHe
+
+! And for Youtube
+! Updated 13.04.2021
+www.youtube.com###dialog
+www.youtube.com##ytd-popup-container.ytd-app.style-scope
+www.youtube.com##tp-yt-iron-overlay-backdrop
+www.youtube.com.*##body:style(position: unset !important;)
+m.youtube.com.*##body:style(position: unset !important;)
+www.youtube.com.*##div.consent-bump-v2-lightbox
+m.youtube.com.*##div.consent-bump-v2-lightbox
