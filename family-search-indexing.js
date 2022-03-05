@@ -9,6 +9,9 @@
 
 // ==/UserScript==
 
+console.log('enter');
+console.log(Mousetrap);
+
 Mousetrap.bind('o b', function() {document.querySelector("#batch0 > div.batch-item-content.row-fluid > div > button").click();});
 Mousetrap.bind('f b', function() {document.querySelector("#main > div.layout-container > div.main-content-column > div.widget.open-batches > header > div.pull-right > button").click();});
 Mousetrap.bind('m a', function() {document.querySelector("#main > div.layout-container > div.main-content-column > div.widget.open-batches > div > div.widget-toolbar > div > div > div.pull-left.manage-button > button").click();});
