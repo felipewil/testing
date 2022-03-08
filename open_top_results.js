@@ -7,20 +7,20 @@
 // @grant        GM.openInTab
 // ==/UserScript==
 
+const COUNTER_SELECTOR = '.hyperweb-notification-center-counter span';
 const SHORTCUTS_SELECTOR = '.hyperweb-notification-center-shortcuts';
 const LINKS_SELECTOR = '.mnr-c a.cz3goc.BmP5tf';
-const LINKS_LIMIT = 3;
 
 const links = Array.from(document.querySelectorAll(LINKS_SELECTOR));
 const anchor = document.createElement('a');
 anchor.classList.add('hw-link');
-anchor.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M320 344c0 74.98-61.02 136-136 136H103.6c-46.34 0-87.31-29.53-101.1-73.48c-5.594-16.77 3.484-34.88 20.25-40.47c16.75-5.609 34.89 3.484 40.47 20.25c5.922 17.77 22.48 29.7 41.23 29.7H184c39.7 0 72-32.3 72-72s-32.3-72-72-72H80c-13.2 0-25.05-8.094-29.83-20.41C45.39 239.3 48.66 225.3 58.38 216.4l131.4-120.4H32c-17.67 0-32-14.33-32-32s14.33-32 32-32h240c13.2 0 25.05 8.094 29.83 20.41c4.781 12.3 1.516 26.27-8.203 35.19l-131.4 120.4H184C258.1 208 320 269 320 344z"/></svg>';
+anchor.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M320 344.6c0 74.66-60.73 135.4-135.4 135.4H104.7c-46.81 0-88.22-29.83-103-74.23c-5.594-16.77 3.469-34.89 20.23-40.48c16.83-5.625 34.91 3.469 40.48 20.23c6.078 18.23 23.08 30.48 42.3 30.48h79.95c39.36 0 71.39-32.03 71.39-71.39s-32.03-71.38-71.39-71.38H32c-9.484 0-18.47-4.203-24.56-11.48C1.359 254.5-1.172 244.9 .5156 235.6l32-177.2C35.27 43.09 48.52 32.01 64 32.01l192 .0049c17.67 0 32 14.33 32 32s-14.33 32-32 32H90.73L70.3 209.2h114.3C259.3 209.2 320 269.1 320 344.6z"/></svg>';
 
 anchor.addEventListener('click', () => {
   links
     .map((l) => l.href)
     .filter((l) => !!l)
-    .slice(0, LINKS_LIMIT).forEach(GM.openInTab);
+    .slice(0, 5).forEach(GM.openInTab);
 });
 
 const waitForShortcuts = () => {
@@ -28,6 +28,12 @@ const waitForShortcuts = () => {
 
   if (shortcutsSelector) {
     shortcutsSelector.appendChild(anchor);
+
+    const counter = document.querySelector(COUNTER_SELECTOR);
+
+    if (counter && counter.textContent) {
+      counter.textContent = parseInt(counter.textContent) + 1;
+    }
   } else {
     setTimeout(waitForShortcuts, 50);
   }
