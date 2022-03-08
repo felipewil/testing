@@ -41,7 +41,7 @@ const waitForShortcuts = () => {
 waitForShortcuts();
 
 const icon = {
-  name: '3',
+  name: 'address-card',
   style: 'fas',
   font: 'font-awesome',
 };
