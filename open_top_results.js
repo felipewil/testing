@@ -22,5 +22,14 @@ anchor.addEventListener('click', () => {
     .slice(0, 5).forEach(GM.openInTab);
 });
 
-const shortcutsSelector = document.querySelector(SHORTCUTS_SELECTOR);
-shortcutsSelector.appendChild(anchor);
+const waitForShortcuts = () => {
+  const shortcutsSelector = document.querySelector(SHORTCUTS_SELECTOR);
+
+  if (shortcutsSelector) {
+    shortcutsSelector.appendChild(anchor);
+  } else {
+    setTimeout(waitForShortcuts, 50);
+  }
+};
+
+waitForShortcuts();
