@@ -24,7 +24,7 @@
 
       if (!se || !se.is_web_search) { return false; }
 
-      return se.match_prefix && document.location.href.match(prefix);
+      return se.match_prefix && document.location.href.match(se.match_prefix);
     });
 
   console.log('se', se);
