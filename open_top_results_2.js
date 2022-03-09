@@ -14,7 +14,7 @@
   const LINKS_SELECTOR = '.mnr-c a.cz3goc.BmP5tf';
   const LINKS_LIMIT = 5;
 
-  const isMobile = window.navigator.userAgent.includes('iphone');
+  const isMobile = window.navigator.userAgent.toLocaleLowerCase().includes('iphone');
   const queriesStr = GM.getResourceText('queries');
   const queries = JSON.parse(queriesStr);
   const se = Object
