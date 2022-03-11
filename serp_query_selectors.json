@@ -232,5 +232,26 @@
       "match_prefix": "(m\\.)?baidu\\.com\/s",
       "other_params": {}
     }
+  },
+  "Sogou": {
+    "querySelector": {
+      "desktop": "",
+      "featured": [],
+      "pad": "",
+      "phone": "",
+      "result_container_selector": "",
+      "highlight": ""
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "override_required_params": {
+        "keyword": ".*",
+        "v": ".*"
+      },
+      "required_params": ["keyword"],
+      "required_prefix": "m.sogou.com/web/sl",
+      "match_prefix": "(m\\.)?sogou\\.com\/web\/sl",
+      "other_params": {}
+    }
   }
 }
