@@ -275,5 +275,32 @@
       "match_prefix": "(m\\.)?so\\.com\/s",
       "other_params": {}
     }
+  },
+  "Yahoo": {
+    "querySelector": {
+      "desktop": "",
+      "featured": [],
+      "pad": "",
+      "phone": "",
+      "result_container_selector": "",
+      "highlight": ""
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "override_required_params": {
+        "p": ".*",
+        "fr": ".*",
+        "fr2": ".*",
+        ".tsrc": ".*",
+        "fp": ".*",
+        "toggle": ".*",
+        "cop": ".*",
+        "ei": ".*"
+      },
+      "required_params": ["p"],
+      "required_prefix": "search.yahoo.com/search",
+      "match_prefix": "search\\.yahoo\\.com\/search",
+      "other_params": {}
+    }
   }
 }
