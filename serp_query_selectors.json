@@ -253,5 +253,27 @@
       "match_prefix": "(m\\.)?sogou\\.com\/web\/sl",
       "other_params": {}
     }
+  },
+  "360 Search": {
+    "querySelector": {
+      "desktop": "",
+      "featured": [],
+      "pad": "",
+      "phone": "",
+      "result_container_selector": "",
+      "highlight": ""
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "override_required_params": {
+        "q": ".*",
+        "src": ".*",
+        "srcg": ".*"
+      },
+      "required_params": ["q"],
+      "required_prefix": "m.so.com/s",
+      "match_prefix": "(m\\.)?so\\.com\/s",
+      "other_params": {}
+    }
   }
 }
