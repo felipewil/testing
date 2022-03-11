@@ -211,5 +211,26 @@
       "match_prefix": "you\\.com\/search\\?q",
       "other_params": {}
     }
+  },
+  "Baidu": {
+    "querySelector": {
+      "desktop": "",
+      "featured": [],
+      "pad": "",
+      "phone": "",
+      "result_container_selector": "",
+      "highlight": ""
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "override_required_params": {
+        "from": ".*",
+        "word": ".*"
+      },
+      "required_params": ["q"],
+      "required_prefix": "m.baidu.com/s",
+      "match_prefix": "(m\\.)?baidu\\.com\/s",
+      "other_params": {}
+    }
   }
 }
