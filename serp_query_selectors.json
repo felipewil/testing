@@ -1,7 +1,7 @@
 {
   "Google Search": {
     "querySelector": {
-      "phone": ".mnr-c .KJDcUb a.BmP5tf",
+      "phone": ".mnr-c .yuRUbf a.sXtWJb, .mnr-c a.cz3goc.BmP5tf",
       "pad": ".hlcw0c .yuRUbf > a",
       "desktop": "#center_col div:not(.kp-blk *) > .yuRUbf > a cite",
       "result_container_selector": "[data-hveid]",
@@ -11,7 +11,8 @@
     "search_engine_json": {
       "is_web_search": true,
       "required_params": ["q"],
-      "required_prefix": "google.com/search"
+      "required_prefix": "google.com/search",
+      "match_prefix": "google(\\.\\w+){1,}\/search"
     }
   },
   "DuckDuckGo": {
@@ -26,7 +27,8 @@
     "search_engine_json": {
       "is_web_search": true,
       "required_params": ["q"],
-      "required_prefix": "duckduckgo.com"
+      "required_prefix": "duckduckgo.com",
+      "match_prefix": "duckduckgo.com"
     }
   },
   "Bing": {
@@ -41,7 +43,8 @@
     "search_engine_json": {
       "is_web_search": true,
       "required_params": ["q"],
-      "required_prefix": "bing.com/search"
+      "required_prefix": "bing.com/search",
+      "match_prefix": "bing(\\.com)?(\\.\\w+)?\/search"
     }
   },
   "Amazon US": {
@@ -56,7 +59,8 @@
     "search_engine_json": {
       "is_web_search": false,
       "required_params": ["k"],
-      "required_prefix": "amazon.com/s"
+      "required_prefix": "amazon.com/s",
+      "match_prefix": "amazon(\\.com)?(\\.\\w+)?\/s"
     }
   },
   "Ecosia": {
@@ -71,7 +75,8 @@
     "search_engine_json": {
       "is_web_search": true,
       "required_params": ["q"],
-      "required_prefix": "ecosia.org/search"
+      "required_prefix": "ecosia.org/search",
+      "match_prefix": "ecosia\\.org\/search"
     }
   },
   "Neeva": {
@@ -86,7 +91,8 @@
     "search_engine_json": {
       "is_web_search": true,
       "required_params": ["q"],
-      "required_prefix": "neeva.com/search"
+      "required_prefix": "neeva.com/search",
+      "match_prefix": "neeva\\.com\/search"
     }
   },
   "Brave": {
@@ -101,15 +107,16 @@
     "search_engine_json": {
       "is_web_search": true,
       "required_params": ["q"],
-      "required_prefix": "search.brave.com/search"
+      "required_prefix": "search.brave.com/search",
+      "match_prefix": "search\\.brave\\.com(\\.\\w+)?\/search"
     }
   },
   "Startpage": {
     "querySelector": {
       "desktop": "",
       "featured": [],
-      "pad": "",
-      "phone": "",
+      "pad": ".w-gl__result__main a.w-gl__result-title.result-link",
+      "phone": ".w-gl__result__main a.w-gl__result-title.result-link",
       "result_container_selector": "",
       "highlight": ""
     },
@@ -117,10 +124,11 @@
       "is_web_search": true,
       "required_params": ["query"],
       "required_prefix": "startpage.com/sp/search",
+      "match_prefix": "startpage\\.com\/sp\/search",
       "other_params": {
         "cat": "web",
-	"pl": "opensearch",
-	"language": "english"
+      	"pl": "opensearch",
+	      "language": "english"
       }
     }
   },
@@ -136,10 +144,45 @@
     "search_engine_json": {
       "is_web_search": true,
       "required_params": ["q"],
-      "required_prefix": "qwant.com?q",
+      "required_prefix": "qwant.com",
+      "match_prefix": "qwant\\.com\\?q",
       "other_params": {
-	"client": "opensearch"
+        "client": "opensearch"
       }
+    }
+  },
+  "Mojeek": {
+    "querySelector": {
+      "desktop": "",
+      "featured": [],
+      "pad": ".results-standard h2 a",
+      "phone": ".results-standard h2 a",
+      "result_container_selector": "",
+      "highlight": ""
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "required_params": ["q"],
+      "required_prefix": "mojeek.com/search",
+      "match_prefix": "mojeek\\.com\/search\\?q",
+      "other_params": {}
+    }
+  },
+  "You": {
+    "querySelector": {
+      "desktop": "",
+      "featured": [],
+      "pad": ".app_container__Qh1ws .app_content__Tr2HC a",
+      "phone": ".app_container__Qh1ws .app_content__Tr2HC a",
+      "result_container_selector": "",
+      "highlight": ""
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "required_params": ["q"],
+      "required_prefix": "you.com/search",
+      "match_prefix": "you\\.com\/search\\?q",
+      "other_params": {}
     }
   }
 }
