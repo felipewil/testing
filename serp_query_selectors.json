@@ -44,7 +44,7 @@
     },
     "search_engine_json": {
       "is_web_search": true,
-      "override_required_params": [],
+      "override_required_params": ["q","form","PC"],
       "required_params": ["q"],
       "required_prefix": "bing.com/search",
       "match_prefix": "bing(\\.com)?(\\.\\w+)?\/search"
@@ -78,7 +78,7 @@
     },
     "search_engine_json": {
       "is_web_search": true,
-      "override_required_params": ["q","form","PC"],
+      "override_required_params": [],
       "required_params": ["q"],
       "required_prefix": "ecosia.org/search",
       "match_prefix": "ecosia\\.org\/search"
