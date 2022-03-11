@@ -10,10 +10,10 @@
     },
     "search_engine_json": {
       "is_web_search": true,
+      "override_required_params": ["q", "ie", "oe", "hl", "client"],
       "required_params": ["q"],
       "required_prefix": "google.com/search",
-      "match_prefix": "google(\\.\\w+){1,}\/search",
-      "override_required_params": ["q", "ie", "oe", "hl", "client"]
+      "match_prefix": "google(\\.\\w+){1,}\/search"
     }
   },
   "DuckDuckGo": {
@@ -27,6 +27,7 @@
     },
     "search_engine_json": {
       "is_web_search": true,
+      "override_required_params": [],
       "required_params": ["q"],
       "required_prefix": "duckduckgo.com",
       "match_prefix": "duckduckgo.com"
@@ -43,6 +44,7 @@
     },
     "search_engine_json": {
       "is_web_search": true,
+      "override_required_params": [],
       "required_params": ["q"],
       "required_prefix": "bing.com/search",
       "match_prefix": "bing(\\.com)?(\\.\\w+)?\/search"
@@ -59,6 +61,7 @@
     },
     "search_engine_json": {
       "is_web_search": false,
+      "override_required_params": [],
       "required_params": ["k"],
       "required_prefix": "amazon.com/s",
       "match_prefix": "amazon(\\.com)?(\\.\\w+)?\/s"
@@ -75,6 +78,7 @@
     },
     "search_engine_json": {
       "is_web_search": true,
+      "override_required_params": ["q","form","PC"],
       "required_params": ["q"],
       "required_prefix": "ecosia.org/search",
       "match_prefix": "ecosia\\.org\/search"
@@ -91,6 +95,7 @@
     },
     "search_engine_json": {
       "is_web_search": true,
+      "override_required_params": [],
       "required_params": ["q"],
       "required_prefix": "neeva.com/search",
       "match_prefix": "neeva\\.com\/search"
@@ -107,6 +112,7 @@
     },
     "search_engine_json": {
       "is_web_search": true,
+      "override_required_params": [],
       "required_params": ["q"],
       "required_prefix": "search.brave.com/search",
       "match_prefix": "search\\.brave\\.com(\\.\\w+)?\/search"
@@ -123,6 +129,7 @@
     },
     "search_engine_json": {
       "is_web_search": true,
+      "override_required_params": [],
       "required_params": ["query"],
       "required_prefix": "startpage.com/sp/search",
       "match_prefix": "startpage\\.com\/sp\/search",
@@ -144,6 +151,7 @@
     },
     "search_engine_json": {
       "is_web_search": true,
+      "override_required_params": [],
       "required_params": ["q"],
       "required_prefix": "qwant.com",
       "match_prefix": "qwant\\.com\\?q",
@@ -163,6 +171,7 @@
     },
     "search_engine_json": {
       "is_web_search": true,
+      "override_required_params": [],
       "required_params": ["q"],
       "required_prefix": "mojeek.com/search",
       "match_prefix": "mojeek\\.com\/search\\?q",
@@ -180,6 +189,7 @@
     },
     "search_engine_json": {
       "is_web_search": true,
+      "override_required_params": [],
       "required_params": ["q"],
       "required_prefix": "you.com/search",
       "match_prefix": "you\\.com\/search\\?q",
