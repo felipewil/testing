@@ -12,7 +12,8 @@
       "is_web_search": true,
       "required_params": ["q"],
       "required_prefix": "google.com/search",
-      "match_prefix": "google(\\.\\w+){1,}\/search"
+      "match_prefix": "google(\\.\\w+){1,}\/search",
+      "override_required_params": ["q", "ie", "oe", "hl", "client"]
     }
   },
   "DuckDuckGo": {
