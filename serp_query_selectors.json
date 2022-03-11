@@ -227,7 +227,7 @@
         "from": ".*",
         "word": ".*"
       },
-      "required_params": ["q"],
+      "required_params": ["word"],
       "required_prefix": "m.baidu.com/s",
       "match_prefix": "(m\\.)?baidu\\.com\/s",
       "other_params": {}
