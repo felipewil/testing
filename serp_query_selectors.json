@@ -290,12 +290,7 @@
       "override_required_params": {
         "p": ".*",
         "fr": ".*",
-        "fr2": ".*",
-        ".tsrc": ".*",
-        "fp": ".*",
-        "toggle": ".*",
-        "cop": ".*",
-        "ei": ".*"
+        ".tsrc": ".*"
       },
       "required_params": ["p"],
       "required_prefix": "search.yahoo.com/search",
