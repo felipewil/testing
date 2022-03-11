@@ -91,7 +91,10 @@
     },
     "search_engine_json": {
       "is_web_search": true,
-      "override_required_params": {},
+      "override_required_params": {
+      	"q": ".*",
+	"tts": ".*"
+      },
       "required_params": ["q"],
       "required_prefix": "ecosia.org/search",
       "match_prefix": "ecosia\\.org\/search"
