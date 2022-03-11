@@ -10,7 +10,13 @@
     },
     "search_engine_json": {
       "is_web_search": true,
-      "override_required_params": ["q", "ie", "oe", "hl", "client"],
+      "override_required_params": {
+        "q": ".*",
+        "ie": ".*",
+        "oe": ".*",
+        "hl": ".*",
+        "client": ".*"
+      },
       "required_params": ["q"],
       "required_prefix": "google.com/search",
       "match_prefix": "google(\\.\\w+){1,}\/search"
@@ -27,7 +33,10 @@
     },
     "search_engine_json": {
       "is_web_search": true,
-      "override_required_params": [],
+      "override_required_params": {
+        "q": ".*",
+        "t": "iphone"
+      },
       "required_params": ["q"],
       "required_prefix": "duckduckgo.com",
       "match_prefix": "duckduckgo.com"
@@ -44,7 +53,11 @@
     },
     "search_engine_json": {
       "is_web_search": true,
-      "override_required_params": ["q","form","PC"],
+      "override_required_params": {
+        "q": ".*",
+        "form": ".*",
+        "PC": ".*"
+      },
       "required_params": ["q"],
       "required_prefix": "bing.com/search",
       "match_prefix": "bing(\\.com)?(\\.\\w+)?\/search"
