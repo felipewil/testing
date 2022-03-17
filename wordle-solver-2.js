@@ -7,7 +7,7 @@
 // @grant        GM.registerButton
 // @noframes
 // ==/UserScript==
-
+console.log('test');
 (() => {
   const solve = () => {
     var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
