@@ -34,7 +34,7 @@
 
   if (!linkQuery) { return; }
 
-  GM.registerButton('open-top-5', 'Open top 5 results', () => {
+  GM.registerButton('open-top-5', 'Open top 5 results', null, () => {
     Array
       .from(document.querySelectorAll(linkQuery))
       .map((e) => {
