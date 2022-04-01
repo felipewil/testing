@@ -10,7 +10,8 @@
 
 (() => {
   const callback = () => {
-    console.log('selected text', document.getSelection());
+    console.log('selected text 1', document.getSelection());
+    console.log('selected text 2', '' + document.getSelection());
 
     const q=location.href;
     const d = document.getSelection ? document.getSelection() : '';
@@ -23,7 +24,7 @@
   GM.registerButton({
     id: 'roam-quick-note',
     caption: 'Quick note to Roam',
-    eventType: 'onMouseDown',
+    eventType: 'mousedown',
     callback,
   })
 })();
