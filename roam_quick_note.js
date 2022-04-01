@@ -13,11 +13,12 @@
   document.onselectionchange = () => {
     if (!document.getSelection()?.toString()) { return; }
     selection = document.getSelection().toString();
+    console.log('sel', selection)
   };
 
   const callback = () => {
     const q = document.location.href;
-    const newWindow = open(`https://roamresearch.com?text=[${encodeURIComponent(selection)}](${encodeURIComponent(q)}) [[Quotes]]#quick-capture`, 'Roam', 'toolbar=no,width=700,height=350');
+    const newWindow = open(`https://roamresearch.com?text=[${encodeURIComponent(selection)}] [[Quotes]]#quick-capture`, 'Roam', 'toolbar=no,width=700,height=350');
     console.log(newWindow);
   };
 
