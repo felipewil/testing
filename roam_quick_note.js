@@ -10,6 +10,8 @@
 
 (() => {
   GM.registerButton('roam-quick-note', 'Quick note to Roam', null, () => {
+    console.log('selected text', document.getSelection());
+
     const q=location.href;
     const d = document.getSelection ? document.getSelection() : '';
     const p=document.title
