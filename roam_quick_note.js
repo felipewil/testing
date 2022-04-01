@@ -9,7 +9,7 @@
 // ==/UserScript==
 
 (() => {
-  GM.registerButton('roam-quick-note', 'Quick note to Roam', null, () => {
+  const callback = () => {
     console.log('selected text', document.getSelection());
 
     const q=location.href;
@@ -18,5 +18,12 @@
     
     console.log('https://roamresearch.com?text=__'+encodeURIComponent(d)+'__ — via ['+encodeURIComponent(p)+']('+encodeURIComponent(q)+') [[Quotes]]#quick-capture','Roam','toolbar=no,width=700,height=350')
     open('https://roamresearch.com?text=__'+encodeURIComponent(d)+'__ — via ['+encodeURIComponent(p)+']('+encodeURIComponent(q)+') [[Quotes]]#quick-capture','Roam','toolbar=no,width=700,height=350');
-  });
+  };
+
+  GM.registerButton({
+    id: 'roam-quick-note',
+    caption: 'Quick note to Roam',
+    eventType: 'mousedown',
+    callback,
+  })
 })();
