@@ -13,9 +13,9 @@
     console.log('selected text 1', document.getSelection());
     console.log('selected text 2', '' + document.getSelection());
 
-    const q=location.href;
-    const d = document.getSelection ? document.getSelection() : '';
-    const p=document.title
+    const q = location.href;
+    const d = document.getSelection ? document.getSelection().toString() : '';
+    const p = document.title
     
     console.log('https://roamresearch.com?text=__'+encodeURIComponent(d)+'__ — via ['+encodeURIComponent(p)+']('+encodeURIComponent(q)+') [[Quotes]]#quick-capture','Roam','toolbar=no,width=700,height=350')
     open('https://roamresearch.com?text=__'+encodeURIComponent(d)+'__ — via ['+encodeURIComponent(p)+']('+encodeURIComponent(q)+') [[Quotes]]#quick-capture','Roam','toolbar=no,width=700,height=350');
