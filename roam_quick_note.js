@@ -16,7 +16,8 @@
   };
 
   const callback = () => {
-    open('https://roamresearch.com?text=' + encodeURIComponent(selection), 'Roam')?.opener?.focus();
+    const newWindow = open(`https://roamresearch.com?text=[${encodeURIComponent(selection)}]`, 'Roam');
+    console.log(newWindow);
   };
 
   GM.registerButton({
