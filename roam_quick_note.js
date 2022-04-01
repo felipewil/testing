@@ -12,6 +12,7 @@
   let d = '';
   document.onselectionchange = () => {
     d = document.getSelection().toString();
+    console.log('sel changed', document.getSelection().toString());
   };
 
   const callback = () => {
@@ -20,6 +21,7 @@
 
     console.log('--> d', d);
     
+    console.log('https://roamresearch.com?text=__'+encodeURIComponent(d)+'__ — via ['+encodeURIComponent(p)+']('+encodeURIComponent(q)+') [[Quotes]]#quick-capture','Roam','toolbar=no,width=700,height=350')
     open('https://roamresearch.com?text=__'+encodeURIComponent(d)+'__ — via ['+encodeURIComponent(p)+']('+encodeURIComponent(q)+') [[Quotes]]#quick-capture','Roam','toolbar=no,width=700,height=350');
   };
 
