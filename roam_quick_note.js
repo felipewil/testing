@@ -9,26 +9,19 @@
 // ==/UserScript==
 
 (() => {
-  let d = '';
+  let selection = '';
   document.onselectionchange = () => {
     if (!document.getSelection()?.toString()) { return; }
-    d = document.getSelection().toString();
+    selection = document.getSelection().toString();
   };
 
   const callback = () => {
-    const q = location.href;
-    const p = document.title;
-
-    console.log('--> d', d);
-    
-    console.log('https://roamresearch.com?text=__'+encodeURIComponent(d)+'__ — via ['+encodeURIComponent(p)+']('+encodeURIComponent(q)+') [[Quotes]]#quick-capture','Roam','toolbar=no,width=700,height=350')
-    open('https://roamresearch.com?text=__'+encodeURIComponent(d)+'__ — via ['+encodeURIComponent(p)+']('+encodeURIComponent(q)+') [[Quotes]]#quick-capture','Roam','toolbar=no,width=700,height=350');
+    open('https://roamresearch.com?text=' + encodeURIComponent(selection), 'Roam')?.opener?.focus();
   };
 
   GM.registerButton({
     id: 'roam-quick-note',
     caption: 'Quick note to Roam',
-    eventType: 'onMouseDown',
     callback,
   })
 })();
