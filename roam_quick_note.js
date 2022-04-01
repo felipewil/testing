@@ -5,6 +5,7 @@
 // @author       Felipe
 // @match        *
 // @grant        GM.registerButton
+// @grant        GM.openInTab
 // @noframes
 // ==/UserScript==
 
@@ -13,18 +14,8 @@
   document.onselectionchange = () => {
     if (!document.getSelection()?.toString()) { return; }
     selection = document.getSelection().toString();
-    console.log('sel', selection)
   };
 
-  const callback = () => {
-    const q = document.location.href;
-    const newWindow = open(`https://roamresearch.com?text=[${encodeURIComponent(selection)}] [[Quotes]]#quick-capture`, 'Roam', 'toolbar=no,width=700,height=350');
-    console.log(newWindow);
-  };
-
-  GM.registerButton({
-    id: 'roam-quick-note',
-    caption: 'Quick note to Roam',
-    callback,
-  })
+  const callback = () => GM.openInTab(`https://roamresearch.com?text=${encodeURIComponent(selection)}#quick-capture`);
+  GM.registerButton('roam-quick-note', 'Quick note to Roam', null, callback);
 })();
