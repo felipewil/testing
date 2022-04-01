@@ -11,8 +11,8 @@
 (() => {
   let d = '';
   document.onselectionchange = () => {
+    if (!document.getSelection()?.toString()) { return; }
     d = document.getSelection().toString();
-    console.log('sel changed', document.getSelection().toString());
   };
 
   const callback = () => {
