@@ -23,6 +23,7 @@
   GM.registerButton({
     id: 'roam-quick-note',
     caption: 'Quick note to Roam',
+    eventType: 'onMouseDown',
     callback,
   })
 })();
