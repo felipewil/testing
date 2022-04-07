@@ -105,11 +105,10 @@ Promise.all([import('https://unpkg.com/turndown@6.0.0?module'), import('https://
         + tags + "\n\n"
         + markdownBody ;
     
-    const url = "obsidian://new?"
+    document.location.href = "obsidian://new?"
       + "file=" + encodeURIComponent(folder + fileName)
       + "&content=" + encodeURIComponent(fileContent)
       + vaultName ;
-    window.open(url);
   };
 
   GM.registerButton({
