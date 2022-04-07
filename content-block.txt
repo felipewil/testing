@@ -6,3 +6,4 @@
 
 *##button;text~=cookies;text~=accept
 *##a;text~=cookies;text~=accept
+*##button;text~=cookies;text~=accept
