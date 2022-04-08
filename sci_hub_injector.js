@@ -187,10 +187,8 @@ function addSciHubLink() {
     doi = deGruyter();
   }
 
-  console.log('doi', doi);
-
   if (doi) {
-    const cb = () => GM.openInTab(`https://sci-hub.se/${doi}`);
+    const cb = () => GM.openInTab(`https://sci-hub.se/${doi.trim()}`);
     GM.registerButton('sci-hub', 'Open this page on Sci-Hub', null, cb);
   }
 }
