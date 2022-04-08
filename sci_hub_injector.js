@@ -19,6 +19,8 @@
 // @grant GM.openInTab
 // ==/UserScript==
 
+console.log('injected');
+
 const default_url = "https://sci-hub.se/";
 
 function sciHubLink(doi) {
@@ -36,6 +38,7 @@ function pubMed() {
 }
 
 function nature() {
+  console.log('nature');
   const doi = document
     .querySelector(
       ".c-bibliographic-information__list-item--doi > p > span.c-bibliographic-information__value"
@@ -44,6 +47,7 @@ function nature() {
   const menu = document.querySelector(
     "aside .c-nature-box.c-nature-box--side.u-hide-print"
   );
+  console.log('menu');
   menu.innerHTML += `
 	<div class="js-access-button">
 			<a href="${sciHubLink(doi)}" class="c-article__button">
