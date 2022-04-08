@@ -20,7 +20,7 @@
 // ==/UserScript==
 
 const cb = () => {
-  GM.openInTab(`https://sci-hub.se/${doi}`);
+  GM.openInTab(`https://sci-hub.se/${document.location.href}`);
 };
 
 GM.registerButton('sci-hub', 'Open this page on Sci-Hub', null, cb);
