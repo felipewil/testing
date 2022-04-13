@@ -10,11 +10,13 @@
 // @noframes
 // ==/UserScript==
 
+console.log('--> start')
+
 GM.registerButton({
   id: 'theme-1',
   caption: 'Theme 1',
   callback: async () => {
-    console.log(GM);
+    console.log(GM.isDarkmodeEnabled);
     const enabled = await GM.isDarkmodeEnabled();
 
     GM.darkmode(!enabled);
