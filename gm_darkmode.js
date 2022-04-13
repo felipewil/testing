@@ -26,8 +26,8 @@ const run = async () => {
     icon: enabled ? enableIcon : disableIcon,
     caption: enabled ? enableTitle : disableTitle,
     callback: async () => {
-      enabled = await GM.isDarkmodeEnabled();
-      GM.darkmode(!enabled);
+      enabled = !(await GM.isDarkmodeEnabled());
+      GM.darkmode(enabled);
       GM.updateButton({
         id: 'change-darkmode',
         icon: enabled ? enableIcon : disableIcon,
