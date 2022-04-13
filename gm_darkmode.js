@@ -15,8 +15,8 @@ GM.registerButton({
   callback: () => {
     GM.darkmode(true, {
       theme: {
-        background: 'white',
-        foreground: 'red',
+        background: '#000',
+        foreground: '#F00',
       },
     });
   },
@@ -28,8 +28,8 @@ GM.registerButton({
   callback: () => {
     GM.darkmode(true, {
       theme: {
-        background: 'red',
-        foreground: 'white',
+        background: '#F00',
+        foreground: '#000',
       },
     });
   },
