@@ -9,28 +9,14 @@
 // @noframes
 // ==/UserScript==
 
+let enabled = false;
+
 GM.registerButton({
   id: 'theme-1',
   caption: 'Theme 1',
   callback: () => {
-    GM.darkmode(true, {
-      theme: {
-        background: '#000',
-        foreground: '#F00',
-      },
-    });
-  },
-});
+    enabled = !enabled;
 
-GM.registerButton({
-  id: 'theme-2',
-  caption: 'Theme 2',
-  callback: () => {
-    GM.darkmode(true, {
-      theme: {
-        background: '#F00',
-        foreground: '#000',
-      },
-    });
+    GM.darkmode(enabled);
   },
 });
