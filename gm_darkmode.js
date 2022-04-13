@@ -16,13 +16,12 @@ GM.registerButton({
   id: 'theme-1',
   caption: 'Theme 1',
   callback: async () => {
-    try {
     console.log(GM.isDarkmodeEnabled);
     const enabled = await GM.isDarkmodeEnabled();
 
-    GM.darkmode(!enabled);
-    } catch (e) {
-      console.log(e);
-    }
+    GM.darkmode(!enabled, {
+      background: '#000',
+      foreground: '#F00',
+    });
   },
 });
