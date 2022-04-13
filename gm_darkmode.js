@@ -14,6 +14,7 @@ GM.registerButton({
   id: 'theme-1',
   caption: 'Theme 1',
   callback: async () => {
+    console.log(GM);
     const enabled = await GM.isDarkmodeEnabled();
 
     GM.darkmode(!enabled);
