@@ -6,17 +6,16 @@
 // @match        *
 // @grant        GM.registerButton
 // @grant        GM.darkmode
+// @grant        GM.isDarkmodeEnabled
 // @noframes
 // ==/UserScript==
-
-let enabled = false;
 
 GM.registerButton({
   id: 'theme-1',
   caption: 'Theme 1',
-  callback: () => {
-    enabled = !enabled;
+  callback: async () => {
+    const enabled = await GM.isDarkmodeEnabled();
 
-    GM.darkmode(enabled);
+    GM.darkmode(!enabled);
   },
 });
