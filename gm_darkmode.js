@@ -11,8 +11,7 @@
 // @noframes
 // ==/UserScript==
 
-console.log('--> start')
-
+const id = 'change-darkmode';
 const enableTitle = 'Enable Dark Mode';
 const disableTitle = 'Disable Dark Mode';
 const enableIcon = { name: 'sun', style: 'solid', font: 'font-awesome' };
@@ -22,14 +21,14 @@ const run = async () => {
   let enabled = await GM.isDarkmodeEnabled();
 
   GM.registerButton({
-    id: 'change-darkmode',
+    id,
     icon: enabled ? enableIcon : disableIcon,
     caption: enabled ? enableTitle : disableTitle,
     callback: async () => {
       enabled = !(await GM.isDarkmodeEnabled());
       GM.darkmode(enabled);
       GM.updateButton({
-        id: 'change-darkmode',
+        id,
         icon: enabled ? enableIcon : disableIcon,
         caption: enabled ? enableTitle : disableTitle,
       });
