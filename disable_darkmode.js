@@ -11,6 +11,11 @@
 
 GM.registerButton({
   id: 'disable-darkmode',
+  icon: {
+    name: 'circle-half-stroke',
+    font: 'font-awesome',
+    style: 'solid',
+  },
   caption: 'Disable Dark Mode',
   callback: async () => GM.darkmode(false),
 });
