@@ -12,7 +12,7 @@
 GM.registerButton({
   id: 'disable-darkmode',
   icon: {
-    name: 'moon',
+    name: 'sun',
     font: 'font-awesome',
     style: 'solid',
   },
