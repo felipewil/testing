@@ -1,0 +1,19 @@
+[Adblock Plus 2.0]
+! Title: Mobile Annoyances Autoclick
+! Homepage: 
+! Licence: https://creativecommons.org/licenses/by-sa/4.0/
+! Version: 20210303
+
+example.com###a
+m.youtube.com##.mealbar-promo-renderer .ytm-mealbar-promo-button:first-of-type button
+www.reddit.com##.AppSelectorModal__actionButton #continueButton
+www.reddit.com##.XPromoPill__closeButton
+www.reddit.com##button.XPromoPopup__actionButton
+www.quora.com##.kPwyaT button
+www.nytimes.com##.ReactModal__Overlay button
+www.nytimes.com###vi_welcome_close
+instagram.com##button span[aria-label=Close]
+instagram.com##.Z_Gl2 button.wpO6b
+www.bbc.*##button.tp-close.tp-active
+www.google.*###stUuGf div div.FAVrq.VDgVie.it9gVe.gdwOPe.mB14jb.eofmDb div.uysxde.KKUuQd div.LXauYe div.MSvubc span.i6Jlpe.z1asCe.wuXmqc
+zoom.us###onetrust-banner-sdk .onetrust-close-btn-handler
