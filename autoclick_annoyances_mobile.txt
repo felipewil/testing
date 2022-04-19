@@ -20,3 +20,4 @@ www.google.*###stUuGf div div.FAVrq.VDgVie.it9gVe.gdwOPe.mB14jb.eofmDb div.uysxd
 zoom.us###onetrust-banner-sdk .onetrust-close-btn-handler
 tiktok.com##.guide-container .not-now
 msn.com###onetrust-banner-sdk #onetrust-accept-btn-handler
+*###onetrust-consent-sdk .banner-close-button
