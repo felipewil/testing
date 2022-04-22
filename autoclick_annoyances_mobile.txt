@@ -35,3 +35,4 @@ lowes.com###branch-banner-iframe%hw%.branch-banner-close
 t-mobile.com##.xpr-cookieModal .phx-modal__close
 healthline.com###ccpa-banner .accept
 healthline.com##.css-yya393 .window-close-button
+healthline.com##.css-pdceuf .icon-hl-close-thick
