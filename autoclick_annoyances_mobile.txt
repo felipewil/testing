@@ -33,3 +33,4 @@ ups.com##div.implicit_privacy_prompt.implicit_consent button.close_btn_thick spa
 kohls.com###hp-banner2-drawer .drawer-controls button
 lowes.com###branch-banner-iframe%hw%.branch-banner-close
 t-mobile.com##.xpr-cookieModal .phx-modal__close
+healthline.com###ccpa-banner .accept
