@@ -34,3 +34,4 @@ kohls.com###hp-banner2-drawer .drawer-controls button
 lowes.com###branch-banner-iframe%hw%.branch-banner-close
 t-mobile.com##.xpr-cookieModal .phx-modal__close
 healthline.com###ccpa-banner .accept
+healthline.com##.css-yya393 .window-close-button
