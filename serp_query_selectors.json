@@ -182,7 +182,7 @@
       "featured": [],
       "pad": ".results-standard h2 a",
       "phone": ".results-standard h2 a",
-      "result_container_selector": "",
+      "result_container_selector": "li",
       "highlight": ""
     },
     "search_engine_json": {
