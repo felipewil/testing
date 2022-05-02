@@ -26,7 +26,6 @@ const run = () => {
   };
 
   const skip = () => {
-    console.log('skip called', document.getElementsByClassName("video-ads")[0].innerHTML !== '');
     if (document.getElementsByClassName("video-ads")[0].innerHTML !== '') {
       let banner = false;
    
@@ -43,8 +42,6 @@ const run = () => {
 
   const obsVideoAds = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      console.log('-', document.getElementsByClassName("video-ads")[0].innerHTML !== '')
-      console.log('obs', mutations)
       if (mutation.addedNodes.length === 0) { return; }
       skip();
     });
@@ -68,22 +65,24 @@ const run = () => {
           subtree: true,
         });
 
-        skip()
+        skip();
+
+        obs.disconnect();
       });
     });
   });
 
   const container = document.querySelector('.video-ads');
-  console.log(document.querySelector('.video-ads'));
 
-  if (container) { 
+  if (container) {
+    console.log('obs ads');
     skip();
     obsVideoAds.observe(container, {
       childList: true,
       subtree: true,
     });
   } else {
-    console.log('observing body')
+    console.log('obs body');
     obs.observe(document.body, {
       childList: true,
       subtree: true,
