@@ -47,6 +47,7 @@ const run = () => {
         obsVideoAds.disconnect();
         obsVideoAds.observe(target, {
           childList: true,
+          subtree: true,
         });
 
         skip()
@@ -55,11 +56,15 @@ const run = () => {
   });
 
   const container = document.querySelector('.video-ads');
+
+  console.log(document.querySelector('.video-ads'));
+
   if (container) { skip(); }
 
   console.log('observing')
   obs.observe(document.body, {
-    childList: true
+    childList: true,
+    subtree: true,
   });
 };
 
