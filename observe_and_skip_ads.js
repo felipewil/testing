@@ -21,11 +21,11 @@ const run = () => {
       video.currentTime = video.duration;
     }
 
-    if (!button) {
-      return setTimeout(() => tryClick(attempt + 1, true), 100);;
-    }
-
-    button.click();
+    if (button) {
+      button.click();
+    } else {
+      setTimeout(() => tryClick(attempt + 1, true), 100);;
+    }    
   };
 
   const skip = () => {
@@ -33,7 +33,7 @@ const run = () => {
       let banner = false;
    
       for(var i = 0; i < document.getElementsByClassName("ytp-ad-overlay-close-button").length; i++) {
-        document.getElementsByClassName("ytp-ad-overlay-close-button")[i].click();
+        document.getElementsByClassName("ytp-ad-overlay-close-button")[i]?.click();
         banner = true;
       }
    
