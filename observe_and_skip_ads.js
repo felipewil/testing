@@ -9,7 +9,7 @@
 // ==/UserScript==
 
 const run = () => {
-  const tryClick = (attempt) => {
+  const tryClick = (attempt, buttonOnly) => {
     if (attempt > 5) { return; }
 
     const button = document.querySelectorAll('.ytp-ad-skip-button')[0];
@@ -17,11 +17,14 @@ const run = () => {
 
     console.log('button', button, video)
 
-    if (!button) {
-      return setTimeout(() => tryClick(attempt + 1), 100);;
+    if (video && !buttonOnly) {
+      video.currentTime = video.duration;
     }
 
-    video.currentTime = video.duration;
+    if (!button) {
+      return setTimeout(() => tryClick(attempt + 1, true), 100);;
+    }
+
     button.click();
   };
 
@@ -51,10 +54,7 @@ const run = () => {
   const obs = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       mutation.addedNodes.forEach((added) => {
-        //console.log('added', added, added.classList)
-
         const target = added.classList?.contains('video-ads') ? added : added?.querySelector?.('.video-ads');
-        // console.log('is tar', target)
 
         if (!target) { return; }
 
@@ -66,8 +66,6 @@ const run = () => {
         });
 
         skip();
-
-        obs.disconnect();
       });
     });
   });
