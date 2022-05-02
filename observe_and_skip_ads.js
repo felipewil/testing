@@ -8,14 +8,18 @@
 // @noframes
 // ==/UserScript==
 
+const ADS_CLASS = 'video-ads';
+const ADS_SELECTOR = `.${ ADS_CLASS }`;
+const SKIP_SELECTOR = '.ytp-ad-skip-button';
+const VIDEO_SELECTOR = '.html5-main-video';
+const BANNER_OVERLAY_CLASS = 'ytp-ad-overlay-close-button';
+
 const run = () => {
   const tryClick = (attempt, buttonOnly) => {
     if (attempt > 5) { return; }
 
-    const button = document.querySelectorAll('.ytp-ad-skip-button')[0];
-    const video = document.querySelectorAll('.html5-main-video')[0];
-
-    console.log('button', button, video)
+    const button = document.querySelectorAll(SKIP_SELECTOR)[0];
+    const video = document.querySelectorAll(VIDEO_SELECTOR)[0];
 
     if (video && !buttonOnly) {
       video.currentTime = video.duration;
@@ -29,11 +33,11 @@ const run = () => {
   };
 
   const skip = () => {
-    if (document.getElementsByClassName("video-ads")[0].innerHTML !== '') {
+    if (document.querySelectorAll(ADS_SELECTOR)[0]?.innerHTML !== '') {
       let banner = false;
    
-      for(var i = 0; i < document.getElementsByClassName("ytp-ad-overlay-close-button").length; i++) {
-        document.getElementsByClassName("ytp-ad-overlay-close-button")[i]?.click();
+      for(let i = 0; i < document.getElementsByClassName(BANNER_OVERLAY_CLASS).length; i++) {
+        document.getElementsByClassName(BANNER_OVERLAY_CLASS)[i]?.click();
         banner = true;
       }
    
@@ -54,11 +58,10 @@ const run = () => {
   const obs = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       mutation.addedNodes.forEach((added) => {
-        const target = added.classList?.contains('video-ads') ? added : added?.querySelector?.('.video-ads');
+        const target = added.classList?.contains(ADS_CLASS) ? added : added?.querySelector?.(ADS_SELECTOR);
 
         if (!target) { return; }
 
-        console.log('ads added')
         obsVideoAds.disconnect();
         obsVideoAds.observe(target, {
           childList: true,
@@ -70,17 +73,15 @@ const run = () => {
     });
   });
 
-  const container = document.querySelector('.video-ads');
+  const container = document.querySelector(ADS_SELECTOR);
 
   if (container) {
-    console.log('obs ads');
     skip();
     obsVideoAds.observe(container, {
       childList: true,
       subtree: true,
     });
   } else {
-    console.log('obs body');
     obs.observe(document.body, {
       childList: true,
       subtree: true,
