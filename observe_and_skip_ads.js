@@ -52,6 +52,7 @@ const run = () => {
   const container = document.querySelector('.video-ads');
   if (container) { skip(); }
 
+  console.log('observing')
   obs.observe(document.body, {
     childList: true
   });
