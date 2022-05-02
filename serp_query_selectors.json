@@ -25,7 +25,7 @@
   "DuckDuckGo": {
     "querySelector": {
       "phone": ".results a[data-testid=\"result-title-a\"]",
-      "pad": ".result__body a",
+      "pad": ".results a[data-testid=\"result-title-a\"]",
       "desktop": "a.result__url.js-result-extras-url",
       "result_container_selector": ".nrn-react-div",
       "featured": [],
