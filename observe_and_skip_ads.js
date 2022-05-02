@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name         Observe and skips YT ads
+// @name         Skips YT ads
 // @version      0.0.1
-// @description  Observe and skips YT ads
+// @description  Skips YT ads on click
 // @author       Felipe
-// @match        m.youtube.com
-// @match        youtube.com
+// @match        *
+// @grant        GM.registerButton
 // @noframes
 // ==/UserScript==
 
@@ -16,19 +16,18 @@ const run = () => {
       for(var i = 0; i < document.getElementsByClassName("ytp-ad-overlay-close-button").length; i++) {
         document.getElementsByClassName("ytp-ad-overlay-close-button")[i].click();
         banner = true;
-        console.log('ad skiped');
       }
    
       if (banner === false) {
         document.getElementsByClassName("html5-main-video")[0].currentTime = document.getElementsByClassName("html5-main-video")[0].duration;
         document.getElementsByClassName("ytp-ad-skip-button")[0].click();
-        console.log('ad skiped');
       }
     }
   }
 
   const obs = new MutationObserver(function(mutations, observer) {
     for (let i=0; i < mutations.length; ++i) {
+      console.log('mutations', mutations[i].addedNodes.length)
       if (mutations[i].addedNodes.length) {
         skip()
       }
@@ -36,7 +35,9 @@ const run = () => {
   });
 
   // have the observer observe foo for changes in children
-  const container = document.querySelector('.ytp-ad-skip-button');
+  const container = document.querySelector('.video-ads');
+
+  console.log('container', container);
 
   if (!container) { return; }
 
