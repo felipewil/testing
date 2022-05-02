@@ -13,6 +13,8 @@ const run = () => {
   const video = url.searchParams.get('v');
 
   if (!video) { return; }
+  
+  document.querySelector('video')?.pause()
 
   const iframe = document.createElement('iframe');
   iframe.src = `https://www.youtube.com/embed/${ video }`;
