@@ -9,6 +9,22 @@
 // ==/UserScript==
 
 const run = () => {
+  const tryClick = (attempt) => {
+    if (attempt > 5) { return; }
+
+    const button = document.querySelectorAll('.ytp-ad-skip-button')[0];
+    const video = document.querySelectorAll('.html5-main-video')[0];
+
+    console.log('button', button, video)
+
+    if (!button) {
+      return setTimeout(() => tryClick(attempt + 1), 100);;
+    }
+
+    video.currentTime = video.duration;
+    button.click();
+  };
+
   const skip = () => {
     console.log('skip called', document.getElementsByClassName("video-ads")[0].innerHTML !== '');
     if (document.getElementsByClassName("video-ads")[0].innerHTML !== '') {
@@ -20,8 +36,7 @@ const run = () => {
       }
    
       if (banner === false) {
-        document.getElementsByClassName("html5-main-video")[0].currentTime = document.getElementsByClassName("html5-main-video")[0].duration;
-        document.getElementsByClassName("ytp-ad-skip-button")[0].click();
+        tryClick(0);
       }
     }
   }
