@@ -37,11 +37,15 @@ const run = () => {
   const obs = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       mutation.addedNodes.forEach((added) => {
-        console.log('added', added.classList)
-        if (!added.classList.contains('video-ads')) { return; }
+        console.log('added', added, added.classList)
+
+        const target = added.classList.contains('video-ads') ? added : added.querySelector('.video-ads');
+
+        if (!target) { return; }
+
         console.log('ads added')
         obsVideoAds.disconnect();
-        obsVideoAds.observe(added, {
+        obsVideoAds.observe(target, {
           childList: true,
         });
 
