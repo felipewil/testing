@@ -140,7 +140,7 @@
       "featured": [],
       "pad": ".w-gl__result__main a.w-gl__result-title.result-link",
       "phone": ".w-gl__result__main a.w-gl__result-title.result-link",
-      "result_container_selector": "",
+      "result_container_selector": ".w-gl__result__main",
       "highlight": ""
     },
     "search_engine_json": {
