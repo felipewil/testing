@@ -28,6 +28,7 @@ const run = () => {
 
   const obsVideoAds = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
+      console.log('-', document.getElementsByClassName("video-ads")[0].innerHTML !== '')
       console.log('obs', mutations)
       if (mutation.addedNodes.length === 0) { return; }
       skip();
@@ -40,7 +41,7 @@ const run = () => {
       mutation.addedNodes.forEach((added) => {
         //console.log('added', added, added.classList)
 
-        const target = added.classList?.contains('video-ads') ? added : added.querySelector('.video-ads');
+        const target = added.classList?.contains('video-ads') ? added : added?.querySelector('.video-ads');
         // console.log('is tar', target)
 
         if (!target) { return; }
