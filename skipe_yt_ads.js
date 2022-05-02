@@ -34,5 +34,3 @@ GM.registerButton({
   caption: 'Skps YouTube Ad',
   callback: run,
 });
-
-run();
