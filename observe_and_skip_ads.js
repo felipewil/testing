@@ -10,7 +10,8 @@
 
 const run = () => {
   const skip = () => {
-    if (document.getElementsByClassName("video-ads")[0].innerHTML !=="") {
+    console.log('skip called', document.getElementsByClassName("video-ads")[0].innerHTML !== '');
+    if (document.getElementsByClassName("video-ads")[0].innerHTML !== '') {
       let banner = false;
    
       for(var i = 0; i < document.getElementsByClassName("ytp-ad-overlay-close-button").length; i++) {
@@ -27,9 +28,8 @@ const run = () => {
 
   const obsVideoAds = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      mutation.addedNodes.forEach((added) => {
-        skip()
-      });
+      if (mutation.addedNodes.length === 0) { return; }
+      skip();
     });
   });
 
@@ -57,16 +57,22 @@ const run = () => {
   });
 
   const container = document.querySelector('.video-ads');
-
   console.log(document.querySelector('.video-ads'));
 
-  if (container) { skip(); }
+  if (container) { 
+    skip();
+    obsVideoAds.observe(container, {
+      childList: true,
+      subtree: true,
+    });
+  } else {
+    console.log('observing body')
+    obs.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  }
 
-  console.log('observing')
-  obs.observe(document.body, {
-    childList: true,
-    subtree: true,
-  });
 };
 
 run();
