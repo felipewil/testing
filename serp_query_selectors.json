@@ -24,10 +24,10 @@
   },
   "DuckDuckGo": {
     "querySelector": {
-      "phone": ".result__body a",
+      "phone": ".results a[data-testid=\"result-title-a\"]",
       "pad": ".result__body a",
       "desktop": "a.result__url.js-result-extras-url",
-      "result_container_selector": ".result__body",
+      "result_container_selector": ".results",
       "featured": [],
       "highlight": ""
     },
@@ -35,7 +35,7 @@
       "is_web_search": true,
       "override_required_params": {
         "q": ".*",
-        "t": "iphone"
+        "t": "iphone|ipad"
       },
       "required_params": ["q"],
       "required_prefix": "duckduckgo.com",
@@ -290,7 +290,11 @@
       "override_required_params": {
         "p": ".*",
         "fr": ".*",
-        ".tsrc": ".*"
+	".tsrc": ".*"
+      },
+      "override_required_pad_params": {
+        "p": ".*",
+        "fr": ".*"
       },
       "required_params": ["p"],
       "required_prefix": "search.yahoo.com/search",
