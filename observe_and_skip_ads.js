@@ -40,7 +40,7 @@ const run = () => {
         console.log('added', added, added.classList)
 
         const target = added.classList?.contains('video-ads') ? added : added.querySelector('.video-ads');
-        console.log('is tar', isTarget)
+        console.log('is tar', target)
 
         if (!target) { return; }
 
