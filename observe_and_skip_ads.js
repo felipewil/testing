@@ -28,6 +28,7 @@ const run = () => {
 
   const obsVideoAds = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
+      console.log('obs', mutations)
       if (mutation.addedNodes.length === 0) { return; }
       skip();
     });
