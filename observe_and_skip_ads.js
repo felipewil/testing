@@ -25,25 +25,34 @@ const run = () => {
     }
   }
 
-  const obs = new MutationObserver(function(mutations, observer) {
-    for (let i=0; i < mutations.length; ++i) {
-      console.log('mutations', mutations[i].addedNodes.length)
-      if (mutations[i].addedNodes.length) {
+  const obsVideoAds = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((added) => {
         skip()
-      }
-    }
+      });
+    });
   });
 
-  // have the observer observe foo for changes in children
+
+  const obs = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((added) => {
+        if (!added.classList.contains('video-ads')) { return; }
+        console.log('ads added')
+        obsVideoAds.disconnect();
+        obsVideoAds.observe(added, {
+          childList: true,
+        });
+
+        skip()
+      });
+    });
+  });
+
   const container = document.querySelector('.video-ads');
+  if (container) { skip(); }
 
-  console.log('container', container);
-
-  if (!container) { return; }
-
-  skip();
-
-  obs.observe(container, {
+  obs.observe(document.body, {
     childList: true
   });
 };
