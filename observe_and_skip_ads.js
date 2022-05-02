@@ -38,10 +38,10 @@ const run = () => {
   const obs = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       mutation.addedNodes.forEach((added) => {
-        console.log('added', added, added.classList)
+        //console.log('added', added, added.classList)
 
         const target = added.classList?.contains('video-ads') ? added : added.querySelector('.video-ads');
-        console.log('is tar', target)
+        // console.log('is tar', target)
 
         if (!target) { return; }
 
