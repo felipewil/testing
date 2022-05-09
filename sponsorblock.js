@@ -120,7 +120,6 @@ const findValidElement = (elements) => {
 
 const refreshVideoAttachments = () => {
   const newVideo = findValidElement(document.querySelectorAll("video"));
-  console.log("new", newVideo);
   if (newVideo && newVideo !== video) {
     video = newVideo;
 
@@ -144,8 +143,6 @@ const addPageListeners = () => {
 
 const skipToTime = ({ v, skipTime, skippingSegments }) => {
   const autoSkip = true;
-
-  console.log('skip to time', skipTime, skippingSegments)
 
   if (autoSkip && v.currentTime !== skipTime[1]) {
     switch (skippingSegments[0].actionType) {
@@ -222,9 +219,7 @@ const incorrectVideoCheck = (videoID = null, sponsorTime = null) => {
     currentVideoID !== (videoID || sponsorVideoID) ||
     (sponsorTime &&
       (!sponsorTimes ||
-        !sponsorTimes?.some(
-          (time) => time.segment === sponsorTime.segment
-        )) &&
+        !sponsorTimes?.some((time) => time.segment === sponsorTime.segment)) &&
       !sponsorTimesSubmitting.some(
         (time) => time.segment === sponsorTime.segment
       ))
@@ -262,11 +257,17 @@ const incorrectVideoCheck = (videoID = null, sponsorTime = null) => {
  * @param index Index of the given sponsor
  * @param hideHiddenSponsors
  */
-const getLatestEndTimeIndex = (sponsorTimes, index, hideHiddenSponsors = true) => {
+const getLatestEndTimeIndex = (
+  sponsorTimes,
+  index,
+  hideHiddenSponsors = true
+) => {
   // Only combine segments for AutoSkip
-  if (index == -1 // ||
-      // !shouldAutoSkip(sponsorTimes[index])
-      || sponsorTimes[index].actionType !== ActionType.Skip) {
+  if (
+    index == -1 || // ||
+    // !shouldAutoSkip(sponsorTimes[index])
+    sponsorTimes[index].actionType !== ActionType.Skip
+  ) {
     return index;
   }
 
@@ -274,25 +275,32 @@ const getLatestEndTimeIndex = (sponsorTimes, index, hideHiddenSponsors = true) =
   let latestEndTimeIndex = index;
 
   for (let i = 0; i < sponsorTimes?.length; i++) {
-      const currentSegment = sponsorTimes[i].segment;
-      const latestEndTime = sponsorTimes[latestEndTimeIndex].segment[1];
+    const currentSegment = sponsorTimes[i].segment;
+    const latestEndTime = sponsorTimes[latestEndTimeIndex].segment[1];
 
-      if (currentSegment[0] <= latestEndTime && currentSegment[1] > latestEndTime
-          // && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)
-          // && shouldAutoSkip(sponsorTimes[i])
-          && sponsorTimes[i].actionType === ActionType.Skip) {
-              // Overlapping segment
-              latestEndTimeIndex = i;
-      }
+    if (
+      currentSegment[0] <= latestEndTime &&
+      currentSegment[1] > latestEndTime &&
+      // && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)
+      // && shouldAutoSkip(sponsorTimes[i])
+      sponsorTimes[i].actionType === ActionType.Skip
+    ) {
+      // Overlapping segment
+      latestEndTimeIndex = i;
+    }
   }
 
   // Keep going if required
   if (latestEndTimeIndex !== index) {
-      latestEndTimeIndex = getLatestEndTimeIndex(sponsorTimes, latestEndTimeIndex, hideHiddenSponsors);
+    latestEndTimeIndex = getLatestEndTimeIndex(
+      sponsorTimes,
+      latestEndTimeIndex,
+      hideHiddenSponsors
+    );
   }
 
   return latestEndTimeIndex;
-}
+};
 
 /**
  * Gets just the start times from a sponsor times array.
@@ -322,8 +330,6 @@ const getStartTimes = (
     scheduledTime: sponsorTime.segment[0],
   }));
 
-  console.log('possible', minimum, includeNonIntersectingSegments, hideHiddenSponsors);
-
   // Schedule at the end time to know when to unmute
   sponsorTimes
     .filter((sponsorTime) => sponsorTime.actionType === ActionType.Mute)
@@ -341,7 +347,6 @@ const getStartTimes = (
     });
 
   for (let i = 0; i < possibleTimes.length; i++) {
-    console.log(i, possibleTimes[i].scheduledTime, possibleTimes[i].scheduledTime >= minimum, includeNonIntersectingSegments, !hideHiddenSponsors, possibleTimes[i].actionType !== ActionType.Poi)
     if (
       (minimum === undefined ||
         (includeNonIntersectingSegments &&
@@ -350,11 +355,10 @@ const getStartTimes = (
           possibleTimes[i].scheduledTime < minimum &&
           possibleTimes[i].segment[1] > minimum)) &&
       // (!onlySkippableSponsors || shouldSkip(possibleTimes[i])) &&
-      (!hideHiddenSponsors) && // ||
-        // possibleTimes[i].hidden === SponsorHideType.Visible) &&
+      !hideHiddenSponsors && // ||
+      // possibleTimes[i].hidden === SponsorHideType.Visible) &&
       possibleTimes[i].actionType !== ActionType.Poi
     ) {
-      console.log('enter')
       scheduledTimes.push(possibleTimes[i].scheduledTime);
       includedTimes.push(possibleTimes[i]);
     }
@@ -371,26 +375,20 @@ const getNextSkipIndex = (
   includeIntersectingSegments,
   includeNonIntersectingSegments
 ) => {
-  const {
-    includedTimes: submittedArray,
-    scheduledTimes: sponsorStartTimes,
-  } = getStartTimes(
-    sponsorTimes,
-    includeIntersectingSegments,
-    includeNonIntersectingSegments
-  );
-  const { scheduledTimes: sponsorStartTimesAfterCurrentTime } =
+  const { includedTimes: submittedArray, scheduledTimes: sponsorStartTimes } =
     getStartTimes(
       sponsorTimes,
       includeIntersectingSegments,
-      includeNonIntersectingSegments,
-      currentTime,
-      true,
-      false//true
+      includeNonIntersectingSegments
     );
-
-  console.log(currentTime)
-  console.log('sched', submittedArray, sponsorStartTimes, sponsorStartTimesAfterCurrentTime)
+  const { scheduledTimes: sponsorStartTimesAfterCurrentTime } = getStartTimes(
+    sponsorTimes,
+    includeIntersectingSegments,
+    includeNonIntersectingSegments,
+    currentTime,
+    true,
+    false //true
+  );
 
   const minSponsorTimeIndex = sponsorStartTimes.indexOf(
     Math.min(...sponsorStartTimesAfterCurrentTime)
@@ -418,10 +416,9 @@ const getNextSkipIndex = (
       false
     );
 
-  const minUnsubmittedSponsorTimeIndex =
-    unsubmittedSponsorStartTimes.indexOf(
-      Math.min(...unsubmittedSponsorStartTimesAfterCurrentTime)
-    );
+  const minUnsubmittedSponsorTimeIndex = unsubmittedSponsorStartTimes.indexOf(
+    Math.min(...unsubmittedSponsorStartTimesAfterCurrentTime)
+  );
   const previewEndTimeIndex = getLatestEndTimeIndex(
     unsubmittedArray,
     minUnsubmittedSponsorTimeIndex
@@ -432,7 +429,6 @@ const getNextSkipIndex = (
     sponsorStartTimes[minSponsorTimeIndex] <
       unsubmittedSponsorStartTimes[minUnsubmittedSponsorTimeIndex]
   ) {
-    console.log('return 1')
     return {
       array: submittedArray,
       index: minSponsorTimeIndex,
@@ -440,7 +436,6 @@ const getNextSkipIndex = (
       openNotice: true,
     };
   } else {
-    console.log('return 2')
     return {
       array: unsubmittedArray,
       index: minUnsubmittedSponsorTimeIndex,
@@ -457,8 +452,6 @@ const startSponsorSchedule = (
 ) => {
   cancelSponsorSchedule();
 
-  console.log('is ad playing', isAdPlaying);
-
   // Don't skip if advert playing and reset last checked time
   if (isAdPlaying) {
     // Reset lastCheckVideoTime
@@ -467,8 +460,6 @@ const startSponsorSchedule = (
 
     return;
   }
-
-  console.log('is paused', !!video, video?.paused, currentTime)
 
   if (!video || video.paused) return;
 
@@ -505,8 +496,6 @@ const startSponsorSchedule = (
     includeNonIntersectingSegments
   );
 
-  console.log('skip info', skipInfo)
-
   if (skipInfo.index === -1) return;
 
   const currentSkip = skipInfo.array[skipInfo.index];
@@ -533,10 +522,7 @@ const startSponsorSchedule = (
     }
   }
 
-  console.log('--> aqui')
-
   const skippingFunction = (forceVideoTime) => {
-    console.log('skippingFunction called')
     let forcedSkipTime = null;
     let forcedIncludeIntersectingSegments = false;
     let forcedIncludeNonIntersectingSegments = true;
@@ -565,7 +551,6 @@ const startSponsorSchedule = (
       }
     }
 
-    console.log("this start")
     startSponsorSchedule(
       forcedIncludeIntersectingSegments,
       forcedSkipTime,
@@ -573,7 +558,6 @@ const startSponsorSchedule = (
     );
   };
 
-  console.log('lets schedule');
   if (timeUntilSponsor < 0.003) {
     skippingFunction(currentTime);
   } else {
@@ -584,10 +568,7 @@ const startSponsorSchedule = (
       const startVideoTime = Math.max(currentTime, video.currentTime);
       currentSkipInterval = setInterval(() => {
         const intervalDuration = performance.now() - startIntervalTime;
-        if (
-          intervalDuration >= delayTime ||
-          video.currentTime >= skipTime[0]
-        ) {
+        if (intervalDuration >= delayTime || video.currentTime >= skipTime[0]) {
           clearInterval(currentSkipInterval);
           if (!video.muted) {
             // Workaround for more accurate skipping on Chromium
@@ -598,14 +579,12 @@ const startSponsorSchedule = (
           skippingFunction(
             Math.max(
               video.currentTime,
-              startVideoTime +
-                (video.playbackRate * intervalDuration) / 1000
+              startVideoTime + (video.playbackRate * intervalDuration) / 1000
             )
           );
         }
       }, 1);
     } else {
-      console.log('here sched')
       // Schedule for right before to be more precise than normal timeout
       currentSkipSchedule = setTimeout(
         skippingFunction,
@@ -624,7 +603,6 @@ const durationChangeListener = () => {
 };
 
 const setupVideoListeners = () => {
-  console.log("setup");
   video.addEventListener("durationchange", durationChangeListener);
 
   switchingVideos = false;
@@ -675,7 +653,6 @@ const setupVideoListeners = () => {
     }
   });
   video.addEventListener("seeking", () => {
-    console.log('seeek called');
     if (!video.paused) {
       // Reset lastCheckVideoTime
       lastCheckTime = Date.now();
@@ -689,9 +666,7 @@ const setupVideoListeners = () => {
   });
   video.addEventListener("ratechange", () => startSponsorSchedule());
   // Used by videospeed extension (https://github.com/igrigorik/videospeed/pull/740)
-  video.addEventListener("videoSpeed_ratechange", () =>
-    startSponsorSchedule()
-  );
+  video.addEventListener("videoSpeed_ratechange", () => startSponsorSchedule());
   const paused = () => {
     // Reset lastCheckVideoTime
     lastCheckVideoTime = -1;
@@ -866,9 +841,7 @@ const getHash = async (value, times = 5000) => {
     );
 
     const hashArray = Array.from(new Uint8Array(hashBuffer));
-    hashHex = hashArray
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
+    hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
   }
 
   return hashHex;
@@ -876,26 +849,26 @@ const getHash = async (value, times = 5000) => {
 
 const urlTimeToSeconds = (time) => {
   if (!time) {
-      return 0;
+    return 0;
   }
 
   const re = /(?:(\d{1,3})h)?(?:(\d{1,2})m)?(\d+)s?/;
   const match = re.exec(time);
 
   if (match) {
-      const hours = parseInt(match[1] ?? '0', 10);
-      const minutes = parseInt(match[2] ?? '0', 10);
-      const seconds = parseInt(match[3] ?? '0', 10);
+    const hours = parseInt(match[1] ?? "0", 10);
+    const minutes = parseInt(match[2] ?? "0", 10);
+    const seconds = parseInt(match[3] ?? "0", 10);
 
-      return hours * 3600 + minutes * 60 + seconds;
+    return hours * 3600 + minutes * 60 + seconds;
   } else if (/\d+/.test(time)) {
-      return parseInt(time, 10);
+    return parseInt(time, 10);
   }
-}
+};
 
 const getStartTimeFromUrl = (url) => {
   const urlParams = new URLSearchParams(url);
-  const time = urlParams?.get('t') || urlParams?.get('time_continue');
+  const time = urlParams?.get("t") || urlParams?.get("time_continue");
 
   return urlTimeToSeconds(time);
 };
@@ -966,7 +939,7 @@ const startSkipScheduleCheckingForStartSponsors = () => {
     if (false && startingSegmentTime !== -1) {
       startSponsorSchedule(undefined, startingSegmentTime);
     } else {
-      startSponsorSchedule(); 
+      startSponsorSchedule();
     }
   }
 };
@@ -982,7 +955,6 @@ const retryFetch = () => {
 };
 
 const sponsorsLookup = async (keepOldSubmissions = true) => {
-  console.log("video", video);
   if (!video || !isVisible(video)) {
     refreshVideoAttachments();
   }
@@ -995,19 +967,15 @@ const sponsorsLookup = async (keepOldSubmissions = true) => {
   setupVideoMutationListener();
 
   const response = await getVideoSegments();
-  console.log("resp", response?.ok);
   if (response?.ok) {
-    console.log("1", sponsorVideoID);
     const recievedSegments = (await response.json())
       ?.filter((video) => video.videoID === sponsorVideoID)
       ?.map((video) => video.segments)[0];
-    console.log("1.5");
     if (!recievedSegments || !recievedSegments.length) {
       // return if no video found
       retryFetch();
       return;
     }
-    console.log("2");
 
     sponsorDataFound = true;
 
@@ -1046,20 +1014,6 @@ const sponsorsLookup = async (keepOldSubmissions = true) => {
         }
       }
     }
-
-    // See if some segments should be hidden
-    // const downvotedData = Config.local.downvotedSegments[hashPrefix];
-    // if (downvotedData) {
-    //   for (const segment of sponsorTimes) {
-    //     const hashedUUID = await utils.getHash(segment.UUID, 1);
-    //     const segmentDownvoteData = downvotedData.segments.find((downvote) => downvote.uuid === hashedUUID);
-    //     if (segmentDownvoteData) {
-    //       segment.hidden = segmentDownvoteData.hidden;
-    //     }
-    //   }
-    // }
-
-    console.log("here");
     startSkipScheduleCheckingForStartSponsors();
   } else if (response?.status === 404) {
     retryFetch();
@@ -1086,7 +1040,6 @@ const videoIDChange = async (id) => {
 };
 
 const getVideoSegments = async () => {
-  console.log("get video");
   const hashPrefix = (await getHash(sponsorVideoID, 1)).slice(0, 4);
 
   const url = new URL(API_URL + hashPrefix);
@@ -1099,7 +1052,6 @@ const getVideoSegments = async () => {
     url.searchParams.append("requiredSegment", hashParams.requiredSegment);
   }
 
-  console.log("req");
   try {
     return await fetch(url.href);
   } catch {
@@ -1114,8 +1066,6 @@ const run = async () => {
   });
 
   const videoId = getYouTubeVideoID(document);
-
-  console.log();
 
   if (!videoId) {
     return;
