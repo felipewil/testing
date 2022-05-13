@@ -162,11 +162,10 @@ const skipToTime = ({ v, skipTime, skippingSegments }) => {
           v.currentTime = v.duration - 0.001;
         } else {
           try {
-            const delta = skipTime[1] - skipTime[0];
-            const detalStr = parseFloat(delta.toFixed(2)).toString();
+            const delta = parseInt(skipTime[1] - skipTime[0]);
 
             GM.notification({
-              text: `${ detalStr } second(s) skipped with SponsorBlock via Hyperweb`,
+              text: `${ delta } second(s) skipped with SponsorBlock via Hyperweb`,
               position: 'bottom',
               style: 'bar',
               timeout: 5000,
