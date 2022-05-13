@@ -161,15 +161,17 @@ const skipToTime = ({ v, skipTime, skippingSegments }) => {
           // MacOS will loop otherwise #1027
           v.currentTime = v.duration - 0.001;
         } else {
-          console.log('skip time', skipTime);
-          console.log(skippingSegments);
+          try {
+            const delta = skipTime[1] - skipTime[0];
+            const detalStr = parseFloat(delta.toFixed(2)).toString();
 
-          GM.notification({
-            text: '5 seconds skipped with SponsorBlock via Hyperweb',
-            position: 'bottom',
-            style: 'bar',
-            timeout: 5000,
-          });
+            GM.notification({
+              text: `${ detalStr } second(s) skipped with SponsorBlock via Hyperweb`,
+              position: 'bottom',
+              style: 'bar',
+              timeout: 5000,
+            });
+          } catch {}
 
           v.currentTime = skipTime[1];
         }
