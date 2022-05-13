@@ -161,6 +161,9 @@ const skipToTime = ({ v, skipTime, skippingSegments }) => {
           // MacOS will loop otherwise #1027
           v.currentTime = v.duration - 0.001;
         } else {
+          console.log('skip time', skipTime);
+          console.log(skippingSegments);
+
           GM.notification({
             text: '5 seconds skipped with SponsorBlock via Hyperweb',
             position: 'bottom',
