@@ -164,6 +164,8 @@ const skipToTime = ({ v, skipTime, skippingSegments }) => {
           GM.notification({
             text: '5 seconds skipped with SponsorBlock via Hyperweb',
             position: 'bottom',
+            style: 'bar',
+            timeout: 5000,
           });
 
           v.currentTime = skipTime[1];
