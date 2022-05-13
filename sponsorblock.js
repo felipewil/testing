@@ -7,6 +7,7 @@
 // @match        www.youtube.com
 // @match        www.youtube-nocookie.com
 // @match        music.youtube.com
+// @grant        GM.notification
 // @noframes
 // ==/UserScript==
 
@@ -160,6 +161,18 @@ const skipToTime = ({ v, skipTime, skippingSegments }) => {
           // MacOS will loop otherwise #1027
           v.currentTime = v.duration - 0.001;
         } else {
+          try {
+            const delta = skipTime[1] - skipTime[0];
+            const detalStr = parseFloat(delta.toFixed(2)).toString();
+
+            GM.notification({
+              text: `${ detalStr } second(s) skipped with SponsorBlock via Hyperweb`,
+              position: 'bottom',
+              style: 'bar',
+              timeout: 5000,
+            });
+          } catch {}
+
           v.currentTime = skipTime[1];
         }
 
