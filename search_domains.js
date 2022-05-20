@@ -4,11 +4,16 @@
 // @description  Enables/disables dark mode
 // @author       Felipe
 // @match        *
-// @grant        GM.getValue
+// @grant        GM.registerButton
+// @grant        GM.updateButton
+// @grant        GM.darkmode
+// @grant        GM.isDarkmodeEnabled
 // @noframes
 // ==/UserScript==
 
 (() => {
+
+  console.log('start');
 
   const scriptId = crypto.randomUUID().slice(0, 10);
   const containerId = `container-${ scriptId }`;
@@ -194,11 +199,21 @@
   };
   
   const run = async () => {
+    console.log('run');
+
     const pageQuery = await getQuery();
+
+    console.log('query', pageQuery);
 
     if (!pageQuery) { return; }
 
+    const titleStr = await GM.getValue('title');
+
+    console.log('title', title);
+
     const domains = await JSON.parse(GM.getValue('domains'));
+
+    console.log('domains', domains);
 
     if (!domains || !domains.length) { return; }
 
@@ -222,7 +237,7 @@
 
     const title = document.createElement('span');
     title.classList.add(titleId);
-    title.innerText = 'Title - via Hyperweb';
+    title.innerText = `${ titleStr } - via Hyperweb`;
     title.style.opacity = '0';
 
     const iframe = document.createElement('iframe');
