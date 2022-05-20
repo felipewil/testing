@@ -206,7 +206,7 @@
 
     const titleStr = await GM.getValue('title');
 
-    console.log('title', title);
+    console.log('title', titleStr);
 
     const domains = await JSON.parse(GM.getValue('domains'));
 
@@ -234,7 +234,7 @@
 
     const title = document.createElement('span');
     title.classList.add(titleId);
-    title.innerText = `${ titleStr } - via Hyperweb`;
+    title.innerText = titleStr ? `${ titleStr } - via Hyperweb` : 'via Hyperweb';
     title.style.opacity = '0';
 
     const iframe = document.createElement('iframe');
