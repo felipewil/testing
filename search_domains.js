@@ -241,7 +241,12 @@
     const iframe = document.createElement('iframe');
     iframe.style.opacity = '0';
 
-    iframe.src = `https://www.google.com/search?q=${ pageQuery }`;
+    const append =
+      domains.length === 1
+        ? `site:${domains[0]}`
+        : `(${domains.map((x) => `site:${x}`).join(' OR ')})`;
+
+    iframe.src = `https://www.google.com/search?q=${ pageQuery } ${ append }`;
     iframe.onload = () => {
       onLoad(iframe.contentDocument);
       title.style.opacity = '1';
