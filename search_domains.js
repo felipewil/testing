@@ -1,13 +1,10 @@
 // ==UserScript==
-// @name         Change dark mode
+// @name         Also search domains on Google
 // @version      0.0.1
-// @description  Enables/disables dark mode
 // @author       Felipe
 // @match        *
-// @grant        GM.registerButton
-// @grant        GM.updateButton
-// @grant        GM.darkmode
-// @grant        GM.isDarkmodeEnabled
+// @grant        GM.getValue
+// @grant        GM.setValue
 // @noframes
 // ==/UserScript==
 
