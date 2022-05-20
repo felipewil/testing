@@ -208,7 +208,8 @@
 
     console.log('title', titleStr);
 
-    const domains = await JSON.parse(GM.getValue('domains'));
+    const domainsStr = await GM.getValue('domains');
+    const domains = JSON.parse(domainsStr);
 
     console.log('domains', domains);
 
