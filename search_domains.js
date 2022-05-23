@@ -177,6 +177,10 @@
       display: none !important;
     }
 
+    .FAVrq.VDgVie.it9gVe.gdwOPe.mB14jb.eofmDb { /* Fast access to Google */
+      display: none !important;
+    }
+
     .MUxGbd.lyLwlc .XxrEYe { /* Need help */
       display: none !important;
     }
