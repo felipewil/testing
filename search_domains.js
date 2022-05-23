@@ -262,12 +262,11 @@ const onLoad = (document) => {
   if (isMobile) {
     const base = document.createElement('base');
     base.setAttribute('target', '_parent');
+    document.body.appendChild(base);
   } else {
     observeLinks(document);
     handleLinks(document.querySelectorAll('a'));
   }
-
-  document.body.appendChild(base);
 
   document.querySelector('div.E8hWLe.SVMeif.BmP5tf')?.parentElement?.remove();
   document.querySelector('[jscontroller="yz368b"]')?.parentElement?.remove();
