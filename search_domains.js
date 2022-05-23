@@ -58,7 +58,7 @@
     }
   `;
   const iframeStyle = `
-    html, body, #gsr, #main, #cnt {
+    html, body, #gsr, #main, #cnt, #center_col {
       height: 100%
     }
 
@@ -157,7 +157,7 @@
       display: none !important;
     }
 
-    .uzjuFc.BmP5tf { /* Need help */
+    .MUxGbd.lyLwlc .XxrEYe { /* Need help */
       display: none !important;
     }
 
