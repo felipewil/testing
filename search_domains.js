@@ -44,7 +44,7 @@
     }
 
     .${ containerId } hr {
-      margin: 8px;
+      margin: 8px 16px;
     }
 
     .${ titleId } {
@@ -58,8 +58,12 @@
     }
   `;
   const iframeStyle = `
-    html, body {
+    html, body, #gsr, #main, #cnt {
       height: 100%
+    }
+
+    #gsr {
+      background-color: transparent !important;
     }
 
     ::-webkit-scrollbar {
@@ -149,7 +153,11 @@
       display: none !important;
     }
 
-    div[data-hveid="CEIQAA"],  {
+    div[data-hveid="CEIQAA"] {
+      display: none !important;
+    }
+
+    .uzjuFc.BmP5tf { /* Need help */
       display: none !important;
     }
 
@@ -167,10 +175,6 @@
 
     #top_nav, #searchform, #taw, #topstuff, #bottomads, #botstuff #bres, #fbar {
       display: none !important;
-    }
-
-    #gsr {
-      background-color: transparent !important;
     }
   `
 
