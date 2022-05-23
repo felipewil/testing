@@ -8,7 +8,7 @@
 // @noframes
 // ==/UserScript==
 
-const isMobile = false; // window.navigator.userAgent.toLocaleLowerCase().includes('iphone');
+const isMobile = window.navigator.userAgent.toLocaleLowerCase().includes('iphone');
 const googleContainerId = isMobile ? '#gsr' : '#rcnt';
 const scriptId = crypto.randomUUID().slice(0, 10);
 const containerId = `container-${ scriptId }`;
@@ -227,22 +227,31 @@ const iframeStyle = `
   }
 `;
 
-const setUserAgent = (window, userAgent) => {
-  if (window.navigator.userAgent != userAgent) {
-    var userAgentProp = {
-      get: function() {
-        return userAgent;
-      }
-    };
-    try {
-      Object.defineProperty(window.navigator, 'userAgent', userAgentProp);
-    } catch (e) {
-      window.navigator = Object.create(navigator, {
-        userAgent: userAgentProp
+const handleLinks = (links) => {
+  links.forEach((l) => {
+    l.setAttribute('target', '_parent');
+  });
+};
+
+const observeLinks = (document) => {
+  const onMutation = (mutationList) => {
+    mutationList.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (!(node instanceof HTMLElement)) { return; }
+
+        if (node.tagName === 'A') {
+          handleLinks([ node ]);
+        } else {
+          handleLinks(node.querySelectorAll('a'));
+        }
       });
-    }
-  }
-}
+    });
+  };
+
+  const config = { childList: true, subtree: true };
+  const observer = new MutationObserver(onMutation);
+  observer.observe(document.querySelector('#res'), config);
+};
 
 const onLoad = (document) => {
   const style = document.createElement('style');
@@ -250,8 +259,13 @@ const onLoad = (document) => {
 
   document.head.appendChild(style);
 
-  const base = document.createElement('base');
-  base.setAttribute('target', '_parent');
+  if (mobile) {
+    const base = document.createElement('base');
+    base.setAttribute('target', '_parent');
+  } else {
+    observeLinks();
+    handleLinks(document.querySelectorAll('a'));
+  }
 
   document.body.appendChild(base);
 
@@ -332,6 +346,7 @@ const run = async () => {
       : `(${domains.map((x) => `site:${x}`).join(' OR ')})`;
 
   const host = window.location.host;
+  iframe.src = `https://${ host }/search?q=${ pageQuery } ${ append }`;
   iframe.onload = () => {
     onLoad(iframe.contentDocument);
     iframe.style.opacity = '1';
@@ -346,13 +361,6 @@ const run = async () => {
   container.appendChild(divider);
 
   googleContainer.parentElement.insertBefore(container, googleContainer);
-
-  console.log('content', iframe.contentWindow)
-  setUserAgent(iframe.contentWindow, 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1');
-
-  console.log('-->', iframe.contentWindow?.navigator?.userAgent)
-
-  iframe.src = `https://${ host }/search?q=${ pageQuery } ${ append }`;
 };
 
 run();
