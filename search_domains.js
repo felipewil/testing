@@ -15,6 +15,7 @@
   const scriptId = crypto.randomUUID().slice(0, 10);
   const containerId = `container-${ scriptId }`;
   const titleId = `title-${ scriptId }`;
+  const wrapperId = `wrapper-${ scriptId }`;
   
   const containerStyle = `
     .${ containerId } {
@@ -35,10 +36,17 @@
       top: calc(50% - 12px);
     }
 
-    .${ containerId } iframe {
+    #${ wrapperId } {
       flex: 1;
+      position: relative;
       height: 270px;
       min-height: 270px;
+      width: 100%;
+      border: 0;
+    }
+
+    .${ containerId } iframe {
+      height: 100%;
       width: 100%;
       border: 0;
     }
@@ -60,6 +68,10 @@
   const iframeStyle = `
     html, body, #gsr, #main, #cnt, #center_col {
       height: 100%
+    }
+
+    body {
+      overflow: hidden;
     }
 
     #gsr {
@@ -273,6 +285,9 @@
 
     const divider = document.createElement('hr');
 
+    const iframeWrapper = document.createElement('div');
+    title.classList.add(wrapperId);
+
     const iframe = document.createElement('iframe');
     iframe.style.opacity = '0';
 
@@ -289,9 +304,11 @@
       loader.remove();
     };
   
-    container.appendChild(loader);
+    iframeWrapper.appendChild(loader);
+    iframeWrapper.appendChild(iframe);
+
     container.appendChild(title);
-    container.appendChild(iframe);
+    container.appendChild(iframeWrapper);
     container.appendChild(divider);
 
     googleContainer.parentElement.insertBefore(container, googleContainer);
