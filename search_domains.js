@@ -262,6 +262,8 @@
     title.innerText = titleStr ? `${ titleStr } - via Hyperweb` : 'via Hyperweb';
     title.style.opacity = '0';
 
+    const divider = document.createElement('hr');
+
     const iframe = document.createElement('iframe');
     iframe.style.opacity = '0';
 
@@ -281,6 +283,7 @@
     container.appendChild(loader);
     container.appendChild(title);
     container.appendChild(iframe);
+    container.appendChild(divider);
 
     googleContainer.parentElement.insertBefore(container, googleContainer);
   };
