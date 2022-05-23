@@ -5,6 +5,7 @@
 // @match        *
 // @grant        GM.getValue
 // @grant        GM.setValue
+// @grant        GM.listValues
 // @noframes
 // ==/UserScript==
 
@@ -41,6 +42,8 @@
       min-height: 270px;
       width: 100%;
       border: 0;
+      padding-bottom: 20px;
+      box-sizing: content-box;
     }
 
     .${ titleId } {
@@ -204,6 +207,7 @@
 
     if (!pageQuery) { return; }
 
+    const list = await GM.listValues();
     const titleStr = await GM.getValue('title');
 
     console.log('title', titleStr);
