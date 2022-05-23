@@ -355,6 +355,11 @@ const run = async () => {
     onLoad(iframe.contentDocument);
     iframe.style.opacity = '1';
     loader.style.opacity = '0';
+
+    iframe.contentWindow.onunload = () => {
+      iframe.style.opacity = '0';
+      loader.style.opacity = '1';
+    }
   };
   
   iframeWrapper.appendChild(loader);
@@ -365,11 +370,6 @@ const run = async () => {
   container.appendChild(divider);
   
   googleContainer.parentElement.insertBefore(container, googleContainer);
-
-  iframe.contentWindow.onunload = () => {
-    iframe.style.opacity = '0';
-    loader.style.opacity = '1';
-  }
 };
 
 run();
