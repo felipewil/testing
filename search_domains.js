@@ -266,7 +266,8 @@
 
     if (!domains || !domains.length) { return; }
 
-    const googleContainer = document.querySelector('#gsr');
+    const isPhone = window.navigator.userAgent.toLowerCase().includes('iphone');
+    const googleContainer = document.querySelector(isPhone ? '#gsr' : '#rcnt');
   
     if (!googleContainer) {
       setTimeout(run, 100);
