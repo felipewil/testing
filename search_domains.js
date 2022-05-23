@@ -330,6 +330,7 @@ const run = async () => {
 
   const loader = document.createElement('div');
   loader.id = loaderId;
+  loader.style.opacity = '1';
 
   const title = document.createElement('span');
   title.id = titleId;
@@ -350,10 +351,14 @@ const run = async () => {
 
   const host = window.location.host;
   iframe.src = `https://${ host }/search?q=${ pageQuery } ${ append }`;
+  iframe.onloadstart = () => {
+    iframe.style.opacity = '0';
+    loader.style.opacity = '1';
+  };
   iframe.onload = () => {
     onLoad(iframe.contentDocument);
     iframe.style.opacity = '1';
-    loader.remove();
+    loader.style.opacity = '0';
   };
 
   iframeWrapper.appendChild(loader);
