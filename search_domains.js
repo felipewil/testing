@@ -92,7 +92,7 @@ const iframeStyle = `
     height: 100%;
   }
 
-  .mnr-c.xpd.O9g5cc.uUPGi, .g.tF2Cxc { /* Result card */
+  .mnr-c.xpd.O9g5cc.uUPGi, .g { /* Result card */
     height: ${ isMobile ? '250px' : '150px' } !important;
     padding: ${ isMobile ? '0px' : '10px' } !important;
     margin: 10px !important;
@@ -101,7 +101,7 @@ const iframeStyle = `
     overflow-y: scroll;
   }
 
-  body[data-dt="1"] .mnr-c.xpd.O9g5cc.uUPGi, body[data-dt="1"] .g.tF2Cxc {
+  body[data-dt="1"] .mnr-c.xpd.O9g5cc.uUPGi, body[data-dt="1"] .g {
     box-shadow: 0 0 0 1px #3c4043;
   }
 
@@ -210,7 +210,7 @@ const iframeStyle = `
     width: unset !important;
   }
 
-  .g.tF2Cxc { /* result card */
+  .g { /* result card */
     width: 500px !important;
   }
 
@@ -351,24 +351,25 @@ const run = async () => {
 
   const host = window.location.host;
   iframe.src = `https://${ host }/search?q=${ pageQuery } ${ append }`;
-  iframe.onloadstart = () => {
-    iframe.style.opacity = '0';
-    loader.style.opacity = '1';
-  };
   iframe.onload = () => {
     onLoad(iframe.contentDocument);
     iframe.style.opacity = '1';
     loader.style.opacity = '0';
   };
-
+  
   iframeWrapper.appendChild(loader);
   iframeWrapper.appendChild(iframe);
-
+  
   container.appendChild(title);
   container.appendChild(iframeWrapper);
   container.appendChild(divider);
-
+  
   googleContainer.parentElement.insertBefore(container, googleContainer);
+
+  iframe.contentWindow.onunload = () => {
+    iframe.style.opacity = '0';
+    loader.style.opacity = '1';
+  }
 };
 
 run();
