@@ -102,8 +102,12 @@
       overflow-y: scroll;
     }
 
-    body[data-dt="1"] .mnr-c.xpd.O9g5cc.uUPGi {
+    body[data-dt="1"] .mnr-c.xpd.O9g5cc.uUPGi, body[data-dt="1"] .g.tF2Cxc {
       box-shadow: 0 0 0 1px #3c4043;
+    }
+
+    .g.tF2Cxc {
+      padding: 10px !important;
     }
 
     .mnr-c.xpd.O9g5cc.uUPGi .mnr-c.xpd.O9g5cc.uUPGi {
@@ -204,7 +208,7 @@
     /* iPad */
 
     .appbar, .dodTBe {
-      display: none: !important;
+      display: none !important;
     }
   `;
 
