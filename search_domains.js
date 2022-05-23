@@ -202,6 +202,10 @@ const iframeStyle = `
 
   /* iPad */
 
+  form[role="search"] { /* Top search form, visible when changing pages */
+    display: none !important;
+  }
+
   #center_col {
     width: unset !important;
   }
