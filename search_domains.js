@@ -92,7 +92,7 @@ const iframeStyle = `
     height: 100%;
   }
 
-  .mnr-c.xpd.O9g5cc.uUPGi, .g.tF2Cxc {
+  .mnr-c.xpd.O9g5cc.uUPGi, .g.tF2Cxc { /* Result card */
     height: ${ isMobile ? '250px' : '150px' } !important;
     padding: ${ isMobile ? '0px' : '10px' } !important;
     margin: 10px !important;
@@ -202,12 +202,20 @@ const iframeStyle = `
 
   /* iPad */
 
+  .g.tF2Cxc { /* result card */
+    width: 500px !important;
+  }
+
   .v7W49e {
     margin-top: 0px !important;
   }
 
   .appbar, .dodTBe {
     display: none !important;
+  }
+
+  .hlcw0c {
+    margin-bottom: 0px !important;
   }
 `;
 
