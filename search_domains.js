@@ -145,6 +145,12 @@
       overflow-x: scroll;
     }
 
+    #rso > div:only-child {
+      align-self: center;
+      justify-self: center;
+      width: 100vw;
+    }
+
     .kQdGHd {
       display: none;
     }
