@@ -59,6 +59,10 @@ const containerStyle = `
     font-size: 16px;
   }
 
+  #center_col {
+    margin-top: 8px;
+  }
+
   @keyframes ${ containerId }-spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
