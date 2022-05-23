@@ -265,7 +265,7 @@ const onLoad = (document) => {
     document.body.appendChild(base);
   } else {
     observeLinks(document);
-    handleLinks(document.querySelectorAll('a'));
+    handleLinks(document.querySelectorAll('#res a'));
   }
 
   document.querySelector('div.E8hWLe.SVMeif.BmP5tf')?.parentElement?.remove();
