@@ -16,15 +16,16 @@
   const containerId = `container-${ scriptId }`;
   const titleId = `title-${ scriptId }`;
   const wrapperId = `wrapper-${ scriptId }`;
+  const loaderId = `loader-${ scriptId }`;
   
   const containerStyle = `
-    .${ containerId } {
+    #${ containerId } {
       display: flex;
       flex-direction: column;
       position: relative;
     }
 
-    .${ containerId } .loader {
+    #${ containerId } #${ loaderId } {
       border: 4px solid #f3f3f3;
       border-top: 4px solid #999;
       border-radius: 50%;
@@ -45,13 +46,13 @@
       border: 0;
     }
 
-    .${ containerId } iframe {
+    #${ containerId } iframe {
       height: 100%;
       width: 100%;
       border: 0;
     }
 
-    .${ containerId } hr {
+    #${ containerId } hr {
       margin: 8px 16px;
     }
 
@@ -195,7 +196,7 @@
     #top_nav, #searchform, #taw, #topstuff, #bottomads, #botstuff #bres, #fbar {
       display: none !important;
     }
-  `
+  `;
 
   const onLoad = (document) => {
     const style = document.createElement('style');
@@ -208,22 +209,13 @@
 
     document.body.appendChild(base);
 
-    // document.querySelector('.Fh5muf')?.remove();
-    // document.querySelector('#top_nav')?.remove();
-    // document.querySelector('#searchform')?.remove();
-    // document.querySelector('.kp-wholepage.ss6qqb.mnr-c.UBoxCb.kp-wholepage-osrp.EyBRub')?.remove();
-    // document.querySelector('.AuVD.wHYlTd.Ww4FFb')?.remove();
-    // document.querySelector('div[data-hveid="CEIQAA"]')?.remove();
     document.querySelector('div.E8hWLe.SVMeif.BmP5tf')?.parentElement?.remove();
     document.querySelector('[jscontroller="yz368b"]')?.parentElement?.remove();
     document.querySelector('.kyRr2b')?.parentElement?.remove();
-    // document.querySelector('#botstuff #bres')?.remove();
-    // document.querySelector('#fbar')?.remove();
+    document.querySelector('.LsyjKf')?.parentElement?.remove();
 
     const toRemove = document.querySelectorAll('.g.mnr-c.F6CFcc');
     toRemove.forEach((t) => t.parentElement?.remove());
-
-    document.querySelector('.LsyjKf')?.parentElement?.remove();
   };
 
   const getQuery = async () => {
@@ -273,10 +265,10 @@
     document.head.appendChild(style);
   
     const container = document.createElement('div');
-    container.classList.add(containerId);
+    container.id = containerId;
 
     const loader = document.createElement('div');
-    loader.classList.add('loader');
+    loader.id = loaderId;
 
     const title = document.createElement('span');
     title.id = titleId;
@@ -289,6 +281,7 @@
 
     const iframe = document.createElement('iframe');
     iframe.style.opacity = '0';
+    iframe.sandbox = "allow-same-origin";
 
     const append =
       domains.length === 1
