@@ -281,7 +281,6 @@
 
     const iframe = document.createElement('iframe');
     iframe.style.opacity = '0';
-    iframe.sandbox = "allow-same-origin";
 
     const append =
       domains.length === 1
