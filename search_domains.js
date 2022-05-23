@@ -332,7 +332,6 @@ const run = async () => {
       : `(${domains.map((x) => `site:${x}`).join(' OR ')})`;
 
   const host = window.location.host;
-  iframe.src = `https://${ host }/search?q=${ pageQuery } ${ append }`;
   iframe.onload = () => {
     onLoad(iframe.contentDocument);
     iframe.style.opacity = '1';
@@ -347,6 +346,11 @@ const run = async () => {
   container.appendChild(divider);
 
   setUserAgent(window, 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1');
+
+  console.log('-->', iframe.contentWindow.navigator.userAgent)
+
+  iframe.src = `https://${ host }/search?q=${ pageQuery } ${ append }`;
+
   googleContainer.parentElement.insertBefore(container, googleContainer);
 };
 
