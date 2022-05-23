@@ -42,8 +42,6 @@
       min-height: 270px;
       width: 100%;
       border: 0;
-      padding-bottom: 20px;
-      box-sizing: content-box;
     }
 
     .${ titleId } {
@@ -59,6 +57,10 @@
   const iframeStyle = `
     html, body {
       height: 100%
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
     }
 
     #cnt {
@@ -115,6 +117,7 @@
     #botstuff .w7LJsc {
       display: flex;
       align-items: center;
+      align-self: center;
     }
 
     .GNJvt.ipz2Oe {
@@ -139,7 +142,19 @@
       display: none;
     }
 
-    .AuVD.wHYlTd.Ww4FFb, .Fh5muf, .kp-wholepage.ss6qqb.mnr-c.UBoxCb.kp-wholepage-osrp.EyBRub, div[data-hveid="CEIQAA"] {
+    .AuVD.wHYlTd.Ww4FFb, .Fh5muf, .kp-wholepage.ss6qqb.mnr-c.UBoxCb.kp-wholepage-osrp.EyBRub {
+      display: none !important;
+    }
+
+    div[data-hveid="CEIQAA"],  {
+      display: none !important;
+    }
+
+    .MUxGbd.lyLwlc { /* Other search suggestion */
+      display: none !important;
+    }
+
+    .EyBRub { /* Images suggestion */
       display: none !important;
     }
 
