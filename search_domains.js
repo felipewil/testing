@@ -42,10 +42,8 @@
       min-height: 270px;
       width: 100%;
       border: 0;
-    }
-
-    .${ containerId } hr {
-      padding: 0px 16px;
+      padding-bottom: 20px;
+      box-sizing: content-box;
     }
 
     .${ titleId } {
@@ -61,10 +59,6 @@
   const iframeStyle = `
     html, body {
       height: 100%
-    }
-
-    ::-webkit-scrollbar {
-      display: none;
     }
 
     #cnt {
@@ -121,7 +115,6 @@
     #botstuff .w7LJsc {
       display: flex;
       align-items: center;
-      align-self: center;
     }
 
     .GNJvt.ipz2Oe {
@@ -146,31 +139,11 @@
       display: none;
     }
 
-    .AuVD.wHYlTd.Ww4FFb, .Fh5muf, .kp-wholepage.ss6qqb.mnr-c.UBoxCb.kp-wholepage-osrp.EyBRub {
+    .AuVD.wHYlTd.Ww4FFb,  {
       display: none !important;
     }
 
-    div[data-hveid="CEIQAA"],  {
-      display: none !important;
-    }
-
-    .MUxGbd.lyLwlc { /* Other search suggestion */
-      display: none !important;
-    }
-
-    .EyBRub { /* Images suggestion */
-      display: none !important;
-    }
-
-    .BHZ70b.nEiVz { /* Question area */
-      display: none !important;
-    }
-
-    .zUJ8Rc { /* You question will be shared */
-      display: none !important;
-    }
-
-    #top_nav, #searchform, #taw, #topstuff, #bottomads, #botstuff #bres, #fbar {
+    #taw, #topstuff, #bottomads {
       display: none !important;
     }
 
@@ -190,17 +163,16 @@
 
     document.body.appendChild(base);
 
-    // document.querySelector('.Fh5muf')?.remove();
-    // document.querySelector('#top_nav')?.remove();
-    // document.querySelector('#searchform')?.remove();
-    // document.querySelector('.kp-wholepage.ss6qqb.mnr-c.UBoxCb.kp-wholepage-osrp.EyBRub')?.remove();
-    // document.querySelector('.AuVD.wHYlTd.Ww4FFb')?.remove();
-    // document.querySelector('div[data-hveid="CEIQAA"]')?.remove();
+    document.querySelector('.Fh5muf')?.remove();
+    document.querySelector('#top_nav')?.remove();
+    document.querySelector('#searchform')?.remove();
+    document.querySelector('.kp-wholepage.ss6qqb.mnr-c.UBoxCb.kp-wholepage-osrp.EyBRub')?.remove();
+    document.querySelector('.AuVD.wHYlTd.Ww4FFb')?.remove();
+    document.querySelector('div[data-hveid="CEIQAA"]')?.remove();
     document.querySelector('div.E8hWLe.SVMeif.BmP5tf')?.parentElement?.remove();
     document.querySelector('[jscontroller="yz368b"]')?.parentElement?.remove();
-    document.querySelector('.kyRr2b')?.parentElement?.remove();
-    // document.querySelector('#botstuff #bres')?.remove();
-    // document.querySelector('#fbar')?.remove();
+    document.querySelector('#botstuff #bres')?.remove();
+    document.querySelector('#fbar')?.remove();
 
     const toRemove = document.querySelectorAll('.g.mnr-c.F6CFcc');
     toRemove.forEach((t) => t.parentElement?.remove());
@@ -274,8 +246,6 @@
     title.innerText = titleStr ? `${ titleStr } - via Hyperweb` : 'via Hyperweb';
     title.style.opacity = '0';
 
-    const divider = document.createElement('hr');
-
     const iframe = document.createElement('iframe');
     iframe.style.opacity = '0';
 
@@ -295,7 +265,6 @@
     container.appendChild(loader);
     container.appendChild(title);
     container.appendChild(iframe);
-    container.appendChild(divider);
 
     googleContainer.parentElement.insertBefore(container, googleContainer);
   };
