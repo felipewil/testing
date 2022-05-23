@@ -77,6 +77,7 @@
     div[data-async-context] {
       display: flex;
       overflow-x: scroll;
+      height: 100%;
     }
 
     .mnr-c.xpd.O9g5cc.uUPGi {
