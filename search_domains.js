@@ -55,7 +55,7 @@
       margin: 8px 16px;
     }
 
-    .${ titleId } {
+    #${ titleId } {
       margin: 8px 16px;
       font-size: 16px;
     }
@@ -279,14 +279,14 @@
     loader.classList.add('loader');
 
     const title = document.createElement('span');
-    title.classList.add(titleId);
+    title.id = titleId;
     title.innerText = titleStr ? `${ titleStr } - via Hyperweb` : 'via Hyperweb';
     title.style.opacity = '0';
 
     const divider = document.createElement('hr');
 
     const iframeWrapper = document.createElement('div');
-    title.classList.add(wrapperId);
+    iframeWrapper.id = wrapperId;
 
     const iframe = document.createElement('iframe');
     iframe.style.opacity = '0';
