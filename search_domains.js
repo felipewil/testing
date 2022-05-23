@@ -8,7 +8,7 @@
 // @noframes
 // ==/UserScript==
 
-const isMobile = window.navigator.userAgent.toLocaleLowerCase().includes('iphone');
+const isMobile = false; // window.navigator.userAgent.toLocaleLowerCase().includes('iphone');
 const googleContainerId = isMobile ? '#gsr' : '#rcnt';
 const scriptId = crypto.randomUUID().slice(0, 10);
 const containerId = `container-${ scriptId }`;
@@ -202,8 +202,16 @@ const iframeStyle = `
 
   /* iPad */
 
+  #center_col {
+    width: unset !important;
+  }
+
   .g.tF2Cxc { /* result card */
     width: 500px !important;
+  }
+
+  .ULSxyf { /* People also ask */
+    display: none !important;
   }
 
   .v7W49e {
@@ -218,6 +226,23 @@ const iframeStyle = `
     margin-bottom: 0px !important;
   }
 `;
+
+const setUserAgent = (window, userAgent) => {
+  if (window.navigator.userAgent != userAgent) {
+    var userAgentProp = {
+      get: function() {
+        return userAgent;
+      }
+    };
+    try {
+      Object.defineProperty(window.navigator, 'userAgent', userAgentProp);
+    } catch (e) {
+      window.navigator = Object.create(navigator, {
+        userAgent: userAgentProp
+      });
+    }
+  }
+}
 
 const onLoad = (document) => {
   const style = document.createElement('style');
@@ -321,6 +346,7 @@ const run = async () => {
   container.appendChild(iframeWrapper);
   container.appendChild(divider);
 
+  setUserAgent(window, 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1');
   googleContainer.parentElement.insertBefore(container, googleContainer);
 };
 
