@@ -139,11 +139,11 @@
       display: none;
     }
 
-    .AuVD.wHYlTd.Ww4FFb, .Fh5muf, .kp-wholepage.ss6qqb.mnr-c.UBoxCb.kp-wholepage-osrp.EyBRub {
+    .AuVD.wHYlTd.Ww4FFb, .Fh5muf, .kp-wholepage.ss6qqb.mnr-c.UBoxCb.kp-wholepage-osrp.EyBRub, div[data-hveid="CEIQAA"] {
       display: none !important;
     }
 
-    div[data-hveid="CEIQAA"], .MUxGbd.lyLwlc, .EyBRub {
+    div[data-hveid="CEIQAA"] {
       display: none !important;
     }
 
