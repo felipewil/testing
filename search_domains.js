@@ -263,7 +263,7 @@ const onLoad = (document) => {
     const base = document.createElement('base');
     base.setAttribute('target', '_parent');
   } else {
-    observeLinks();
+    observeLinks(document);
     handleLinks(document.querySelectorAll('a'));
   }
 
