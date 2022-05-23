@@ -59,10 +59,6 @@
       height: 100%
     }
 
-    ::-webkit-scrollbar {
-      display: none;
-    }
-
     #cnt {
       margin-top: 0px !important;
     }
@@ -155,6 +151,10 @@
     }
 
     .EyBRub { /* Images suggestion */
+      display: none !important;
+    }
+
+    .BHZ70b.nEiVz { /* Question area */
       display: none !important;
     }
 
