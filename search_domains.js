@@ -288,7 +288,8 @@
         ? `site:${domains[0]}`
         : `(${domains.map((x) => `site:${x}`).join(' OR ')})`;
 
-    iframe.src = `https://www.google.com/search?q=${ pageQuery } ${ append }`;
+    const host = window.location.host;
+    iframe.src = `https://${ host }/search?q=${ pageQuery } ${ append }`;
     iframe.onload = () => {
       onLoad(iframe.contentDocument);
       iframe.style.opacity = '1';
