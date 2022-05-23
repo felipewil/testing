@@ -5,7 +5,6 @@
 // @match        *
 // @grant        GM.getValue
 // @grant        GM.setValue
-// @grant        GM.listValues
 // @noframes
 // ==/UserScript==
 
@@ -42,8 +41,10 @@
       min-height: 270px;
       width: 100%;
       border: 0;
-      padding-bottom: 20px;
-      box-sizing: content-box;
+    }
+
+    .${ containerId } hr {
+      margin: 8px;
     }
 
     .${ titleId } {
@@ -59,6 +60,10 @@
   const iframeStyle = `
     html, body {
       height: 100%
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
     }
 
     #cnt {
@@ -115,6 +120,7 @@
     #botstuff .w7LJsc {
       display: flex;
       align-items: center;
+      align-self: center;
     }
 
     .GNJvt.ipz2Oe {
@@ -143,7 +149,19 @@
       display: none !important;
     }
 
-    div[data-hveid="CEIQAA"], .MUxGbd.lyLwlc {
+    div[data-hveid="CEIQAA"],  {
+      display: none !important;
+    }
+
+    .EyBRub { /* Images suggestion */
+      display: none !important;
+    }
+
+    .BHZ70b.nEiVz { /* Question area */
+      display: none !important;
+    }
+
+    .zUJ8Rc { /* You question will be shared */
       display: none !important;
     }
 
@@ -208,23 +226,14 @@
   };
   
   const run = async () => {
-    console.log('run');
-
     const pageQuery = await getQuery();
-
-    console.log('query', pageQuery);
 
     if (!pageQuery) { return; }
 
-    const list = await GM.listValues();
     const titleStr = await GM.getValue('title');
-
-    console.log('title', titleStr);
 
     const domainsStr = await GM.getValue('domains');
     const domains = JSON.parse(domainsStr);
-
-    console.log('domains', domains);
 
     if (!domains || !domains.length) { return; }
 
@@ -251,6 +260,8 @@
     title.innerText = titleStr ? `${ titleStr } - via Hyperweb` : 'via Hyperweb';
     title.style.opacity = '0';
 
+    const divider = document.createElement('hr');
+
     const iframe = document.createElement('iframe');
     iframe.style.opacity = '0';
 
@@ -270,6 +281,7 @@
     container.appendChild(loader);
     container.appendChild(title);
     container.appendChild(iframe);
+    container.appendChild(divider);
 
     googleContainer.parentElement.insertBefore(container, googleContainer);
   };
