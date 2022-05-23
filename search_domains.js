@@ -281,7 +281,6 @@
     const title = document.createElement('span');
     title.id = titleId;
     title.innerText = titleStr ? `${ titleStr } - via Hyperweb` : 'via Hyperweb';
-    title.style.opacity = '0';
 
     const divider = document.createElement('hr');
 
@@ -299,7 +298,6 @@
     iframe.src = `https://www.google.com/search?q=${ pageQuery } ${ append }`;
     iframe.onload = () => {
       onLoad(iframe.contentDocument);
-      title.style.opacity = '1';
       iframe.style.opacity = '1';
       loader.remove();
     };
