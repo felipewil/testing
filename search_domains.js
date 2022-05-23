@@ -259,7 +259,7 @@ const onLoad = (document) => {
 
   document.head.appendChild(style);
 
-  if (mobile) {
+  if (isMobile) {
     const base = document.createElement('base');
     base.setAttribute('target', '_parent');
   } else {
