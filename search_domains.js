@@ -8,7 +8,7 @@
 // @noframes
 // ==/UserScript==
 
-const isMobile = window.navigator.userAgent.toLocaleLowerCase().includes('iphone');
+const isMobile = !window.navigator.userAgent.toLocaleLowerCase().includes('macintosh');
 const googleContainerId = isMobile ? '#gsr' : '#rcnt';
 const scriptId = crypto.randomUUID().slice(0, 10);
 const containerId = `container-${ scriptId }`;
