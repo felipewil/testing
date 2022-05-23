@@ -11,7 +11,6 @@
 const isMobile = !window.navigator.userAgent.toLocaleLowerCase().includes('macintosh');
 const googleContainerId = isMobile ? '#gsr' : '#rcnt';
 const scriptId = crypto.randomUUID().slice(0, 10);
-const containerClass = 'hw-search-also-container';
 const containerId = `container-${ scriptId }`;
 const titleId = `title-${ scriptId }`;
 const wrapperId = `wrapper-${ scriptId }`;
@@ -53,10 +52,6 @@ const containerStyle = `
 
   #${ containerId } hr {
     margin: 8px 16px;
-  }
-
-  .${ containerClass }:last-of-type hr {
-    display: none;
   }
 
   #${ titleId } {
@@ -336,7 +331,6 @@ const run = async () => {
 
   const container = document.createElement('div');
   container.id = containerId;
-  container.classList.add(containerClass);
 
   const loader = document.createElement('div');
   loader.id = loaderId;
