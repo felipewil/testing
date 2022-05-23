@@ -44,6 +44,10 @@
       border: 0;
     }
 
+    .${ containerId } hr {
+      padding: 0px 16px;
+    }
+
     .${ titleId } {
       margin: 8px 16px;
       font-size: 16px;
@@ -57,6 +61,10 @@
   const iframeStyle = `
     html, body {
       height: 100%
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
     }
 
     #cnt {
@@ -155,6 +163,10 @@
     }
 
     .BHZ70b.nEiVz { /* Question area */
+      display: none !important;
+    }
+
+    .zUJ8Rc { /* You question will be shared */
       display: none !important;
     }
 
