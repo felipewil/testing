@@ -93,7 +93,7 @@
       height: 100%;
     }
 
-    .mnr-c.xpd.O9g5cc.uUPGi {
+    .mnr-c.xpd.O9g5cc.uUPGi, .g.tF2Cxc {
       height: 250px !important;
       padding: 0px !important;
       margin: 10px !important;
@@ -199,6 +199,12 @@
 
     #top_nav, #searchform, #taw, #topstuff, #bottomads, #botstuff #bres, #fbar {
       display: none !important;
+    }
+
+    /* iPad */
+
+    .appbar, .dodTBe {
+      display: none: !important;
     }
   `;
 
