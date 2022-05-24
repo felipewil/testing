@@ -276,10 +276,10 @@ const onLoad = (document) => {
     handleLinks(document.querySelectorAll('#res a'));
   }
 
-  document.querySelector('div.E8hWLe.SVMeif.BmP5tf')?.parentElement?.remove();
-  document.querySelector('[jscontroller="yz368b"]')?.parentElement?.remove();
-  document.querySelector('.kyRr2b')?.parentElement?.remove();
-  document.querySelector('.LsyjKf')?.parentElement?.remove();
+  // document.querySelector('div.E8hWLe.SVMeif.BmP5tf')?.parentElement?.remove();
+  // document.querySelector('[jscontroller="yz368b"]')?.parentElement?.remove();
+  // document.querySelector('.kyRr2b')?.parentElement?.remove();
+  // document.querySelector('.LsyjKf')?.parentElement?.remove();
 
   const toRemove = document.querySelectorAll('.g.mnr-c.F6CFcc');
   toRemove.forEach((t) => t.parentElement?.remove());
