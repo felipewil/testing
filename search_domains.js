@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Also search domains on Google
-// @version      0.0.1
+// @version      0.0.2
 // @author       Felipe
 // @match        *
 // @grant        GM.getValue
@@ -282,7 +282,7 @@ const onLoad = (document) => {
   // document.querySelector('.LsyjKf')?.parentElement?.remove();
 
   const toRemove = document.querySelectorAll('.g.mnr-c.F6CFcc');
-  toRemove.forEach((t) => t.parentElement?.remove());
+  // toRemove.forEach((t) => t.parentElement?.remove());
 };
 
 const getQuery = async () => {
