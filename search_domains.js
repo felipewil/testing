@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Also search domains on Google
-// @version      0.0.2
+// @version      0.0.1
 // @author       Felipe
 // @match        *
 // @grant        GM.getValue
@@ -180,6 +180,10 @@ const iframeStyle = `
     display: none !important;
   }
 
+  .kyRr2b, .E8dXEb { /* You can also search */
+    display: none !important;
+  }
+
   .FAVrq.VDgVie.it9gVe.gdwOPe.mB14jb.eofmDb { /* Fast access to Google */
     display: none !important;
   }
@@ -282,7 +286,7 @@ const onLoad = (document) => {
   // document.querySelector('.LsyjKf')?.parentElement?.remove();
 
   const toRemove = document.querySelectorAll('.g.mnr-c.F6CFcc');
-  // toRemove.forEach((t) => t.parentElement?.remove());
+  toRemove.forEach((t) => t.parentElement?.remove());
 };
 
 const getQuery = async () => {
