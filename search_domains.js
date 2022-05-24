@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Also search domains on Google
-// @version      0.0.1
+// @version      0.0.2
 // @author       Felipe
 // @match        *
 // @grant        GM.getValue
@@ -204,7 +204,7 @@ const iframeStyle = `
     display: none !important;
   }
 
-  #top_nav, #searchform, #taw, #topstuff, #bottomads, #botstuff #bres, #fbar {
+  #top_nav, #searchform, #topstuff, #bottomads, #botstuff #bres, #fbar {
     display: none !important;
   }
 
@@ -280,12 +280,12 @@ const onLoad = (document) => {
     handleLinks(document.querySelectorAll('#res a'));
   }
 
-  // document.querySelector('div.E8hWLe.SVMeif.BmP5tf')?.parentElement?.remove();
-  // document.querySelector('[jscontroller="yz368b"]')?.parentElement?.remove();
-  // document.querySelector('.LsyjKf')?.parentElement?.remove();
+  document.querySelector('div.E8hWLe.SVMeif.BmP5tf')?.parentElement?.remove();
+  document.querySelector('[jscontroller="yz368b"]')?.parentElement?.remove();
+  document.querySelector('.LsyjKf')?.parentElement?.remove();
 
   const toRemove = document.querySelectorAll('.g.mnr-c.F6CFcc');
-  // toRemove.forEach((t) => t.parentElement?.remove());
+  toRemove.forEach((t) => t.parentElement?.remove());
 };
 
 const getQuery = async () => {
