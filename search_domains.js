@@ -23,6 +23,7 @@ const containerStyle = `
     display: flex;
     flex-direction: column;
     position: relative;
+    margin-bottom: 12px;
   }
 
   #${ CONTAINER_ID } #${ LOADER_ID } {
@@ -50,10 +51,6 @@ const containerStyle = `
     height: 100%;
     width: 100%;
     border: 0;
-  }
-
-  #${ CONTAINER_ID } hr {
-    margin: 8px 16px;
   }
 
   #${ TITLE_ID } {
@@ -388,7 +385,7 @@ const run = async () => {
   const container = document.createElement('div');
   container.id = CONTAINER_ID;
   container.classList.add(SEARCH_DOMAINS_CLASS);
-  container.style.background = window.getComputedStyle(document.body).background;
+  container.style.background = window.getComputedStyle(document.body).backgroundColor;
 
   const loader = document.createElement('div');
   loader.id = LOADER_ID;
@@ -397,8 +394,6 @@ const run = async () => {
   const title = document.createElement('span');
   title.id = TITLE_ID;
   title.innerText = titleStr ? `${ titleStr } - via Hyperweb` : 'via Hyperweb';
-
-  const divider = document.createElement('hr');
 
   const iframeWrapper = document.createElement('div');
   iframeWrapper.id = WRAPPER_ID;
@@ -429,7 +424,6 @@ const run = async () => {
   
   container.appendChild(title);
   container.appendChild(iframeWrapper);
-  container.appendChild(divider);
   
   const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
   const sibling = loadMoreButton || firstResult || googleContainer;
