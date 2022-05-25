@@ -290,7 +290,7 @@ const onLoad = (document) => {
   toRemove.forEach((t) => t.parentElement?.remove());
 };
 
-const getQuery = async () => {
+const getPageDetails = async () => {
   const QUERIES_URL = 'https://raw.githubusercontent.com/insightbrowser/augmentations/main/serp_query_selectors.json';
   const request = await fetch(QUERIES_URL);
   const queries = await request.json();
@@ -307,13 +307,21 @@ const getQuery = async () => {
   if (!se) { return; }
 
   const queryParam = se.search_engine_json?.required_params[0];
-  return new URLSearchParams(document.location.search).get(queryParam);
+  return {
+    query: new URLSearchParams(document.location.search).get(queryParam),
+    linkSelector: isMobile ? se.querySelector?.phone : se.querySelector?.pad,
+    containerSelector: se.querySelector?.result_container_selector,
+  };
 };
 
 const run = async () => {
-  const pageQuery = await getQuery();
+  const {
+    query,
+    linkSelector,
+    containerSelector,
+  } = await getQuery();
 
-  if (!pageQuery) { return; }
+  if (!query) { return; }
 
   const titleStr = await GM.getValue('title');
 
@@ -329,7 +337,12 @@ const run = async () => {
     return;
   }
 
-  const searchResults = document.querySelectorAll('#rso div[data-hveid]:not([jsname]):not([data-ved]):not([class])');
+  let firstResult = document.querySelectorAll(linkSelector)[0];
+
+  if (firstResult && containerSelector) {
+    firstResult = firstResult.closest(containerSelector);
+  }
+
   const style = document.createElement('style');
   style.innerHTML = containerStyle;
 
@@ -381,7 +394,7 @@ const run = async () => {
   container.appendChild(divider);
   
   const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
-  const sibling = loadMoreButton || searchResults[0] || googleContainer;
+  const sibling = loadMoreButton || firstResult || googleContainer;
 
   sibling.parentElement.insertBefore(container, sibling);
 };
