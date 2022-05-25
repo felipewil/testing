@@ -374,7 +374,7 @@ const run = async () => {
       : `(${domains.map((x) => `site:${x}`).join(' OR ')})`;
 
   const host = window.location.host;
-  iframe.src = `https://${ host }/search?q=${ pageQuery } ${ append }`;
+  iframe.src = `https://${ host }/search?q=${ query } ${ append }`;
   iframe.onload = () => {
     onLoad(iframe.contentDocument);
     iframe.style.opacity = '1';
