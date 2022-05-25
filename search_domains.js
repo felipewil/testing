@@ -23,7 +23,8 @@ const containerStyle = `
     display: flex;
     flex-direction: column;
     position: relative;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    width: 100%;
   }
 
   #${ CONTAINER_ID } #${ LOADER_ID } {
