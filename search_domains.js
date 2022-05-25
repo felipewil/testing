@@ -15,6 +15,7 @@ const CONTAINER_ID = `container-${ SCRIPT_ID }`;
 const TITLE_ID = `title-${ SCRIPT_ID }`;
 const WRAPPER_ID = `wrapper-${ SCRIPT_ID }`;
 const LOADER_ID = `loader-${ SCRIPT_ID }`;
+const SHOW_ALL_BUTTON_ID = 'hw-show-all-search-domains'; // Injected from Hyperweb
 const SEARCH_DOMAINS_CLASS = 'hw-search-domains';
 
 const containerStyle = `
@@ -205,7 +206,7 @@ const iframeStyle = `
     display: none !important;
   }
 
-  #top_nav, #searchform, #bottomads, #botstuff #bres, #fbar {
+  #top_nav, #searchform, #taw, #bottomads, #botstuff #bres, #fbar {
     display: none !important;
   }
 
@@ -378,7 +379,10 @@ const run = async () => {
   container.appendChild(iframeWrapper);
   container.appendChild(divider);
   
-  googleContainer.parentElement.insertBefore(container, googleContainer);
+  const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
+  const sibling = loadMoreButton || googleContainer;
+
+  sibling.parentElement.insertBefore(container, sibling);
 };
 
 run();
