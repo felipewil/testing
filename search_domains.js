@@ -329,6 +329,7 @@ const run = async () => {
     return;
   }
 
+  const searchResults = document.querySelectorAll('#rso div[data-hveid]:not([jsname]):not([data-ved]):not([class])');
   const style = document.createElement('style');
   style.innerHTML = containerStyle;
 
@@ -380,7 +381,7 @@ const run = async () => {
   container.appendChild(divider);
   
   const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
-  const sibling = loadMoreButton || googleContainer;
+  const sibling = loadMoreButton || searchResults[0] || googleContainer;
 
   sibling.parentElement.insertBefore(container, sibling);
 };
