@@ -314,6 +314,32 @@ const getPageDetails = async () => {
   };
 };
 
+const insertContainer = (container, resultsContainer, linkSelector, containerSelector) => {
+  const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
+
+  if (loadMoreButton) {
+    return loadMoreButton.parentElement.insertBefore(container, loadMoreButton);
+  }
+
+  const peopleAsk = document.querySelector('.AuVD.wHYlTd.cUnQKe.Ww4FFb');
+
+  if (peopleAsk) {
+    return peopleAsk.parentElement.insertBefore(container, peopleAsk.nextSibling);
+  }
+
+  let firstResult = document.querySelectorAll(linkSelector)[0];
+
+  if (firstResult && containerSelector) {
+    firstResult = firstResult.closest(`#rso > ${ containerSelector }`);
+  }
+
+  if (firstResult) {
+    return firstResult.parentElement.insertBefore(container, firstResult);
+  }
+
+  resultsContainer.insertBefore(container, resultsContainer.firstChild);
+};
+
 const run = async () => {
   const {
     query,
@@ -400,7 +426,9 @@ const run = async () => {
   const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
   const sibling = loadMoreButton || firstResult || googleContainer;
 
-  sibling.parentElement.insertBefore(container, sibling);
+  // sibling.parentElement.insertBefore(container, sibling);
+
+  insertContainer(container, googleContainer, linkSelector, containerSelector);
 };
 
 run();
