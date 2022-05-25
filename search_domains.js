@@ -321,10 +321,17 @@ const insertContainer = (container, resultsContainer, linkSelector, containerSel
     return loadMoreButton.parentElement.insertBefore(container, loadMoreButton);
   }
 
-  const peopleAsk = document.querySelector('.AuVD.wHYlTd.cUnQKe.Ww4FFb');
+  const anchorPoints = [
+    '.xSoq1', // Top stories
+    '.AuVD.wHYlTd.cUnQKe.Ww4FFb', // People ask
+  ]; // Elements that the container should be placed after, in order of precedence
 
-  if (peopleAsk) {
-    return peopleAsk.parentElement.insertBefore(container, peopleAsk.nextSibling);
+  for (let ap of anchorPoints) {
+    const point = document.querySelector(ap);
+
+    if (point) {
+      return point.parentElement.insertBefore(container, point.nextSibling);
+    }
   }
 
   let firstResult = document.querySelectorAll(linkSelector)[0];
