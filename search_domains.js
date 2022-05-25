@@ -27,6 +27,10 @@ const containerStyle = `
     width: 100%;
   }
 
+  @media (min-width: 738px) #${ CONTAINER_ID } {
+    border-radius: 12px;
+  }
+
   #${ CONTAINER_ID } #${ LOADER_ID } {
     border: 4px solid #f3f3f3;
     border-top: 4px solid #999;
@@ -57,12 +61,13 @@ const containerStyle = `
   #${ TITLE_ID } {
     margin: 8px 16px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: bold;
     font-family: Google Sans,Roboto-Medium,HelveticaNeue-Medium,Helvetica Neue,sans-serif-medium,Arial,sans-serif;
   }
 
   #center_col {
     margin-top: 6px;
+    ${ isMobile ? '' : 'margin-left: 0px;' };
   }
 
   @keyframes ${ CONTAINER_ID }-spin {
@@ -317,11 +322,11 @@ const getPageDetails = async () => {
 // Elements that the container should be placed after, in order of precedence
 const getAnchorPoints = () => {
   return isMobile ? [
-    { q: '.xSoq1', parent: false }, // Top stories
     { q: '.AuVD.wHYlTd.cUnQKe.Ww4FFb', parent: false }, // People ask
+    { q: '.xSoq1', parent: false }, // Top stories
   ] : [
-    { q: '.yG4QQe.TBC9ub', parent: true }, // Top stories
     { q: '.AuVD.cUnQKe', parent: true }, // People ask
+    { q: '.yG4QQe.TBC9ub', parent: true }, // Top stories
   ];
 };
 
