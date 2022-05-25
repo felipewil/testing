@@ -67,7 +67,6 @@ const containerStyle = `
 
   #center_col {
     margin-top: 6px;
-    ${ isMobile ? '' : 'margin-left: 0px;' };
   }
 
   @keyframes ${ CONTAINER_ID }-spin {
@@ -82,6 +81,10 @@ const iframeStyle = `
 
   body {
     overflow: hidden;
+  }
+
+  #center_col {
+    ${ isMobile ? '' : 'margin-left: 0px;' };
   }
 
   #gsr {
