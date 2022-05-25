@@ -23,7 +23,7 @@ const containerStyle = `
     display: flex;
     flex-direction: column;
     position: relative;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
 
   #${ CONTAINER_ID } #${ LOADER_ID } {
@@ -56,6 +56,8 @@ const containerStyle = `
   #${ TITLE_ID } {
     margin: 8px 16px;
     font-size: 16px;
+    font-weight: 500px;
+    font-family: Google Sans,Roboto-Medium,HelveticaNeue-Medium,Helvetica Neue,sans-serif-medium,Arial,sans-serif;
   }
 
   #center_col {
