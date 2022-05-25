@@ -319,7 +319,11 @@ const run = async () => {
     query,
     linkSelector,
     containerSelector,
-  } = await getQuery();
+  } = await getPageDetails();
+
+  console.log(query,
+    linkSelector,
+    containerSelector);
 
   if (!query) { return; }
 
