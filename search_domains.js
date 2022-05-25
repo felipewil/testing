@@ -57,7 +57,7 @@ const containerStyle = `
   #${ TITLE_ID } {
     margin: 8px 16px;
     font-size: 16px;
-    font-weight: 500px;
+    font-weight: 500;
     font-family: Google Sans,Roboto-Medium,HelveticaNeue-Medium,Helvetica Neue,sans-serif-medium,Arial,sans-serif;
   }
 
@@ -314,6 +314,17 @@ const getPageDetails = async () => {
   };
 };
 
+// Elements that the container should be placed after, in order of precedence
+const getAnchorPoints = () => {
+  return isMobile ? [
+    { q: '.xSoq1', parent: false }, // Top stories
+    { q: '.AuVD.wHYlTd.cUnQKe.Ww4FFb', parent: false }, // People ask
+  ] : [
+    { q: '.yG4QQe.TBC9ub', parent: true }, // Top stories
+    { q: '.AuVD.cUnQKe', parent: true }, // People ask
+  ];
+};
+
 const insertContainer = (container, resultsContainer, linkSelector, containerSelector) => {
   const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
 
@@ -321,13 +332,14 @@ const insertContainer = (container, resultsContainer, linkSelector, containerSel
     return loadMoreButton.parentElement.insertBefore(container, loadMoreButton);
   }
 
-  const anchorPoints = [
-    '.xSoq1', // Top stories
-    '.AuVD.wHYlTd.cUnQKe.Ww4FFb', // People ask
-  ]; // Elements that the container should be placed after, in order of precedence
+  const anchorPoints = getAnchorPoints(); 
 
   for (let ap of anchorPoints) {
-    const point = document.querySelector(ap);
+    let point = document.querySelector(ap.q);
+
+    if (point && ap.parent) {
+      point = point.parentElement;
+    }
 
     if (point) {
       return point.parentElement.insertBefore(container, point.nextSibling);
