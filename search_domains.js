@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Also search domains on Google
-// @version      0.0.2
+// @version      0.0.3
 // @author       Felipe
 // @match        *
 // @grant        GM.getValue
@@ -9,33 +9,34 @@
 // ==/UserScript==
 
 const isMobile = !window.navigator.userAgent.toLocaleLowerCase().includes('macintosh');
-const googleContainerId = isMobile ? '#gsr' : '#rcnt';
-const scriptId = crypto.randomUUID().slice(0, 10);
-const containerId = `container-${ scriptId }`;
-const titleId = `title-${ scriptId }`;
-const wrapperId = `wrapper-${ scriptId }`;
-const loaderId = `loader-${ scriptId }`;
+const GOOGLE_CONTAINER_ID = isMobile ? '#gsr' : '#rcnt';
+const SCRIPT_ID = crypto.randomUUID().slice(0, 10);
+const CONTAINER_ID = `container-${ SCRIPT_ID }`;
+const TITLE_ID = `title-${ SCRIPT_ID }`;
+const WRAPPER_ID = `wrapper-${ SCRIPT_ID }`;
+const LOADER_ID = `loader-${ SCRIPT_ID }`;
+const SEARCH_DOMAINS_CLASS = 'hw-search-domains';
 
 const containerStyle = `
-  #${ containerId } {
+  #${ CONTAINER_ID } {
     display: flex;
     flex-direction: column;
     position: relative;
   }
 
-  #${ containerId } #${ loaderId } {
+  #${ CONTAINER_ID } #${ LOADER_ID } {
     border: 4px solid #f3f3f3;
     border-top: 4px solid #999;
     border-radius: 50%;
     width: 24px;
     height: 24px;
-    animation: ${ containerId }-spin 1s linear infinite;
+    animation: ${ CONTAINER_ID }-spin 1s linear infinite;
     position: absolute;
     left: calc(50% - 12px);
     top: calc(50% - 12px);
   }
 
-  #${ wrapperId } {
+  #${ WRAPPER_ID } {
     flex: 1;
     position: relative;
     height: ${ isMobile ? '270px' : '190px' };
@@ -44,17 +45,17 @@ const containerStyle = `
     border: 0;
   }
 
-  #${ containerId } iframe {
+  #${ CONTAINER_ID } iframe {
     height: 100%;
     width: 100%;
     border: 0;
   }
 
-  #${ containerId } hr {
+  #${ CONTAINER_ID } hr {
     margin: 8px 16px;
   }
 
-  #${ titleId } {
+  #${ TITLE_ID } {
     margin: 8px 16px;
     font-size: 16px;
   }
@@ -63,7 +64,7 @@ const containerStyle = `
     margin-top: 6px;
   }
 
-  @keyframes ${ containerId }-spin {
+  @keyframes ${ CONTAINER_ID }-spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
@@ -320,7 +321,7 @@ const run = async () => {
 
   if (!domains || !domains.length) { return; }
 
-  const googleContainer = document.querySelector(googleContainerId);
+  const googleContainer = document.querySelector(GOOGLE_CONTAINER_ID);
 
   if (!googleContainer) {
     setTimeout(run, 100);
@@ -333,20 +334,21 @@ const run = async () => {
   document.head.appendChild(style);
 
   const container = document.createElement('div');
-  container.id = containerId;
+  container.id = CONTAINER_ID;
+  container.classList.add(SEARCH_DOMAINS_CLASS);
 
   const loader = document.createElement('div');
-  loader.id = loaderId;
+  loader.id = LOADER_ID;
   loader.style.opacity = '1';
 
   const title = document.createElement('span');
-  title.id = titleId;
+  title.id = TITLE_ID;
   title.innerText = titleStr ? `${ titleStr } - via Hyperweb` : 'via Hyperweb';
 
   const divider = document.createElement('hr');
 
   const iframeWrapper = document.createElement('div');
-  iframeWrapper.id = wrapperId;
+  iframeWrapper.id = WRAPPER_ID;
 
   const iframe = document.createElement('iframe');
   iframe.style.opacity = '0';
