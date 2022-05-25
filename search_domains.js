@@ -388,6 +388,7 @@ const run = async () => {
   const container = document.createElement('div');
   container.id = CONTAINER_ID;
   container.classList.add(SEARCH_DOMAINS_CLASS);
+  container.style.background = window.getComputedStyle(googleContainer).backgroundColor;
 
   const loader = document.createElement('div');
   loader.id = LOADER_ID;
