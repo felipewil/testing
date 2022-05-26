@@ -249,6 +249,32 @@ const iframeStyle = `
   }
 `;
 
+const QUERIES = {
+  "Google Search": {
+    "querySelector": {
+      "phone": ".mnr-c .yuRUbf a.sXtWJb, .mnr-c a.cz3goc.BmP5tf",
+      "pad": ".hlcw0c .yuRUbf > a",
+      "desktop": "#center_col div:not(.kp-blk *) > .yuRUbf > a cite",
+      "result_container_selector": "[data-hveid]",
+      "featured": [".kp-blk.c2xzTb .yuRUbf > a"],
+      "highlight": ".MBeuO"
+    },
+    "search_engine_json": {
+      "is_web_search": true,
+      "override_required_params": {
+        "q": ".*",
+        "ie": ".*",
+        "oe": ".*",
+        "hl": ".*",
+        "client": ".*"
+      },
+      "required_params": ["q"],
+      "required_prefix": "google.com/search",
+      "match_prefix": "google(\\.\\w+){1,}\/search"
+    }
+  }
+};
+
 const handleLinks = (links) => {
   links.forEach((l) => {
     l.setAttribute('target', '_parent');
@@ -299,11 +325,8 @@ const onLoad = (document) => {
 };
 
 const getPageDetails = async () => {
-  const QUERIES_URL = 'https://raw.githubusercontent.com/insightbrowser/augmentations/main/serp_query_selectors.json';
-  const request = await fetch(QUERIES_URL);
-  const queries = await request.json();
   const se = Object
-    .values(queries)
+    .values(QUERIES)
     .find((query) => {
       const se = query.search_engine_json;
 
