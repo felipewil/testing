@@ -64,11 +64,18 @@ const containerStyle = `
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 8px;
   }
 
-  #${ ACTIONS_ID } a {
+  #${ ACTIONS_ID } .hw-customize {
     width: 16px;
     height: 16px;
+    padding: 4px;
+  }
+
+  #${ ACTIONS_ID } .hw-customize {
+    width: 20px;
+    height: 20px;
   }
 
   #${ ACTIONS_ID } svg {
@@ -414,11 +421,13 @@ const buildHeader = (title, onCustomize, onClose) => {
 
   const customizeEl = document.createElement('a');
   customizeEl.classList.add('hw-link');
+  customizeEl.classList.add('hw-customize');
   customizeEl.innerHTML = CUSTOMIZE_ICON;
   customizeEl.onclick = onCustomize;
 
   const closeEl = document.createElement('a');
   closeEl.classList.add('hw-link');
+  closeEl.classList.add('hw-close');
   closeEl.innerHTML = CLOSE_ICON;
   customizeEl.onclick = onClose;
 
