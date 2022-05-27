@@ -475,7 +475,7 @@ const run = async () => {
   const sibling = loadMoreButton || firstResult || googleContainer;
 
   // sibling.parentElement.insertBefore(container, sibling);
-
+  console.log('insert', title, Date.now());
   insertContainer(container, googleContainer, linkSelector, containerSelector);
 };
 
