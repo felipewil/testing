@@ -405,11 +405,11 @@ const run = async () => {
 
   console.log('get title', Date.now());
   const titleStr = await GM.getValue('title');
-  console.log('fetch title', titleStr, Date.now());
+  console.log('fetch title', titleStr, new Date());
 
-  console.log('get domains', titleStr, Date.now());
+  console.log('get domains', titleStr, new Date());
   const domainsStr = await GM.getValue('domains');
-  console.log('set domains', titleStr, Date.now());
+  console.log('set domains', titleStr, new Date());
   const domains = JSON.parse(domainsStr);
 
   if (!domains || !domains.length) { return; }
@@ -479,7 +479,7 @@ const run = async () => {
   const sibling = loadMoreButton || firstResult || googleContainer;
 
   // sibling.parentElement.insertBefore(container, sibling);
-  console.log('insert', titleStr, Date.now());
+  console.log('insert', titleStr, new Date());
   insertContainer(container, googleContainer, linkSelector, containerSelector);
 };
 
