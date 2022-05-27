@@ -53,7 +53,19 @@ const containerStyle = `
   #${ HEADER_ID } {
     display: flex;
     flex-direction: row;
+    justtify-content: space-between;
     margin: 8px 16px;
+  }
+
+  #${ ACTIONS_ID } {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #${ ACTIONS_ID } a {
+    width: 16px;
+    height: 16px;
   }
 
   #${ TITLE_ID } {
