@@ -5,6 +5,7 @@
 // @match        *
 // @grant        GM.getValue
 // @grant        GM.setValue
+// @grant        GM.disableEnhancement
 // @noframes
 // ==/UserScript==
 
@@ -476,11 +477,14 @@ const run = async () => {
   container.appendChild(iframeWrapper);
   
   const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
-  const sibling = loadMoreButton || firstResult || googleContainer;
 
   // sibling.parentElement.insertBefore(container, sibling);
   console.log('insert', titleStr, new Date());
   insertContainer(container, googleContainer, linkSelector, containerSelector);
+
+  window.TestHyperweb = () => {
+    console.log('worked');
+  }
 };
 
 run();
