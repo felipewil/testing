@@ -414,7 +414,7 @@ const insertContainer = (container, resultsContainer, linkSelector, containerSel
   resultsContainer.insertBefore(container, resultsContainer.firstChild);
 };
 
-const buildHeader = (title, onCustomize, onClose) => {
+const buildHeader = (title, customizeLink, onClose) => {
   const titleEl = document.createElement('span');
   titleEl.id = TITLE_ID;
   titleEl.innerText = title ? `${ title } - via Hyperweb` : 'via Hyperweb';
@@ -423,7 +423,7 @@ const buildHeader = (title, onCustomize, onClose) => {
   customizeEl.classList.add('hw-link');
   customizeEl.classList.add('hw-customize');
   customizeEl.innerHTML = CUSTOMIZE_ICON;
-  customizeEl.onclick = onCustomize;
+  customizeEl.href = customizeLink;
 
   const closeEl = document.createElement('a');
   closeEl.classList.add('hw-link');
@@ -447,7 +447,7 @@ const buildHeader = (title, onCustomize, onClose) => {
 const run = async ({
   title,
   domains,
-  onCustomize,
+  customizeLink,
   onClose,
 }) => {
   const {
@@ -514,7 +514,7 @@ const run = async ({
   iframeWrapper.appendChild(loaderEl);
   iframeWrapper.appendChild(iframeEl);
 
-  containerEl.appendChild(buildHeader(title, onCustomize, onClose));
+  containerEl.appendChild(buildHeader(title, customizeLink, onClose));
   containerEl.appendChild(iframeWrapper);
 
   insertContainer(containerEl, googleContainer, linkSelector, containerSelector);
