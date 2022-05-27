@@ -429,7 +429,7 @@ const buildHeader = (title, customizeLink, onClose) => {
   closeEl.classList.add('hw-link');
   closeEl.classList.add('hw-close');
   closeEl.innerHTML = CLOSE_ICON;
-  customizeEl.onclick = onClose;
+  closeEl.onclick = onClose;
 
   const actionsEl = document.createElement('div');
   actionsEl.id = ACTIONS_ID;
