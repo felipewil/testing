@@ -467,3 +467,6 @@ const run = async ({
 };
 
 window.HyperwebSearchFilter = run;
+console.log(window);
+console.log(window.HyperwebSearchFilter);
+console.log('end');
