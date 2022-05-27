@@ -1,3 +1,5 @@
+console.log('start');
+
 const isMobile = !window.navigator.userAgent.toLocaleLowerCase().includes('macintosh');
 const GOOGLE_CONTAINER_ID = isMobile ? '#gsr' : '#rcnt';
 const SCRIPT_ID = crypto.randomUUID().slice(0, 10);
@@ -466,6 +468,7 @@ const run = async ({
   callback?.();
 };
 
+console.log('start 1');
 window.HyperwebSearchFilter = run;
 console.log(window);
 console.log(window.HyperwebSearchFilter);
