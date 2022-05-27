@@ -324,7 +324,7 @@ const onLoad = (document) => {
   toRemove.forEach((t) => t.parentElement?.remove());
 };
 
-const getPageDetails = async () => {
+const getPageDetails = () => {
   const se = Object
     .values(QUERIES)
     .find((query) => {
@@ -395,7 +395,7 @@ const run = async () => {
     query,
     linkSelector,
     containerSelector,
-  } = await getPageDetails();
+  } = getPageDetails();
 
   console.log(query,
     linkSelector,
@@ -403,9 +403,13 @@ const run = async () => {
 
   if (!query) { return; }
 
+  console.log('get title', Date.now());
   const titleStr = await GM.getValue('title');
+  console.log('fetch title', titleStr, Date.now());
 
+  console.log('get domains', titleStr, Date.now());
   const domainsStr = await GM.getValue('domains');
+  console.log('set domains', titleStr, Date.now());
   const domains = JSON.parse(domainsStr);
 
   if (!domains || !domains.length) { return; }
@@ -475,7 +479,7 @@ const run = async () => {
   const sibling = loadMoreButton || firstResult || googleContainer;
 
   // sibling.parentElement.insertBefore(container, sibling);
-  console.log('insert', title, Date.now());
+  console.log('insert', titleStr, Date.now());
   insertContainer(container, googleContainer, linkSelector, containerSelector);
 };
 
