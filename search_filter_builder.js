@@ -67,13 +67,13 @@ const containerStyle = `
     gap: 8px;
   }
 
-  #${ ACTIONS_ID } .hw-close {
+  #${ ACTIONS_ID } .hw-customize {
     width: 16px;
     height: 16px;
     padding: 4px;
   }
 
-  #${ ACTIONS_ID } .hw-customize {
+  #${ ACTIONS_ID } .hw-close {
     width: 20px;
     height: 20px;
   }
