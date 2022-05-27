@@ -514,7 +514,7 @@ const run = async ({
   iframeWrapper.appendChild(loaderEl);
   iframeWrapper.appendChild(iframeEl);
 
-  containerEl.appendChild(buildHeader(title, customizeLink, onClose));
+  containerEl.appendChild(buildHeader(title, customizeLink, () => onClose(containerEl)));
   containerEl.appendChild(iframeWrapper);
 
   insertContainer(containerEl, googleContainer, linkSelector, containerSelector);
