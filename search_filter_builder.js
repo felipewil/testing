@@ -369,49 +369,11 @@ const getPageDetails = () => {
   };
 };
 
-// Elements that the container should be placed after, in order of precedence
-const getAnchorPoints = () => {
-  return isMobile ? [
-    { q: '.AuVD.wHYlTd.cUnQKe.Ww4FFb', parent: false }, // People ask
-    { q: '.xSoq1', parent: false }, // Top stories
-  ] : [
-    { q: '.AuVD.cUnQKe', parent: true }, // People ask
-    { q: '.yG4QQe.TBC9ub', parent: true }, // Top stories
-  ];
-};
-
-const insertContainer = (container, resultsContainer, linkSelector, containerSelector) => {
+const insertContainer = (container, resultsContainer) => {
   const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
+  const sibling = loadMoreButton || resultsContainer;
 
-  if (loadMoreButton) {
-    return loadMoreButton.parentElement.insertBefore(container, loadMoreButton);
-  }
-
-  const anchorPoints = getAnchorPoints(); 
-
-  for (let ap of anchorPoints) {
-    let point = document.querySelector(ap.q);
-
-    if (point && ap.parent) {
-      point = point.parentElement;
-    }
-
-    if (point) {
-      return point.parentElement.insertBefore(container, point.nextSibling);
-    }
-  }
-
-  let firstResult = document.querySelectorAll(linkSelector)[0];
-
-  if (firstResult && containerSelector) {
-    firstResult = firstResult.closest(`#rso > ${ containerSelector }`);
-  }
-
-  if (firstResult) {
-    return firstResult.parentElement.insertBefore(container, firstResult);
-  }
-
-  resultsContainer.insertBefore(container, resultsContainer.firstChild);
+  sibling.parentElement.insertBefore(container, sibling);
 };
 
 const buildHeader = (title, customizeLink, onClose) => {
@@ -450,11 +412,7 @@ const run = async ({
   customizeLink,
   onClose,
 }) => {
-  const {
-    query,
-    linkSelector,
-    containerSelector,
-  } = getPageDetails();
+  const { query } = getPageDetails();
 
   if (!query) { return; }
 
@@ -465,12 +423,6 @@ const run = async ({
   if (!googleContainer) {
     setTimeout(run, 100);
     return;
-  }
-
-  let firstResult = document.querySelectorAll(linkSelector)[0];
-
-  if (firstResult && containerSelector) {
-    firstResult = firstResult.closest(containerSelector);
   }
 
   const style = document.createElement('style');
@@ -517,7 +469,7 @@ const run = async ({
   containerEl.appendChild(buildHeader(title, customizeLink, () => onClose(containerEl)));
   containerEl.appendChild(iframeWrapper);
 
-  insertContainer(containerEl, googleContainer, linkSelector, containerSelector);
+  insertContainer(containerEl, googleContainer);
 };
 
 window.HyperwebSearchFilter = run;
