@@ -81,6 +81,7 @@ const containerStyle = `
   #${ ACTIONS_ID } svg {
     width: 100%;
     height: 100%;
+    fill: currentcolor;
   }
 
   #${ TITLE_ID } {
