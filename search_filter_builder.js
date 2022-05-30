@@ -412,6 +412,7 @@ const run = async ({
   title,
   domains,
   customizeLink,
+  onShow,
   onCustomize,
   onClose,
 }) => {
@@ -459,6 +460,8 @@ const run = async ({
     onLoad(iframeEl.contentDocument);
     iframeEl.style.opacity = '1';
     loaderEl.style.opacity = '0';
+
+    onShow?.();
 
     iframeEl.contentWindow.onunload = () => {
       iframeEl.style.opacity = '0';
