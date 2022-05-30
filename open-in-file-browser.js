@@ -19,7 +19,7 @@ GM.registerButton({
   caption: 'Open in FileBrowser',
   callback: () => {
     navigator.clipboard.writeText(document.location.href);
-    window.open('filebrowser://localhost?action=saveclipboard')
+    window.open('filebrowser://localhost/Folder?action=createfolder', '_self');
   },
 });
 
