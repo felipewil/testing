@@ -421,7 +421,6 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
       insertBefore(container, pageContainer);
     }
 
-    console.log('--');
     const elements = results.map((r) => getParentUntil(r, document.querySelector(GOOGLE_RESULT_CONTAINER_ID)));
 
     // If only element, just insert before
@@ -473,8 +472,6 @@ const buildHeader = (title, customizeLink, onCustomize, onClose) => {
 
 const isNavigationalResult = (result, query) => {
   const tokens = query.split(/\s+/g);
-
-  console.log('r', result.href, tokens);
 
   try {
     const url = new URL(result.href);
@@ -561,8 +558,6 @@ const run = async ({
   containerEl.appendChild(iframeWrapper);
 
   const navigational = isNavigational(linkSelector, query);
-
-  console.log('is nav', navigational);
 
   insertContainer(containerEl, googleContainer, query, linkSelector, notIn, navigational);
 };
