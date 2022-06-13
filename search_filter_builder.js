@@ -19,7 +19,7 @@ const containerStyle = `
     display: flex;
     flex-direction: column;
     position: relative;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     width: 100%;
   }
 
@@ -389,15 +389,12 @@ const insertContainer = (container, pageContainer, linkSelector, isNavigational)
 
   if (isNavigational) {
     const results = Array.from(document.querySelectorAll(`${ GOOGLE_RESULT_CONTAINER_ID } ${ linkSelector }`)).slice(0, 2);
-    console.log('res', results);
     // Fallback
     if (results.length === 0) {
       insertBefore(container, pageContainer);
     }
 
     const elements = results.map((r) => getParentUntil(r, document.querySelector(GOOGLE_RESULT_CONTAINER_ID)));
-
-    console.log('el', elements);
 
     // If only element, just insert before
     if (elements.length === 1) {
@@ -449,13 +446,11 @@ const buildHeader = (title, customizeLink, onCustomize, onClose) => {
 const isNavigational = (linkSelector, query) => {
   const results = Array.from(document.querySelectorAll(linkSelector));
   const hrefs = results.map((r) => r.href).slice(0, 3);
-
   const tokens = query.split(/\s+/g);
 
   return hrefs.some((h) => {
     try {
       const url = new URL(h);
-      console.log('tst', tokens.some((t) => url.hostname.includes(t)));
       return tokens.some((t) => url.hostname.includes(t));
     } catch {
       return false;
