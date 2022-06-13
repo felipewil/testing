@@ -419,6 +419,7 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
       insertBefore(container, pageContainer);
     }
 
+    console.log('--');
     const elements = results
       .map((r) => getParentUntil(r, document.querySelector(GOOGLE_RESULT_CONTAINER_ID)))
       .filter((r) => (notIn ? isNotIn(r, notIn) : true) && isNavigationalResult(r, query))
@@ -473,6 +474,8 @@ const buildHeader = (title, customizeLink, onCustomize, onClose) => {
 
 const isNavigationalResult = (result, query) => {
   const tokens = query.split(/\s+/g);
+
+  console.log('r', result.href, tokens);
 
   try {
     const url = new URL(result.href);
