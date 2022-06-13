@@ -1,5 +1,6 @@
 const isMobile = !window.navigator.userAgent.toLocaleLowerCase().includes('macintosh');
 const GOOGLE_CONTAINER_ID = isMobile ? '#gsr' : '#rcnt';
+const GOOGLE_RESULT_CONTAINER_ID = isMobile ? '#rso' : '#rcnt';
 const SCRIPT_ID = crypto.randomUUID().slice(0, 10);
 const CONTAINER_ID = `container-${ SCRIPT_ID }`;
 const HEADER_ID = `header-${ SCRIPT_ID }`;
@@ -370,11 +371,46 @@ const getPageDetails = () => {
   };
 };
 
-const insertContainer = (container, resultsContainer, isNavigational) => {
-  const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
-  const sibling = loadMoreButton || resultsContainer;
+const getParentUntil = (element, parent) => {
+  if (!element.getParentUntil) { return element; }
+  return element.parentElement === parent ? element : getParentUntil(element.parentElement, parent);
+};
 
-  sibling.parentElement.insertBefore(container, sibling);
+const insertBefore = (element, reference) => {
+  reference.parentElement.insertBefore(element, reference);
+};
+
+const insertContainer = (container, pageContainer, linkSelector, isNavigational) => {
+  const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
+
+  if (loadMoreButton) {
+    insertBefore(container, loadMoreButton);
+  }
+
+  if (isNavigational) {
+    const results = Array.from(document.querySelectorAll(`${ GOOGLE_RESULT_CONTAINER_ID } ${ linkSelector }`)).slice(0, 2);
+
+    // Fallback
+    if (results.length === 0) {
+      insertBefore(container, pageContainer);
+    }
+
+    const elements = results.map((r) => getParentUntil(r, document.querySelector(GOOGLE_RESULT_CONTAINER_ID)));
+
+    // If only element, just insert before
+    if (elements.length === 1) {
+      insertBefore(container, elements[0]);
+    } else {
+      // If next element of first is also a result, inject after it
+      if (elements[0].nextElementSibling === elements[1]) {
+        insertBefore(container, elements[1]);
+      } else {
+        insertBefore(container, elements[0]);
+      }
+    }
+  } else {
+    insertBefore(container, pageContainer);
+  }
 };
 
 const buildHeader = (title, customizeLink, onCustomize, onClose) => {
@@ -413,9 +449,6 @@ const isNavigational = (linkSelector, query) => {
   const hrefs = results.map((r) => r.href).slice(0, 3);
 
   const tokens = query.split(/\s+/g);
-
-  console.log('t', tokens);
-  console.log('h', hrefs);
 
   return hrefs.some((h) => {
     try {
@@ -497,7 +530,7 @@ const run = async ({
 
   console.log('is nav', navigational);
 
-  insertContainer(containerEl, googleContainer, navigational);
+  insertContainer(containerEl, googleContainer, linkSelector, navigational);
 };
 
 window.HyperwebSearchFilter = run;
