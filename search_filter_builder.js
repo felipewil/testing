@@ -412,18 +412,17 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
   }
 
   if (isNavigational) {
-    const results = Array.from(document.querySelectorAll(`${ GOOGLE_RESULT_CONTAINER_ID } ${ linkSelector }`));
-    console.log('res', results);
+    const results = Array
+      .from(document.querySelectorAll(`${ GOOGLE_RESULT_CONTAINER_ID } ${ linkSelector }`))
+      .filter((r) => (notIn ? isNotIn(r, notIn) : true) && isNavigationalResult(r, query))
+      .slice(0, 2);
     // Fallback
     if (results.length === 0) {
       insertBefore(container, pageContainer);
     }
 
     console.log('--');
-    const elements = results
-      .map((r) => getParentUntil(r, document.querySelector(GOOGLE_RESULT_CONTAINER_ID)))
-      .filter((r) => (notIn ? isNotIn(r, notIn) : true) && isNavigationalResult(r, query))
-      .slice(0, 2);
+    const elements = results.map((r) => getParentUntil(r, document.querySelector(GOOGLE_RESULT_CONTAINER_ID)));
 
     // If only element, just insert before
     if (elements.length === 1) {
