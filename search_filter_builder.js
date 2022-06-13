@@ -412,7 +412,7 @@ const isNavigational = (linkSelector, query) => {
   const results = Array.from(document.querySelectorAll(linkSelector));
   const hrefs = results.map((r) => r.href).slice(0, 3);
 
-  const tokens = query.split(/\\s+/g);
+  const tokens = query.split(/\s+/g);
 
   console.log('t', tokens);
   console.log('h', hrefs);
