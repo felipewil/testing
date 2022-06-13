@@ -414,6 +414,9 @@ const isNavigational = (linkSelector, query) => {
 
   const tokens = query.split(/\\s+/g);
 
+  console.log('t', tokens);
+  console.log('h', hrefs);
+
   return hrefs.some((h) => {
     try {
       const url = new URL(h);
