@@ -370,7 +370,7 @@ const getPageDetails = () => {
   };
 };
 
-const insertContainer = (container, resultsContainer) => {
+const insertContainer = (container, resultsContainer, isNavigational) => {
   const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
   const sibling = loadMoreButton || resultsContainer;
 
@@ -408,6 +408,22 @@ const buildHeader = (title, customizeLink, onCustomize, onClose) => {
   return headerEl;
 };
 
+const isNavigational = (linkSelector, query) => {
+  const results = Array.from(document.querySelectorAll(linkSelector));
+  const hrefs = results.map((r) => r.href).slice(0, 3);
+
+  const tokens = query.split(/\\s+/g);
+
+  hrefs.some((h) => {
+    try {
+      const url = new URL(h);
+      return tokens.some((t) => url.hostname.includes(t));
+    } catch {
+      return false;
+    }
+  })
+};
+
 const run = async ({
   title,
   domains,
@@ -416,11 +432,9 @@ const run = async ({
   onCustomize,
   onClose,
 }) => {
-  const { query } = getPageDetails();
+  const { query, linkSelector } = getPageDetails();
 
-  if (!query) { return; }
-
-  if (!domains || !domains.length) { return; }
+  if (!query || !domains || !domains.length) { return; }
 
   const googleContainer = document.querySelector(GOOGLE_CONTAINER_ID);
 
@@ -475,7 +489,11 @@ const run = async ({
   containerEl.appendChild(buildHeader(title, customizeLink, onCustomize, () => onClose(containerEl)));
   containerEl.appendChild(iframeWrapper);
 
-  insertContainer(containerEl, googleContainer);
+  const navigational = isNavigational(linkSelector, query);
+
+  console.log('is nav', navigational);
+
+  insertContainer(containerEl, googleContainer, navigational);
 };
 
 window.HyperwebSearchFilter = run;
