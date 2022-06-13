@@ -380,6 +380,14 @@ const insertBefore = (element, reference) => {
   reference.parentElement.insertBefore(element, reference);
 };
 
+const insertAfter = (element, reference) => {
+  if (reference.nextElementSibling) {
+    reference.parentElement.insertBefore(element, reference.nextElementSibling);
+  } else {
+    reference.parentElement.appendChild(element);
+  }
+};
+
 const insertContainer = (container, pageContainer, linkSelector, isNavigational) => {
   const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
 
@@ -401,13 +409,13 @@ const insertContainer = (container, pageContainer, linkSelector, isNavigational)
 
     // If only element, just insert before
     if (elements.length === 1) {
-      insertBefore(container, elements[0]);
+      insertAfter(container, elements[0]);
     } else {
       // If next element of first is also a result, inject after it
       if (elements[0].nextElementSibling === elements[1]) {
-        insertBefore(container, elements[1]);
+        insertAfter(container, elements[1]);
       } else {
-        insertBefore(container, elements[0]);
+        insertAfter(container, elements[0]);
       }
     }
   } else {
