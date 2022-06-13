@@ -399,6 +399,7 @@ const isNotIn = (element, notIn) => {
     }
 
     ref = element.parentElement;
+    console.log('ref', ref);
   }
 
   return true;
