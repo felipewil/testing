@@ -420,6 +420,7 @@ const isNavigational = (linkSelector, query) => {
   return hrefs.some((h) => {
     try {
       const url = new URL(h);
+      console.log('tst', tokens.some((t) => url.hostname.includes(t)));
       return tokens.some((t) => url.hostname.includes(t));
     } catch {
       return false;
