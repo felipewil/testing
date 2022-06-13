@@ -283,7 +283,8 @@ const QUERIES = {
       "desktop": "#center_col div:not(.kp-blk *) > .yuRUbf > a cite",
       "result_container_selector": "[data-hveid]",
       "featured": [".kp-blk.c2xzTb .yuRUbf > a"],
-      "highlight": ".MBeuO"
+      "highlight": ".MBeuO",
+      "not_in": ".kp-wholepage"
     },
     "search_engine_json": {
       "is_web_search": true,
@@ -368,6 +369,7 @@ const getPageDetails = () => {
     query: new URLSearchParams(document.location.search).get(queryParam),
     linkSelector: isMobile ? se.querySelector?.phone : se.querySelector?.pad,
     containerSelector: se.querySelector?.result_container_selector,
+    notIn: se.querySelector?.not_in,
   };
 };
 
@@ -388,7 +390,21 @@ const insertAfter = (element, reference) => {
   }
 };
 
-const insertContainer = (container, pageContainer, linkSelector, isNavigational) => {
+const isNotIn = (element, notIn) => {
+  let ref = element;
+
+  while (ref) {
+    if (element.matches(notIn)) {
+      return false;
+    }
+
+    ref = element.parentElement;
+  }
+
+  return true;
+};
+
+const insertContainer = (container, pageContainer, linkSelector, notIn, isNavigational) => {
   const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
 
   if (loadMoreButton) {
@@ -396,14 +412,17 @@ const insertContainer = (container, pageContainer, linkSelector, isNavigational)
   }
 
   if (isNavigational) {
-    const results = Array.from(document.querySelectorAll(`${ GOOGLE_RESULT_CONTAINER_ID } ${ linkSelector }`)).slice(0, 2);
+    const results = Array.from(document.querySelectorAll(`${ GOOGLE_RESULT_CONTAINER_ID } ${ linkSelector }`));
     console.log('res', results);
     // Fallback
     if (results.length === 0) {
       insertBefore(container, pageContainer);
     }
 
-    const elements = results.map((r) => getParentUntil(r, document.querySelector(GOOGLE_RESULT_CONTAINER_ID)));
+    const elements = results
+      .map((r) => getParentUntil(r, document.querySelector(GOOGLE_RESULT_CONTAINER_ID)))
+      .filter((r) => notIn ? isNotIn(r, notIn) : true)
+      .slice(0, 2);
 
     console.log('el', elements);
 
@@ -479,7 +498,11 @@ const run = async ({
   onCustomize,
   onClose,
 }) => {
-  const { query, linkSelector } = getPageDetails();
+  const {
+    linkSelector,
+    query,
+    notIn,
+  } = getPageDetails();
 
   if (!query || !domains || !domains.length) { return; }
 
@@ -540,7 +563,7 @@ const run = async ({
 
   console.log('is nav', navigational);
 
-  insertContainer(containerEl, googleContainer, linkSelector, navigational);
+  insertContainer(containerEl, googleContainer, linkSelector, notIn, navigational);
 };
 
 window.HyperwebSearchFilter = run;
