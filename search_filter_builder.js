@@ -372,7 +372,7 @@ const getPageDetails = () => {
 };
 
 const getParentUntil = (element, parent) => {
-  if (!element.getParentUntil) { return element; }
+  if (!element.parentElement) { return element; }
   return element.parentElement === parent ? element : getParentUntil(element.parentElement, parent);
 };
 
