@@ -389,13 +389,15 @@ const insertContainer = (container, pageContainer, linkSelector, isNavigational)
 
   if (isNavigational) {
     const results = Array.from(document.querySelectorAll(`${ GOOGLE_RESULT_CONTAINER_ID } ${ linkSelector }`)).slice(0, 2);
-
+    console.log('res', results);
     // Fallback
     if (results.length === 0) {
       insertBefore(container, pageContainer);
     }
 
     const elements = results.map((r) => getParentUntil(r, document.querySelector(GOOGLE_RESULT_CONTAINER_ID)));
+
+    console.log('el', elements);
 
     // If only element, just insert before
     if (elements.length === 1) {
