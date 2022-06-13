@@ -394,12 +394,11 @@ const isNotIn = (element, notIn) => {
   let ref = element;
 
   while (ref) {
-    if (element.matches(notIn)) {
+    if (ref.matches(notIn)) {
       return false;
     }
 
-    ref = element.parentElement;
-    console.log('ref', ref);
+    ref = ref.parentElement;
   }
 
   return true;
