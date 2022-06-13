@@ -1,6 +1,6 @@
 const isMobile = !window.navigator.userAgent.toLocaleLowerCase().includes('macintosh');
 const GOOGLE_CONTAINER_ID = isMobile ? '#gsr' : '#rcnt';
-const GOOGLE_RESULT_CONTAINER_ID = isMobile ? '#rso' : '#rcnt';
+const GOOGLE_RESULT_CONTAINER_ID = '#rso';
 const SCRIPT_ID = crypto.randomUUID().slice(0, 10);
 const CONTAINER_ID = `container-${ SCRIPT_ID }`;
 const HEADER_ID = `header-${ SCRIPT_ID }`;
