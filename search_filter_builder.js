@@ -404,7 +404,7 @@ const isNotIn = (element, notIn) => {
   return true;
 };
 
-const insertContainer = (container, pageContainer, linkSelector, notIn, isNavigational) => {
+const insertContainer = (container, pageContainer, query, linkSelector, notIn, isNavigational) => {
   const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
 
   if (loadMoreButton) {
@@ -421,10 +421,8 @@ const insertContainer = (container, pageContainer, linkSelector, notIn, isNaviga
 
     const elements = results
       .map((r) => getParentUntil(r, document.querySelector(GOOGLE_RESULT_CONTAINER_ID)))
-      .filter((r) => notIn ? isNotIn(r, notIn) : true)
+      .filter((r) => (notIn ? isNotIn(r, notIn) : true) && isNavigationalResult(r, query))
       .slice(0, 2);
-
-    console.log('el', elements);
 
     // If only element, just insert before
     if (elements.length === 1) {
@@ -473,21 +471,22 @@ const buildHeader = (title, customizeLink, onCustomize, onClose) => {
   return headerEl;
 };
 
-const isNavigational = (linkSelector, query) => {
-  const results = Array.from(document.querySelectorAll(linkSelector));
-  const hrefs = results.map((r) => r.href).slice(0, 3);
-
+const isNavigationalResult = (result, query) => {
   const tokens = query.split(/\s+/g);
 
-  return hrefs.some((h) => {
-    try {
-      const url = new URL(h);
-      console.log('tst', tokens.some((t) => url.hostname.includes(t)));
-      return tokens.some((t) => url.hostname.includes(t));
-    } catch {
-      return false;
-    }
-  })
+  try {
+    const url = new URL(result.href);
+    return tokens.some((t) => url.hostname.includes(t));
+  } catch {
+    return false;
+  }
+};
+
+const isNavigational = (linkSelector, query) => {
+  const results = Array
+    .from(document.querySelectorAll(linkSelector))
+    .slice(0, 3);
+  return results.some((r) => isNavigationalResult(r, query));
 };
 
 const run = async ({
@@ -563,7 +562,7 @@ const run = async ({
 
   console.log('is nav', navigational);
 
-  insertContainer(containerEl, googleContainer, linkSelector, notIn, navigational);
+  insertContainer(containerEl, googleContainer, query, linkSelector, notIn, navigational);
 };
 
 window.HyperwebSearchFilter = run;
