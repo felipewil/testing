@@ -438,16 +438,18 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
           return;
         }
       }
-      // If it does not contain the results, just add after it
-      else {
-        const peopleAlsoAsk = document.querySelector('.AuVD.wHYlTd.cUnQKe.Ww4FFb');
+      // If it does not contain the results, or elements of interest not found
+      const peopleAlsoAsk = document.querySelector('.AuVD.wHYlTd.cUnQKe.Ww4FFb');
 
-        if (peopleAlsoAsk) {
-          insertBefore(container, peopleAlsoAsk);
-        } else {
-          insertAfter(container, kpWholePage);
-        }
+      console.log('people ask', peopleAlsoAsk);
+
+      if (peopleAlsoAsk) {
+        insertBefore(container, peopleAlsoAsk);
+      } else {
+        insertAfter(container, kpWholePage);
       }
+
+      return;
     }
   }
 
