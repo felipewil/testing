@@ -594,6 +594,8 @@ const run = async ({
 
   const navigational = isNavigational(linkSelector, query);
 
+  console.log('ready', document.readyState);
+
   insertContainer(containerEl, googleContainer, query, linkSelector, notIn, navigational);
 };
 
