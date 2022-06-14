@@ -411,6 +411,39 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
     insertBefore(container, loadMoreButton);
   }
 
+  if (isMobile) {
+    const kpWholePage = document.querySelector('.kp-wholepage');
+
+    if (kpWholePage) {
+      // If kp-whole-page is the container
+      if (kpWholePage.querySelectorAll(linkSelector).length) {
+        const queriesOfInterest = [
+          '.mnr-c .AuVD.wHYlTd.cUnQKe.Ww4FFb', // People also ask
+          '.mnr-c .u1M3kd.g6Ealc.Z8eEPd', // Popular times
+        ];
+
+        const elementsOfInterest = queriesOfInterest.reduce((result, query) => {
+          const element = document.querySelector(query)?.closest('.mnr-c');
+          
+          if (element) {
+            return [
+              ...result,
+              element,
+            ]
+          } else {
+            return result;
+          }
+        }, []);
+
+        if (elementsOfInterest.length) {
+          const lastElement = elementsOfInterest.pop();
+          insertBefore(container, lastElement);
+          return;
+        }
+      }
+    }
+  }
+
   if (isNavigational) {
     const results = Array
       .from(document.querySelectorAll(`${ GOOGLE_RESULT_CONTAINER_ID } ${ linkSelector }`))
