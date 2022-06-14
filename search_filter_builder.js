@@ -405,6 +405,7 @@ const isNotIn = (element, notIn) => {
 };
 
 const insertContainer = (container, pageContainer, query, linkSelector, notIn, isNavigational) => {
+  console.log('insert called');
   const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
 
   if (loadMoreButton) {
@@ -414,7 +415,10 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
   if (isMobile) {
     const kpWholePage = document.querySelector('.kp-wholepage');
 
+    console.log('kp exists', kpWholePage);
+
     if (kpWholePage) {
+      console.log('kp is container', kpWholePage.querySelectorAll(linkSelector).length);
       // If kp-whole-page is the container
       if (kpWholePage.querySelectorAll(linkSelector).length) {
         const queriesOfInterest = [
@@ -434,6 +438,7 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
       }
       // If it does not contain the results, just add after it
       else {
+        console.log('insert after kp');
         insertAfter(container, kpWholePage);
       }
     }
