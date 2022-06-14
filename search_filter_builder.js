@@ -383,8 +383,6 @@ const insertBefore = (element, reference) => {
 };
 
 const insertAfter = (element, reference) => {
-  console.log('ref', reference);
-  console.log('ref next', reference.nextElementSibling);
   if (reference.nextElementSibling) {
     reference.parentElement.insertBefore(element, reference.nextElementSibling);
   } else {
@@ -407,7 +405,6 @@ const isNotIn = (element, notIn) => {
 };
 
 const insertContainer = (container, pageContainer, query, linkSelector, notIn, isNavigational) => {
-  console.log('insert called');
   const loadMoreButton = document.querySelector(`#${ SHOW_ALL_BUTTON_ID }`);
 
   if (loadMoreButton) {
@@ -417,10 +414,7 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
   if (isMobile) {
     const kpWholePage = document.querySelector('.kp-wholepage');
 
-    console.log('kp exists', kpWholePage);
-
     if (kpWholePage) {
-      console.log('kp is container', kpWholePage.querySelectorAll(linkSelector).length);
       // If kp-whole-page is the container
       if (kpWholePage.querySelectorAll(linkSelector).length) {
         const queriesOfInterest = [
@@ -440,8 +434,6 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
       }
       // If it does not contain the results, or elements of interest not found
       const peopleAlsoAsk = document.querySelector('.AuVD.wHYlTd.cUnQKe.Ww4FFb');
-
-      console.log('people ask', peopleAlsoAsk);
 
       if (peopleAlsoAsk) {
         insertBefore(container, peopleAlsoAsk);
