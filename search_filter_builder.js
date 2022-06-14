@@ -421,23 +421,14 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
           '.mnr-c .AuVD.wHYlTd.cUnQKe.Ww4FFb', // People also ask
           '.mnr-c .u1M3kd.g6Ealc.Z8eEPd', // Popular times
         ];
+        
+        const elementOfInterest = Array.from(document.querySelectorAll(queriesOfInterest.join(',')))
+          .map((el) => el.closest('.mnr-c'))
+          .filter((el) => !!el)
+          .pop();
 
-        const elementsOfInterest = queriesOfInterest.reduce((result, query) => {
-          const element = document.querySelector(query)?.closest('.mnr-c');
-          
-          if (element) {
-            return [
-              ...result,
-              element,
-            ]
-          } else {
-            return result;
-          }
-        }, []);
-
-        if (elementsOfInterest.length) {
-          const lastElement = elementsOfInterest.pop();
-          insertBefore(container, lastElement);
+        if (elementOfInterest) {
+          insertBefore(container, elementOfInterest);
           return;
         }
       }
