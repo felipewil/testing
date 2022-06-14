@@ -440,8 +440,13 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
       }
       // If it does not contain the results, just add after it
       else {
-        console.log('insert after kp');
-        insertAfter(container, kpWholePage);
+        const peopleAlsoAsk = document.querySelector('.AuVD.wHYlTd.cUnQKe.Ww4FFb');
+
+        if (peopleAlsoAsk) {
+          insertBefore(container, peopleAlsoAsk);
+        } else {
+          insertAfter(container, kpWholePage);
+        }
       }
     }
   }
@@ -593,8 +598,6 @@ const run = async ({
   containerEl.appendChild(iframeWrapper);
 
   const navigational = isNavigational(linkSelector, query);
-
-  console.log('ready', document.readyState);
 
   insertContainer(containerEl, googleContainer, query, linkSelector, notIn, navigational);
 };
