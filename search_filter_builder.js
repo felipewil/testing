@@ -432,6 +432,10 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
           return;
         }
       }
+      // If it does not contain the results, just add after it
+      else {
+        insertAfter(container, kpWholePage);
+      }
     }
   }
 
