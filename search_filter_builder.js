@@ -383,6 +383,8 @@ const insertBefore = (element, reference) => {
 };
 
 const insertAfter = (element, reference) => {
+  console.log('ref', reference);
+  console.log('ref next', reference.nextElementSibling);
   if (reference.nextElementSibling) {
     reference.parentElement.insertBefore(element, reference.nextElementSibling);
   } else {
