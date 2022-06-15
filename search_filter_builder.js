@@ -423,16 +423,12 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
         const firstResult = results[0];
         let parentResult = getParentUntil(firstResult, document.querySelector('#kp-wp-tab-overview'));
 
-        console.log('-> 1', parentResult);
-
         if (parentResult && parentResult !== document.documentElement) {
           insertBefore(container, parentResult);
           return;
         }
 
         parentResult = results[0].closest('.TzHB6b');
-
-        console.log('-> 2', parentResult);
 
         if (parentResult) {
           insertBefore(container, parentResult);
@@ -458,6 +454,13 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
       // If it does not contain the results, or elements of interest not found
       insertAfter(container, kpWholePage);
 
+      return;
+    }
+
+    const obcontainer = document.querySelector('.obcontainer');
+
+    if (obcontainer) {
+      insertAfter(container, obcontainer);
       return;
     }
   }
