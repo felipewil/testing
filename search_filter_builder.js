@@ -457,6 +457,13 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
       return;
     }
 
+    const knowledgePanel = document.querySelector('.knowledge-panel');
+
+    if (knowledgePanel) {
+      insertAfter(container, knowledgePanel);
+      return;
+    }
+
     const obcontainer = document.querySelector('.obcontainer');
 
     if (obcontainer) {
