@@ -423,12 +423,12 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
 
         console.log('-> 1', parentResult);
 
-        if (parentResult) {
+        if (parentResult && parentResult !== document.documentElement) {
           insertBefore(container, parentResult);
           return;
         }
 
-        parentResult = results[0].closest('.TzHB6b.mnr-c.UBoxCb.K7khPe');
+        parentResult = results[0].closest('.TzHB6b');
 
         console.log('-> 2', parentResult);
 
