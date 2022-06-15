@@ -433,13 +433,7 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
         }
       }
       // If it does not contain the results, or elements of interest not found
-      const peopleAlsoAsk = document.querySelector('.AuVD.wHYlTd.cUnQKe.Ww4FFb');
-
-      if (peopleAlsoAsk) {
-        insertBefore(container, peopleAlsoAsk);
-      } else {
-        insertAfter(container, kpWholePage);
-      }
+      insertAfter(container, kpWholePage);
 
       return;
     }
@@ -522,6 +516,18 @@ const isNavigational = (linkSelector, query) => {
   return results.some((r) => isNavigationalResult(r, query));
 };
 
+const runFunctionWhenDocumentReady = (callback) => {
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    callback();
+  } else {
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => callback(),
+      false,
+    );
+  }
+};
+
 const run = async ({
   title,
   domains,
@@ -593,7 +599,9 @@ const run = async ({
 
   const navigational = isNavigational(linkSelector, query);
 
-  insertContainer(containerEl, googleContainer, query, linkSelector, notIn, navigational);
+  runFunctionWhenDocumentReady(() => {
+    insertContainer(containerEl, googleContainer, query, linkSelector, notIn, navigational);
+  });
 };
 
 window.HyperwebSearchFilter = run;
