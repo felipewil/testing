@@ -415,7 +415,9 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
     const kpWholePage = document.querySelector('.kp-wholepage');
 
     if (kpWholePage) {
-      const results = kpWholePage.querySelectorAll(linkSelector);
+      const results = Array
+        .from(kpWholePage.querySelectorAll(linkSelector))
+        .filter((r) => isNotIn(r, '.mFVw3b'));
       // If kp-whole-page is the container
       if (results.length) {
         const firstResult = results[0];
@@ -442,7 +444,8 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
           '.mnr-c .u1M3kd.g6Ealc.Z8eEPd', // Popular times
         ];
 
-        const elementOfInterest = Array.from(document.querySelectorAll(queriesOfInterest.join(',')))
+        const elementOfInterest = Array
+          .from(document.querySelectorAll(queriesOfInterest.join(',')))
           .map((el) => el.closest('.mnr-c'))
           .filter((el) => !!el)
           .pop();
