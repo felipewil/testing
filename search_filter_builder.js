@@ -415,17 +415,15 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
     const kpWholePage = document.querySelector('.kp-wholepage');
 
     if (kpWholePage) {
+      const results = kpWholePage.querySelectorAll(linkSelector);
       // If kp-whole-page is the container
-      if (kpWholePage.querySelectorAll(linkSelector).length) {
+      if (results.length) {
         const queriesOfInterest = [
           '.mnr-c .AuVD.wHYlTd.cUnQKe.Ww4FFb', // People also ask
           '.mnr-c .u1M3kd.g6Ealc.Z8eEPd', // Popular times
         ];
         
-        const elementOfInterest = Array.from(document.querySelectorAll(queriesOfInterest.join(',')))
-          .map((el) => el.closest('.mnr-c'))
-          .filter((el) => !!el)
-          .pop();
+        const elementOfInterest = results[0].closest('.mnr-c');
 
         if (elementOfInterest) {
           insertBefore(container, elementOfInterest);
