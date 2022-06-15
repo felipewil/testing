@@ -418,12 +418,30 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
       const results = kpWholePage.querySelectorAll(linkSelector);
       // If kp-whole-page is the container
       if (results.length) {
+        const firstResult = results[0];
+        let parentResult = getParentUntil(firstResult, document.querySelector('kp-wp-tab-overview'));
+
+        if (parentResult) {
+          insertBefore(container, parentResult);
+          return;
+        }
+
+        parentResult = results[0].closest('.TzHB6b.mnr-c.UBoxCb.K7khPe');
+
+        if (parentResult) {
+          insertBefore(container, parentResult);
+          return;
+        }
+
         const queriesOfInterest = [
           '.mnr-c .AuVD.wHYlTd.cUnQKe.Ww4FFb', // People also ask
           '.mnr-c .u1M3kd.g6Ealc.Z8eEPd', // Popular times
         ];
-        
-        const elementOfInterest = results[0].closest('.mnr-c');
+
+        const elementOfInterest = Array.from(document.querySelectorAll(queriesOfInterest.join(',')))
+          .map((el) => el.closest('.mnr-c'))
+          .filter((el) => !!el)
+          .pop();
 
         if (elementOfInterest) {
           insertBefore(container, elementOfInterest);
