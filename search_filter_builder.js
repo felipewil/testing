@@ -419,7 +419,9 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
       // If kp-whole-page is the container
       if (results.length) {
         const firstResult = results[0];
-        let parentResult = getParentUntil(firstResult, document.querySelector('kp-wp-tab-overview'));
+        let parentResult = getParentUntil(firstResult, document.querySelector('#kp-wp-tab-overview'));
+
+        console.log('-> 1', parentResult);
 
         if (parentResult) {
           insertBefore(container, parentResult);
@@ -427,6 +429,8 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
         }
 
         parentResult = results[0].closest('.TzHB6b.mnr-c.UBoxCb.K7khPe');
+
+        console.log('-> 2', parentResult);
 
         if (parentResult) {
           insertBefore(container, parentResult);
