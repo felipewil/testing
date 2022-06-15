@@ -460,6 +460,13 @@ const insertContainer = (container, pageContainer, query, linkSelector, notIn, i
     const knowledgePanel = document.querySelector('.knowledge-panel');
 
     if (knowledgePanel) {
+      const parent = getParentUntil(knowledgePanel, document.querySelector(GOOGLE_RESULT_CONTAINER_ID));
+
+      if (parent && parent !== document.documentElement) {
+        insertAfter(container, parent);
+        return;
+      }
+
       insertAfter(container, knowledgePanel);
       return;
     }
