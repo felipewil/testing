@@ -132,13 +132,17 @@ const iframeStyle = `
     height: 100%;
   }
 
-  .mnr-c.xpd.O9g5cc.uUPGi, .g { /* Result card */
+  .mnr-c.xpd.O9g5cc.uUPGi, .MjjYud > div:not(.EyBRub), .g { /* Result card */
     height: ${ isMobile ? '250px' : '150px' } !important;
     padding: ${ isMobile ? '0px' : '10px' } !important;
     margin: 10px !important;
     box-shadow: 0 0 0 1px #dadce0;
     border-radius: 8px;
     overflow-y: scroll;
+  }
+  
+  .MjjYud .Ww4FFb {
+    box-shadow: none !important;
   }
 
   body[data-dt="1"] .mnr-c.xpd.O9g5cc.uUPGi, body[data-dt="1"] .g {
