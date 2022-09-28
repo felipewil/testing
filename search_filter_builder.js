@@ -279,7 +279,7 @@ const QUERIES = {
   "Google Search": {
     "querySelector": {
       "phone": ".mnr-c .yuRUbf a.sXtWJb, .mnr-c a.cz3goc.BmP5tf",
-      "pad": ".hlcw0c .yuRUbf > a",
+      "pad": ".hlcw0c .yuRUbf > a, .MjjYud .yuRUbf > a",
       "desktop": "#center_col div:not(.kp-blk *) > .yuRUbf > a cite",
       "result_container_selector": "[data-hveid]",
       "featured": [".kp-blk.c2xzTb .yuRUbf > a"],
